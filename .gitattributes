@@ -1,2 +1,2 @@
-*.go linguist-language=Go
 *.go linguist-detectable
+*.go linguist-language=Go
