@@ -1,0 +1,15 @@
+# AddPaymentMethodRequestBodyTokenType
+
+Used to define which payment processor generated the token for this credit card.  For those using Bolt's tokenizer, the value must be `bolt`.
+
+
+
+## Values
+
+| Name                                           | Value                                          |
+| ---------------------------------------------- | ---------------------------------------------- |
+| `AddPaymentMethodRequestBodyTokenTypeVantiv`   | vantiv                                         |
+| `AddPaymentMethodRequestBodyTokenTypeApplepay` | applepay                                       |
+| `AddPaymentMethodRequestBodyTokenTypeBolt`     | bolt                                           |
+| `AddPaymentMethodRequestBodyTokenTypeStripe`   | stripe                                         |
+| `AddPaymentMethodRequestBodyTokenTypePlcc`     | plcc                                           |
