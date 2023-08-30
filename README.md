@@ -86,6 +86,10 @@ func main() {
 * [ReplaceAddress](docs/sdks/account/README.md#replaceaddress) - Replace Address
 * [UpdateAccountProfile](docs/sdks/account/README.md#updateaccountprofile) - Update Profile
 
+### [OAuth](docs/sdks/oauth/README.md)
+
+* [OAuthToken](docs/sdks/oauth/README.md#oauthtoken) - OAuth Token Endpoint
+
 ### [Payments](docs/sdks/payments/README.md)
 
 * [FinalizePayment](docs/sdks/payments/README.md#finalizepayment) - Finalize Payment

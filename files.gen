@@ -1,4 +1,5 @@
 account.go
+oauth.go
 payments.go
 testing.go
 transactions.go
@@ -28,6 +29,7 @@ pkg/models/operations/editaddress.go
 pkg/models/operations/getaccount.go
 pkg/models/operations/replaceaddress.go
 pkg/models/operations/updateaccountprofile.go
+pkg/models/operations/oauthtoken.go
 pkg/models/operations/finalizepayment.go
 pkg/models/operations/initializepayment.go
 pkg/models/operations/updatepayment.go
@@ -55,6 +57,10 @@ pkg/models/shared/errorsboltapiresponse.go
 pkg/models/shared/requestresult.go
 pkg/models/shared/errorboltapi.go
 pkg/models/shared/v1accountsview.go
+pkg/models/shared/oauthtokenresponse.go
+pkg/models/shared/errorsoauthserverresponse.go
+pkg/models/shared/oauthtokeninput2.go
+pkg/models/shared/oauthtokeninputrefresh1.go
 pkg/models/shared/cartcreate.go
 pkg/models/shared/cartshipment.go
 pkg/models/shared/cartshipmenttype.go
@@ -173,6 +179,7 @@ pkg/models/shared/creditcardvoid.go
 pkg/models/shared/security.go
 docs/sdks/boltembeddedapi/README.md
 docs/sdks/account/README.md
+docs/sdks/oauth/README.md
 docs/sdks/payments/README.md
 docs/sdks/testing/README.md
 docs/sdks/transactions/README.md
@@ -214,6 +221,9 @@ docs/models/operations/updateaccountprofilesecurity.md
 docs/models/operations/updateaccountprofilerequestbody.md
 docs/models/operations/updateaccountprofilerequest.md
 docs/models/operations/updateaccountprofileresponse.md
+docs/models/operations/oauthtokenrequestbody.md
+docs/models/operations/oauthtokenrequest.md
+docs/models/operations/oauthtokenresponse.md
 docs/models/operations/finalizepaymentsecurity.md
 docs/models/operations/finalizepaymentrequestbodyshopperidentity.md
 docs/models/operations/finalizepaymentrequestbody.md
@@ -304,6 +314,13 @@ docs/models/shared/errorsboltapiresponse.md
 docs/models/shared/requestresult.md
 docs/models/shared/errorboltapi.md
 docs/models/shared/v1accountsview.md
+docs/models/shared/oauthtokenresponse.md
+docs/models/shared/errorsoauthserverresponse.md
+docs/models/shared/oauthtokeninputgranttype.md
+docs/models/shared/oauthtokeninputscope.md
+docs/models/shared/oauthtokeninput2.md
+docs/models/shared/oauthtokeninputrefreshgranttype.md
+docs/models/shared/oauthtokeninputrefresh1.md
 docs/models/shared/cartcreatefees.md
 docs/models/shared/cartcreatefulfillmentsdigitaldelivery.md
 docs/models/shared/cartcreatefulfillmentstype.md

@@ -73,6 +73,9 @@ type BoltEmbeddedAPI struct {
 	// Account - Create Embedded Accounts user flows for logged-in and guest experiences by interacting with and updating shopper data.
 	//
 	Account *account
+	// OAuth - Interact with Shopper data by completing the Bolt OAuth process.
+	//
+	OAuth *oAuth
 	// Payments - Create and manage transactions for non credit card payments such as Paypal in your Embedded Accounts experience.
 	//
 	Payments *payments
@@ -137,8 +140,8 @@ func New(opts ...SDKOption) *BoltEmbeddedAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.1",
-			SDKVersion:        "0.1.0",
-			GenVersion:        "2.84.3",
+			SDKVersion:        "0.2.0",
+			GenVersion:        "2.88.7",
 		},
 	}
 	for _, opt := range opts {
@@ -158,6 +161,8 @@ func New(opts ...SDKOption) *BoltEmbeddedAPI {
 	}
 
 	sdk.Account = newAccount(sdk.sdkConfiguration)
+
+	sdk.OAuth = newOAuth(sdk.sdkConfiguration)
 
 	sdk.Payments = newPayments(sdk.sdkConfiguration)
 

@@ -36,12 +36,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Payments.FinalizePayment(ctx, operations.FinalizePaymentRequest{
-        IdempotencyKey: boltembeddedapi.String("quasi"),
+        IdempotencyKey: boltembeddedapi.String("repudiandae"),
         RequestBody: &operations.FinalizePaymentRequestBody{
             MerchantEventID: boltembeddedapi.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
             ShopperIdentity: &operations.FinalizePaymentRequestBodyShopperIdentity{
                 CreateBoltAccount: boltembeddedapi.Bool(true),
-                Email: "Kira.Boehm31@hotmail.com",
+                Email: "Arnoldo31@yahoo.com",
                 FirstName: "Adele",
                 LastName: "Orn",
                 Phone: "(367) 822-1355 x01830",
