@@ -491,3 +491,4 @@ docs/models/shared/authorizationverificationstatus.md
 docs/models/shared/addresschangerequestmetadataview.md
 docs/models/shared/creditcardvoid.md
 docs/models/shared/security.md
+.gitattributes

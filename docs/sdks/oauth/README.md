@@ -41,7 +41,7 @@ func main() {
     ctx := context.Background()
     res, err := s.OAuth.OAuthToken(ctx, operations.OAuthTokenRequest{
         RequestBody: &operations.OAuthTokenRequestBody{},
-        XPublishableKey: boltembeddedapi.String("quasi"),
+        XPublishableKey: boltembeddedapi.String("voluptate"),
     })
     if err != nil {
         log.Fatal(err)

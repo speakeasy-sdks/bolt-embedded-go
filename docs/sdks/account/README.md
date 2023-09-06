@@ -229,76 +229,7 @@ func main() {
                     LastName: "Watts",
                     Locality: "Brooklyn",
                     Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("tempora"),
-                    },
-                    Name: boltembeddedapi.String("Alan Watts"),
-                    Phone: boltembeddedapi.String("+12125550199"),
-                    PostalCode: "10044",
-                    Region: "NY",
-                    RegionCode: boltembeddedapi.String("NY"),
-                    StreetAddress1: "888 main street",
-                    StreetAddress2: boltembeddedapi.String("apt 3021"),
-                    StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
-                    StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
-                },
-                shared.AddressAccount{
-                    Company: boltembeddedapi.String("Bolt"),
-                    Country: boltembeddedapi.String("United States"),
-                    CountryCode: "US",
-                    Default: boltembeddedapi.Bool(false),
-                    DoorCode: boltembeddedapi.String("123456"),
-                    Email: "alan.watts@example.com",
-                    FirstName: "Alan",
-                    LastName: "Watts",
-                    Locality: "Brooklyn",
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("suscipit"),
-                    },
-                    Name: boltembeddedapi.String("Alan Watts"),
-                    Phone: boltembeddedapi.String("+12125550199"),
-                    PostalCode: "10044",
-                    Region: "NY",
-                    RegionCode: boltembeddedapi.String("NY"),
-                    StreetAddress1: "888 main street",
-                    StreetAddress2: boltembeddedapi.String("apt 3021"),
-                    StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
-                    StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
-                },
-                shared.AddressAccount{
-                    Company: boltembeddedapi.String("Bolt"),
-                    Country: boltembeddedapi.String("United States"),
-                    CountryCode: "US",
-                    Default: boltembeddedapi.Bool(false),
-                    DoorCode: boltembeddedapi.String("123456"),
-                    Email: "alan.watts@example.com",
-                    FirstName: "Alan",
-                    LastName: "Watts",
-                    Locality: "Brooklyn",
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("molestiae"),
-                    },
-                    Name: boltembeddedapi.String("Alan Watts"),
-                    Phone: boltembeddedapi.String("+12125550199"),
-                    PostalCode: "10044",
-                    Region: "NY",
-                    RegionCode: boltembeddedapi.String("NY"),
-                    StreetAddress1: "888 main street",
-                    StreetAddress2: boltembeddedapi.String("apt 3021"),
-                    StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
-                    StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
-                },
-                shared.AddressAccount{
-                    Company: boltembeddedapi.String("Bolt"),
-                    Country: boltembeddedapi.String("United States"),
-                    CountryCode: "US",
-                    Default: boltembeddedapi.Bool(false),
-                    DoorCode: boltembeddedapi.String("123456"),
-                    Email: "alan.watts@example.com",
-                    FirstName: "Alan",
-                    LastName: "Watts",
-                    Locality: "Brooklyn",
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("minus"),
+                        AdditionalProperties: boltembeddedapi.String("delectus"),
                     },
                     Name: boltembeddedapi.String("Alan Watts"),
                     Phone: boltembeddedapi.String("+12125550199"),
@@ -335,133 +266,16 @@ func main() {
                     },
                     BillingAddressID: boltembeddedapi.String("null"),
                     Bin: boltembeddedapi.String("411111"),
-                    Cryptogram: boltembeddedapi.String("voluptatum"),
+                    Cryptogram: boltembeddedapi.String("tempora"),
                     Default: boltembeddedapi.Bool(false),
-                    Eci: boltembeddedapi.String("iusto"),
+                    Eci: boltembeddedapi.String("suscipit"),
                     Expiration: "2025-11",
                     Last4: boltembeddedapi.String("1234"),
                     Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("excepturi"),
+                        AdditionalProperties: boltembeddedapi.String("molestiae"),
                     },
-                    Network: shared.PaymentMethodAccountNetworkAmex.ToPointer(),
-                    Number: boltembeddedapi.String("recusandae"),
-                    PostalCode: boltembeddedapi.String("10044"),
-                    Priority: shared.PaymentMethodAccountPriorityTwo.ToPointer(),
-                    Save: boltembeddedapi.Bool(false),
-                    Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
-                    TokenType: shared.PaymentMethodAccountTokenTypeBolt.ToPointer(),
-                },
-                shared.PaymentMethodAccount{
-                    BillingAddress: shared.Address{
-                        Company: boltembeddedapi.String("Bolt"),
-                        Country: boltembeddedapi.String("United States"),
-                        CountryCode: "US",
-                        Default: boltembeddedapi.Bool(true),
-                        DoorCode: boltembeddedapi.String("123456"),
-                        Email: "alan.watts@example.com",
-                        FirstName: "Alan",
-                        LastName: "Watts",
-                        Locality: "Brooklyn",
-                        Name: boltembeddedapi.String("Alan Watts"),
-                        Phone: boltembeddedapi.String("+12125550199"),
-                        PostalCode: "10044",
-                        Region: "NY",
-                        RegionCode: boltembeddedapi.String("NY"),
-                        StreetAddress1: "888 main street",
-                        StreetAddress2: boltembeddedapi.String("apt 3021"),
-                        StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
-                        StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
-                    },
-                    BillingAddressID: boltembeddedapi.String("null"),
-                    Bin: boltembeddedapi.String("411111"),
-                    Cryptogram: boltembeddedapi.String("ab"),
-                    Default: boltembeddedapi.Bool(false),
-                    Eci: boltembeddedapi.String("quis"),
-                    Expiration: "2025-11",
-                    Last4: boltembeddedapi.String("1234"),
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("veritatis"),
-                    },
-                    Network: shared.PaymentMethodAccountNetworkJcb.ToPointer(),
-                    Number: boltembeddedapi.String("perferendis"),
-                    PostalCode: boltembeddedapi.String("10044"),
-                    Priority: shared.PaymentMethodAccountPriorityOne.ToPointer(),
-                    Save: boltembeddedapi.Bool(false),
-                    Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
-                    TokenType: shared.PaymentMethodAccountTokenTypeBolt.ToPointer(),
-                },
-                shared.PaymentMethodAccount{
-                    BillingAddress: shared.Address{
-                        Company: boltembeddedapi.String("Bolt"),
-                        Country: boltembeddedapi.String("United States"),
-                        CountryCode: "US",
-                        Default: boltembeddedapi.Bool(true),
-                        DoorCode: boltembeddedapi.String("123456"),
-                        Email: "alan.watts@example.com",
-                        FirstName: "Alan",
-                        LastName: "Watts",
-                        Locality: "Brooklyn",
-                        Name: boltembeddedapi.String("Alan Watts"),
-                        Phone: boltembeddedapi.String("+12125550199"),
-                        PostalCode: "10044",
-                        Region: "NY",
-                        RegionCode: boltembeddedapi.String("NY"),
-                        StreetAddress1: "888 main street",
-                        StreetAddress2: boltembeddedapi.String("apt 3021"),
-                        StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
-                        StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
-                    },
-                    BillingAddressID: boltembeddedapi.String("null"),
-                    Bin: boltembeddedapi.String("411111"),
-                    Cryptogram: boltembeddedapi.String("repellendus"),
-                    Default: boltembeddedapi.Bool(false),
-                    Eci: boltembeddedapi.String("sapiente"),
-                    Expiration: "2025-11",
-                    Last4: boltembeddedapi.String("1234"),
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("quo"),
-                    },
-                    Network: shared.PaymentMethodAccountNetworkVisa.ToPointer(),
-                    Number: boltembeddedapi.String("at"),
-                    PostalCode: boltembeddedapi.String("10044"),
-                    Priority: shared.PaymentMethodAccountPriorityTwo.ToPointer(),
-                    Save: boltembeddedapi.Bool(false),
-                    Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
-                    TokenType: shared.PaymentMethodAccountTokenTypeBolt.ToPointer(),
-                },
-                shared.PaymentMethodAccount{
-                    BillingAddress: shared.Address{
-                        Company: boltembeddedapi.String("Bolt"),
-                        Country: boltembeddedapi.String("United States"),
-                        CountryCode: "US",
-                        Default: boltembeddedapi.Bool(true),
-                        DoorCode: boltembeddedapi.String("123456"),
-                        Email: "alan.watts@example.com",
-                        FirstName: "Alan",
-                        LastName: "Watts",
-                        Locality: "Brooklyn",
-                        Name: boltembeddedapi.String("Alan Watts"),
-                        Phone: boltembeddedapi.String("+12125550199"),
-                        PostalCode: "10044",
-                        Region: "NY",
-                        RegionCode: boltembeddedapi.String("NY"),
-                        StreetAddress1: "888 main street",
-                        StreetAddress2: boltembeddedapi.String("apt 3021"),
-                        StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
-                        StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
-                    },
-                    BillingAddressID: boltembeddedapi.String("null"),
-                    Bin: boltembeddedapi.String("411111"),
-                    Cryptogram: boltembeddedapi.String("maiores"),
-                    Default: boltembeddedapi.Bool(false),
-                    Eci: boltembeddedapi.String("molestiae"),
-                    Expiration: "2025-11",
-                    Last4: boltembeddedapi.String("1234"),
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedapi.String("quod"),
-                    },
-                    Network: shared.PaymentMethodAccountNetworkAlliancedata.ToPointer(),
-                    Number: boltembeddedapi.String("esse"),
+                    Network: shared.PaymentMethodAccountNetworkUnionpay.ToPointer(),
+                    Number: boltembeddedapi.String("placeat"),
                     PostalCode: boltembeddedapi.String("10044"),
                     Priority: shared.PaymentMethodAccountPriorityTwo.ToPointer(),
                     Save: boltembeddedapi.Bool(false),
@@ -474,7 +288,7 @@ func main() {
                 FirstName: "Alan",
                 LastName: "Watts",
                 Metadata: &shared.ProfileMetadata{
-                    AdditionalProperties: boltembeddedapi.String("porro"),
+                    AdditionalProperties: boltembeddedapi.String("iusto"),
                 },
                 Phone: "+12125550199",
             },
@@ -530,8 +344,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DeleteAddress(ctx, operations.DeleteAddressRequest{
-        XPublishableKey: boltembeddedapi.String("dolorum"),
-        ID: "1ba928fc-8167-442c-b739-205929396fea",
+        XPublishableKey: boltembeddedapi.String("excepturi"),
+        ID: "6ed151a0-5dfc-42dd-b7cc-78ca1ba928fc",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -582,8 +396,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DeletePaymentMethod(ctx, operations.DeletePaymentMethodRequest{
-        XPublishableKey: boltembeddedapi.String("in"),
-        PaymentMethodID: "corporis",
+        XPublishableKey: boltembeddedapi.String("totam"),
+        PaymentMethodID: "beatae",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -635,10 +449,10 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DetectAccount(ctx, operations.DetectAccountRequest{
-        XPublishableKey: "iste",
-        Email: boltembeddedapi.String("Sterling6@yahoo.com"),
-        Phone: boltembeddedapi.String("766.323.1736 x33504"),
-        Sha256Email: boltembeddedapi.String("culpa"),
+        XPublishableKey: "commodi",
+        Email: boltembeddedapi.String("Diego_Dibbert45@yahoo.com"),
+        Phone: boltembeddedapi.String("610.461.6263"),
+        Sha256Email: boltembeddedapi.String("hic"),
     })
     if err != nil {
         log.Fatal(err)
@@ -691,7 +505,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.EditAddress(ctx, operations.EditAddressRequest{
-        XPublishableKey: boltembeddedapi.String("doloribus"),
+        XPublishableKey: boltembeddedapi.String("saepe"),
         AddressAccount: &shared.AddressAccount{
             Company: boltembeddedapi.String("Bolt"),
             Country: boltembeddedapi.String("United States"),
@@ -703,7 +517,7 @@ func main() {
             LastName: "Watts",
             Locality: "Brooklyn",
             Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedapi.String("sapiente"),
+                AdditionalProperties: boltembeddedapi.String("fuga"),
             },
             Name: boltembeddedapi.String("Alan Watts"),
             Phone: boltembeddedapi.String("+12125550199"),
@@ -715,7 +529,7 @@ func main() {
             StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
             StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
         },
-        ID: "1a3a2fa9-4677-4392-91aa-52c3f5ad019d",
+        ID: "7596eb10-faaa-4235-ac59-55907aff1a3a",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -766,7 +580,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.GetAccount(ctx, operations.GetAccountRequest{
-        XPublishableKey: boltembeddedapi.String("laborum"),
+        XPublishableKey: boltembeddedapi.String("consequuntur"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -820,8 +634,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.ReplaceAddress(ctx, operations.ReplaceAddressRequest{
-        IdempotencyKey: boltembeddedapi.String("quasi"),
-        XPublishableKey: boltembeddedapi.String("reiciendis"),
+        IdempotencyKey: boltembeddedapi.String("repellat"),
+        XPublishableKey: boltembeddedapi.String("mollitia"),
         AddressAccount: &shared.AddressAccount{
             Company: boltembeddedapi.String("Bolt"),
             Country: boltembeddedapi.String("United States"),
@@ -833,7 +647,7 @@ func main() {
             LastName: "Watts",
             Locality: "Brooklyn",
             Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedapi.String("voluptatibus"),
+                AdditionalProperties: boltembeddedapi.String("occaecati"),
             },
             Name: boltembeddedapi.String("Alan Watts"),
             Phone: boltembeddedapi.String("+12125550199"),
@@ -845,7 +659,7 @@ func main() {
             StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
             StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
         },
-        ID: "e78f097b-0074-4f15-871b-5e6e13b99d48",
+        ID: "46773925-1aa5-42c3-b5ad-019da1ffe78f",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -901,10 +715,10 @@ func main() {
             FirstName: boltembeddedapi.String("Alan"),
             LastName: boltembeddedapi.String("Watts"),
             Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedapi.String("rem"),
+                AdditionalProperties: boltembeddedapi.String("ipsa"),
             },
         },
-        XPublishableKey: boltembeddedapi.String("voluptates"),
+        XPublishableKey: boltembeddedapi.String("omnis"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

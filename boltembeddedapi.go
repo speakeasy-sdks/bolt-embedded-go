@@ -140,8 +140,8 @@ func New(opts ...SDKOption) *BoltEmbeddedAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.1",
-			SDKVersion:        "0.2.0",
-			GenVersion:        "2.88.7",
+			SDKVersion:        "0.3.0",
+			GenVersion:        "2.96.9",
 		},
 	}
 	for _, opt := range opts {

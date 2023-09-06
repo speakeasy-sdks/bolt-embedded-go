@@ -36,15 +36,15 @@ func main() {
     ctx := context.Background()
     res, err := s.Testing.CreateTestingShopperAccount(ctx, operations.CreateTestingShopperAccountRequest{
         RequestBody: &operations.CreateTestingShopperAccountRequestBody{
-            DeactivateInDays: boltembeddedapi.Int64(878601),
-            Email: boltembeddedapi.String("Zita.Streich@gmail.com"),
+            DeactivateInDays: boltembeddedapi.Int64(646265),
+            Email: boltembeddedapi.String("Cristobal58@yahoo.com"),
             EmailState: operations.CreateTestingShopperAccountRequestBodyEmailStateVerified.ToPointer(),
             HasAddress: boltembeddedapi.Bool(false),
             Migrated: boltembeddedapi.Bool(false),
-            Phone: boltembeddedapi.String("534-551-6044"),
+            Phone: boltembeddedapi.String("871-752-1177 x34581"),
             PhoneState: shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailStateVerified.ToPointer(),
         },
-        XPublishableKey: boltembeddedapi.String("pariatur"),
+        XPublishableKey: boltembeddedapi.String("neque"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

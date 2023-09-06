@@ -44,9 +44,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.AuthorizeTransaction(ctx, operations.AuthorizeTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("itaque"),
+        IdempotencyKey: boltembeddedapi.String("fugit"),
         RequestBody: &operations.AuthorizeTransactionRequestBody{},
-        XPublishableKey: boltembeddedapi.String("similique"),
+        XPublishableKey: boltembeddedapi.String("magni"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -100,7 +100,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.CaptureTransaction(ctx, operations.CaptureTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("optio"),
+        IdempotencyKey: boltembeddedapi.String("odio"),
         CaptureTransactionWithReference: &shared.CaptureTransactionWithReference{
             Amount: 754,
             Currency: "USD",
@@ -160,7 +160,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
-        Reference: "ex",
+        Reference: "sunt",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -210,7 +210,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.RefundTransaction(ctx, operations.RefundTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("quaerat"),
+        IdempotencyKey: boltembeddedapi.String("ullam"),
         RequestBody: &operations.RefundTransactionRequestBody{
             Amount: 754,
             Currency: "USD",
@@ -267,15 +267,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("commodi"),
-        Reference: "officiis",
+        IdempotencyKey: boltembeddedapi.String("nam"),
+        Reference: "hic",
         RequestBody: &operations.UpdateTransactionRequestBody{
             DisplayID: boltembeddedapi.String("order-123"),
             Metadata: map[string]string{
-                "quidem": "exercitationem",
-                "quam": "dolorem",
-                "modi": "ipsa",
-                "sint": "vero",
+                "voluptatem": "cumque",
             },
         },
     }, operationSecurity)
@@ -331,7 +328,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.VoidTransaction(ctx, operations.VoidTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("sequi"),
+        IdempotencyKey: boltembeddedapi.String("soluta"),
         CreditCardVoid: &shared.CreditCardVoid{
             MerchantEventID: boltembeddedapi.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
             SkipHookNotification: boltembeddedapi.Bool(false),
