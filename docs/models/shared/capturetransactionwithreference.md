@@ -1,7 +1,5 @@
 # CaptureTransactionWithReference
 
-Capture a Transaction
-
 
 ## Fields
 

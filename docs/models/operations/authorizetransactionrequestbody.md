@@ -9,15 +9,15 @@
 
 ## Supported Types
 
-### MerchantCreditCardAuthorization
-
-```go
-authorizeTransactionRequestBody := operations.CreateAuthorizeTransactionRequestBodyMerchantCreditCardAuthorization(shared.MerchantCreditCardAuthorization{/* values here */})
-```
-
 ### MerchantCreditCardAuthorizationRecharge
 
 ```go
 authorizeTransactionRequestBody := operations.CreateAuthorizeTransactionRequestBodyMerchantCreditCardAuthorizationRecharge(shared.MerchantCreditCardAuthorizationRecharge{/* values here */})
+```
+
+### MerchantCreditCardAuthorization
+
+```go
+authorizeTransactionRequestBody := operations.CreateAuthorizeTransactionRequestBodyMerchantCreditCardAuthorization(shared.MerchantCreditCardAuthorization{/* values here */})
 ```
 

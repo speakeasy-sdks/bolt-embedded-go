@@ -228,15 +228,6 @@ func CreateAccountDetailsPaymentMethodsSavedPaypalAccountView(savedPaypalAccount
 func (u *AccountDetailsPaymentMethods) UnmarshalJSON(data []byte) error {
 	var d *json.Decoder
 
-	savedCreditCardView := new(SavedCreditCardView)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&savedCreditCardView); err == nil {
-		u.SavedCreditCardView = savedCreditCardView
-		u.Type = AccountDetailsPaymentMethodsTypeSavedCreditCardView
-		return nil
-	}
-
 	savedPaypalAccountView := new(SavedPaypalAccountView)
 	d = json.NewDecoder(bytes.NewReader(data))
 	d.DisallowUnknownFields()
@@ -246,22 +237,30 @@ func (u *AccountDetailsPaymentMethods) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	savedCreditCardView := new(SavedCreditCardView)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&savedCreditCardView); err == nil {
+		u.SavedCreditCardView = savedCreditCardView
+		u.Type = AccountDetailsPaymentMethodsTypeSavedCreditCardView
+		return nil
+	}
+
 	return errors.New("could not unmarshal into supported union types")
 }
 
 func (u AccountDetailsPaymentMethods) MarshalJSON() ([]byte, error) {
-	if u.SavedCreditCardView != nil {
-		return json.Marshal(u.SavedCreditCardView)
-	}
-
 	if u.SavedPaypalAccountView != nil {
 		return json.Marshal(u.SavedPaypalAccountView)
+	}
+
+	if u.SavedCreditCardView != nil {
+		return json.Marshal(u.SavedCreditCardView)
 	}
 
 	return nil, nil
 }
 
-// AccountDetails - Account Details Fetched
 type AccountDetails struct {
 	// A list of all addresses associated to the shopper's account.
 	Addresses []AccountDetailsAddresses `json:"addresses,omitempty"`
