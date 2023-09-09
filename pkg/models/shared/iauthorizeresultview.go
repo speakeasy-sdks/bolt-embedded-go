@@ -2,7 +2,6 @@
 
 package shared
 
-// IAuthorizeResultView - Authorization Successful
 type IAuthorizeResultView struct {
 	DidCreateBoltAccount *bool            `json:"did_create_bolt_account,omitempty"`
 	OrderNumber          *string          `json:"order_number,omitempty"`

@@ -10,6 +10,7 @@ pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
+pkg/types/decimal.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -293,7 +294,7 @@ docs/models/operations/voidtransactionresponse.md
 docs/models/shared/metadata.md
 docs/models/shared/addressaccount.md
 docs/models/shared/savedcreditcardviewtype.md
-docs/models/shared/savedcreditcardview.md
+docs/models/shared/savedpaypalaccountview.md
 docs/models/shared/cardnetwork.md
 docs/models/shared/addressview.md
 docs/models/shared/address.md
@@ -302,7 +303,7 @@ docs/models/shared/accountdetailspaymentmethods.md
 docs/models/shared/accountdetails.md
 docs/models/shared/profileview.md
 docs/models/shared/savedpaypalaccountviewtype.md
-docs/models/shared/savedpaypalaccountview.md
+docs/models/shared/savedcreditcardview.md
 docs/models/shared/createaccountinput.md
 docs/models/shared/profilemetadata.md
 docs/models/shared/profile.md
@@ -392,14 +393,14 @@ docs/models/shared/creditcardauthorizationstatus.md
 docs/models/shared/creditcardauthorizationreason.md
 docs/models/shared/merchantcreditcardauthorizationprocessinginitiator.md
 docs/models/shared/merchantcreditcardauthorizationsource.md
-docs/models/shared/merchantcreditcardauthorization.md
+docs/models/shared/merchantcreditcardauthorizationrecharge.md
 docs/models/shared/useridentity.md
 docs/models/shared/useridentifier.md
 docs/models/shared/creditcardpriority.md
 docs/models/shared/creditcardtokentype.md
 docs/models/shared/creditcard.md
 docs/models/shared/merchantcreditcardauthorizationrechargesource.md
-docs/models/shared/merchantcreditcardauthorizationrecharge.md
+docs/models/shared/merchantcreditcardauthorization.md
 docs/models/shared/processinginitiator.md
 docs/models/shared/capturetransactionwithreference.md
 docs/models/shared/voidcause.md

@@ -2,7 +2,6 @@
 
 package shared
 
-// CreditCardVoid - Void a Transaction
 type CreditCardVoid struct {
 	// The reference ID associated with a transaction event (auth, capture, refund, void). This is an arbitrary identifier created by the merchant. Bolt does not enforce any uniqueness constraints on this ID. It is up to the merchant to generate identifiers that properly fulfill its needs.
 	MerchantEventID *string `json:"merchant_event_id,omitempty"`
