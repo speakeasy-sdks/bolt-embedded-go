@@ -2,7 +2,7 @@
 
 package shared
 
-// Address - The Address object is used for billing, shipping, and physical store address use cases.
+// The Address object is used for billing, shipping, and physical store address use cases.
 type Address struct {
 	// The company name associated with this address.
 	Company *string `json:"company,omitempty"`
