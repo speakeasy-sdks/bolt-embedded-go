@@ -2,7 +2,6 @@
 
 package shared
 
-// ErrorsOauthServerResponse - Invalid request to OAuth Token.
 type ErrorsOauthServerResponse struct {
 	Error            *string `json:"error,omitempty"`
 	ErrorDescription *string `json:"error_description,omitempty"`

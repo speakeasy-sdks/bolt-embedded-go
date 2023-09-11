@@ -1,7 +1,5 @@
 # ErrorsOauthServerResponse
 
-Invalid request to OAuth Token.
-
 
 ## Fields
 

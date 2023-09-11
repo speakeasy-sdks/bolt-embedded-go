@@ -1,7 +1,5 @@
 # V1AccountsView
 
-Has Bolt Account
-
 
 ## Fields
 
