@@ -32,41 +32,96 @@ func (e *SavedPaypalAccountViewType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// SavedPaypalAccountView - Saved PayPal account details.
-type SavedPaypalAccountView struct {
-	// The email associated with a shopper's saved PayPal account.
+// SavedCreditCardView - Saved Credit Card Detail
+type SavedCreditCardView struct {
+	// The address object returned in the response.
+	BillingAddress *AddressView `json:"billing_address,omitempty"`
+	// The default card payment method chosen by the shopper.
+	Default *bool `json:"default,omitempty"`
+	// The APM account identifier; usually the email address.
 	Description *string `json:"description,omitempty"`
+	// The expiration month of the credit card.
+	ExpMonth *int64 `json:"exp_month,omitempty"`
+	// The expiration year of the credit card.
+	ExpYear *int64 `json:"exp_year,omitempty"`
 	// The ID of the payment method associated with the Shopper's account.
 	ID *string `json:"id,omitempty"`
+	// The card's last 4 digits. **Nullable** for Transactions Details.
+	Last4 *string `json:"last4,omitempty"`
 	// A key-value pair object that allows users to store arbitrary information associated with an object.  For any individual account object, we allow up to 50 keys. Keys can be up to 40 characters long and values can be up to 500 characters long.  Metadata should not contain any sensitive customer information, like PII (Personally Identifiable Information). For more information about metadata, see our [documentation](https://help.bolt.com/developers/references/embedded-metadata/).
 	//
 	Metadata *Metadata `json:"metadata,omitempty"`
-	// Type field indicates this is a saved PayPal to differentiate it from a saved card.
-	Type *SavedPaypalAccountViewType `json:"type,omitempty"`
+	// The card's network code. **Nullable** for Transactions Details. Note: LEGACY diners_club_us_ca now tagged as mastercard
+	//
+	Network *CardNetwork `json:"network,omitempty"`
+	// The payment method type. If empty, the property defaults to `card`.
+	Type *SavedCreditCardViewType `json:"type,omitempty"`
 }
 
-func (o *SavedPaypalAccountView) GetDescription() *string {
+func (o *SavedCreditCardView) GetBillingAddress() *AddressView {
+	if o == nil {
+		return nil
+	}
+	return o.BillingAddress
+}
+
+func (o *SavedCreditCardView) GetDefault() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Default
+}
+
+func (o *SavedCreditCardView) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *SavedPaypalAccountView) GetID() *string {
+func (o *SavedCreditCardView) GetExpMonth() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.ExpMonth
+}
+
+func (o *SavedCreditCardView) GetExpYear() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.ExpYear
+}
+
+func (o *SavedCreditCardView) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SavedPaypalAccountView) GetMetadata() *Metadata {
+func (o *SavedCreditCardView) GetLast4() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Last4
+}
+
+func (o *SavedCreditCardView) GetMetadata() *Metadata {
 	if o == nil {
 		return nil
 	}
 	return o.Metadata
 }
 
-func (o *SavedPaypalAccountView) GetType() *SavedPaypalAccountViewType {
+func (o *SavedCreditCardView) GetNetwork() *CardNetwork {
+	if o == nil {
+		return nil
+	}
+	return o.Network
+}
+
+func (o *SavedCreditCardView) GetType() *SavedCreditCardViewType {
 	if o == nil {
 		return nil
 	}

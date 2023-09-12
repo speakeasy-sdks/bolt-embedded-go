@@ -64,15 +64,6 @@ func CreateAuthorizeTransactionRequestBodyMerchantCreditCardAuthorizationRecharg
 func (u *AuthorizeTransactionRequestBody) UnmarshalJSON(data []byte) error {
 	var d *json.Decoder
 
-	merchantCreditCardAuthorization := new(shared.MerchantCreditCardAuthorization)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&merchantCreditCardAuthorization); err == nil {
-		u.MerchantCreditCardAuthorization = merchantCreditCardAuthorization
-		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorization
-		return nil
-	}
-
 	merchantCreditCardAuthorizationRecharge := new(shared.MerchantCreditCardAuthorizationRecharge)
 	d = json.NewDecoder(bytes.NewReader(data))
 	d.DisallowUnknownFields()
@@ -82,16 +73,25 @@ func (u *AuthorizeTransactionRequestBody) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	merchantCreditCardAuthorization := new(shared.MerchantCreditCardAuthorization)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&merchantCreditCardAuthorization); err == nil {
+		u.MerchantCreditCardAuthorization = merchantCreditCardAuthorization
+		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorization
+		return nil
+	}
+
 	return errors.New("could not unmarshal into supported union types")
 }
 
 func (u AuthorizeTransactionRequestBody) MarshalJSON() ([]byte, error) {
-	if u.MerchantCreditCardAuthorization != nil {
-		return json.Marshal(u.MerchantCreditCardAuthorization)
-	}
-
 	if u.MerchantCreditCardAuthorizationRecharge != nil {
 		return json.Marshal(u.MerchantCreditCardAuthorizationRecharge)
+	}
+
+	if u.MerchantCreditCardAuthorization != nil {
+		return json.Marshal(u.MerchantCreditCardAuthorization)
 	}
 
 	return nil, nil
