@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: b58aa22b520fd02d35640f920003ff1d
   docVersion: 1.0.1
-  speakeasyVersion: 1.78.9
-  generationVersion: 2.96.9
+  speakeasyVersion: 1.83.2
+  generationVersion: 2.109.3
 generation:
   comments:
     disableComments: false
@@ -14,12 +14,12 @@ generation:
   tagNamespacingDisabled: false
 features:
   go:
-    core: 2.86.4
+    core: 2.88.1
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
     methodSecurity: 2.81.2
-    unions: 2.81.2
+    unions: 2.82.0
 go:
-  version: 0.3.0
+  version: 0.4.0
   maxMethodParams: 0
   packageName: github.com/speakeasy-sdks/bolt-embedded-go

@@ -1,7 +1,5 @@
 # CreditCardVoid
 
-Void a Transaction
-
 
 ## Fields
 
