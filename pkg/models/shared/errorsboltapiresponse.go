@@ -2,7 +2,6 @@
 
 package shared
 
-// ErrorsBoltAPIResponse - Missing Query Parameter
 type ErrorsBoltAPIResponse struct {
 	Errors []ErrorBoltAPI `json:"errors,omitempty"`
 	// Custom-defined Bolt result object.

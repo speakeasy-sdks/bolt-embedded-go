@@ -306,7 +306,6 @@ func (o *TransactionViewVoid) GetVoid() *string {
 	return o.Void
 }
 
-// TransactionView - Capture Successful
 type TransactionView struct {
 	Amount        *AmountView                  `json:"amount,omitempty"`
 	Authorization *CreditCardAuthorizationView `json:"authorization,omitempty"`

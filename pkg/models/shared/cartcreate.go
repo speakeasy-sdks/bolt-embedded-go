@@ -11,7 +11,7 @@ type CartCreateFees struct {
 	// Description of the fee that will appear in the tooltip if the mouse hovers over the fee.
 	Description *string `json:"description,omitempty"`
 	// Name of the fee that will appear in the order ledger.
-	Name     string  `json:"name"`
+	Name     *string `json:"name"`
 	Quantity float64 `json:"quantity"`
 	// Unique reference used to identify the fee.
 	Reference     string  `json:"reference"`
@@ -26,9 +26,9 @@ func (o *CartCreateFees) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CartCreateFees) GetName() string {
+func (o *CartCreateFees) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
