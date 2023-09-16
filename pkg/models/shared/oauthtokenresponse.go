@@ -2,7 +2,6 @@
 
 package shared
 
-// OAuthTokenResponse - OAuth token response.
 type OAuthTokenResponse struct {
 	// An access token you can use to make requests on behalf of a Bolt Account.
 	AccessToken *string `json:"access_token,omitempty"`

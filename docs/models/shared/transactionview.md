@@ -1,7 +1,5 @@
 # TransactionView
 
-Capture Successful
-
 
 ## Fields
 

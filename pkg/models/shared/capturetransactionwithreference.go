@@ -2,7 +2,6 @@
 
 package shared
 
-// CaptureTransactionWithReference - Capture a Transaction
 type CaptureTransactionWithReference struct {
 	// The amount in cents. **Nullable** for Transactions Details.
 	Amount int64 `json:"amount"`

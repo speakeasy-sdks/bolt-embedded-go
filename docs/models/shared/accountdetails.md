@@ -1,7 +1,5 @@
 # AccountDetails
 
-Account Details Fetched
-
 
 ## Fields
 

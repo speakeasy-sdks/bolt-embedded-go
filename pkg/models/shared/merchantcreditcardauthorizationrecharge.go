@@ -31,99 +31,117 @@ func (e *MerchantCreditCardAuthorizationRechargeSource) UnmarshalJSON(data []byt
 	}
 }
 
-// MerchantCreditCardAuthorizationRecharge - This request is used for authorizing an existing, saved card associated with the account.
-type MerchantCreditCardAuthorizationRecharge struct {
+// MerchantCreditCardAuthorization - This request is used for authorizing a new, unsaved card.
+type MerchantCreditCardAuthorization struct {
 	AutoCapture *bool      `json:"auto_capture,omitempty"`
 	Cart        CartCreate `json:"cart"`
-	// The unique ID associated to the saved credit card in the account's wallet.
-	CreditCardID string `json:"credit_card_id"`
+	// If `true`, the guest shopper is provided a Bolt Account using their email address as its unique ID; if `false`, no information is saved at checkout.
+	CreateBoltAccount bool `json:"create_bolt_account"`
+	// The credit_card object is used to to pay for guest-checkout transactions or save payment method details to an account. Once saved, you can reference the credit card with the associated `credit_card_id` for future transactions. Add `billing_address` to this if storing a billing address for a returning shopper.
+	CreditCard CreditCard `json:"credit_card"`
 	// The unique ID associated to the merchant's Bolt Account division; Merchants can have different divisions to suit multiple use cases (storefronts, pay-by-link, phone order processing). Use the Bolt Merchant Dashboard to switch between divisions and find the division ID under `Merchant Division Public ID`.
 	DivisionID string `json:"division_id"`
 	// The reference ID associated with a transaction event (auth, capture, refund, void). This is an arbitrary identifier created by the merchant. Bolt does not enforce any uniqueness constraints on this ID. It is up to the merchant to generate identifiers that properly fulfill its needs.
 	MerchantEventID *string `json:"merchant_event_id,omitempty"`
 	// The unique ID associated with to the shopper's previous subscription-based transaction. Leave `null` for standard, non-subscription transactions.
 	PreviousTransactionID *string `json:"previous_transaction_id,omitempty"`
-	// Defines which payment method was used to initiate the transaction.
-	ProcessingInitiator *ProcessingInitiator `json:"processing_initiator,omitempty"`
+	// Determines who initiated the transaction (e.g. shopper, merchant) and how they did it (e.g. recurring subscription, on-file card).
+	//
+	// * `initial_card_on_file` - The first transaction made for a card. The system then saves this card for future transactions.
+	// * `initial_recurring` - The first time any card is used to pay for a recurring charge. For example, a subscription.
+	// * `stored_cardholder_initiated` - The subsequent (second, third, etc.) transactions a shopper initiates with a stored card. This includes every situation during which a cardholder requests a charge, for example if the cardholder requests a merchant charge their card.
+	// * `stored_merchant_initiated` - The subsequent (second, third, etc.) transactions a merchant initiates with a stored card only when the cardholder does not request the charge. For example, when a customer service representative buys on behalf of a shopper or when a business adds funds to a public transit card.
+	// * `following_recurring` - The subsequent (second, third, etc.) transactions  a card is used to pay for a recurring charge. For example, a subscription.
+	// * `cardholder_initiated` - When a cardholder begins a transaction that isn’t stored in Bolt and won’t be stored in Bolt for future transactions.
+	// * `recurring` - Any time a card is used to pay for a recurring charge (for example, a subscription). Only use this value when you don’t know if it’s the first recurring charge.
+	//
+	ProcessingInitiator *MerchantCreditCardAuthorizationProcessingInitiator `json:"processing_initiator,omitempty"`
 	// The Address object is used for billing, shipping, and physical store address use cases.
-	ShippingAddress *Address                                      `json:"shipping_address,omitempty"`
-	Source          MerchantCreditCardAuthorizationRechargeSource `json:"source"`
+	ShippingAddress *Address                              `json:"shipping_address,omitempty"`
+	Source          MerchantCreditCardAuthorizationSource `json:"source"`
 	// The object containing key lookup IDs associated with the shopper's account, such as the unique email address and phone number.
 	UserIdentifier UserIdentifier `json:"user_identifier"`
 	UserIdentity   UserIdentity   `json:"user_identity"`
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetAutoCapture() *bool {
+func (o *MerchantCreditCardAuthorization) GetAutoCapture() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.AutoCapture
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetCart() CartCreate {
+func (o *MerchantCreditCardAuthorization) GetCart() CartCreate {
 	if o == nil {
 		return CartCreate{}
 	}
 	return o.Cart
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetCreditCardID() string {
+func (o *MerchantCreditCardAuthorization) GetCreateBoltAccount() bool {
 	if o == nil {
-		return ""
+		return false
 	}
-	return o.CreditCardID
+	return o.CreateBoltAccount
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetDivisionID() string {
+func (o *MerchantCreditCardAuthorization) GetCreditCard() CreditCard {
+	if o == nil {
+		return CreditCard{}
+	}
+	return o.CreditCard
+}
+
+func (o *MerchantCreditCardAuthorization) GetDivisionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.DivisionID
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetMerchantEventID() *string {
+func (o *MerchantCreditCardAuthorization) GetMerchantEventID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.MerchantEventID
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetPreviousTransactionID() *string {
+func (o *MerchantCreditCardAuthorization) GetPreviousTransactionID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PreviousTransactionID
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetProcessingInitiator() *ProcessingInitiator {
+func (o *MerchantCreditCardAuthorization) GetProcessingInitiator() *MerchantCreditCardAuthorizationProcessingInitiator {
 	if o == nil {
 		return nil
 	}
 	return o.ProcessingInitiator
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetShippingAddress() *Address {
+func (o *MerchantCreditCardAuthorization) GetShippingAddress() *Address {
 	if o == nil {
 		return nil
 	}
 	return o.ShippingAddress
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetSource() MerchantCreditCardAuthorizationRechargeSource {
+func (o *MerchantCreditCardAuthorization) GetSource() MerchantCreditCardAuthorizationSource {
 	if o == nil {
-		return MerchantCreditCardAuthorizationRechargeSource("")
+		return MerchantCreditCardAuthorizationSource("")
 	}
 	return o.Source
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetUserIdentifier() UserIdentifier {
+func (o *MerchantCreditCardAuthorization) GetUserIdentifier() UserIdentifier {
 	if o == nil {
 		return UserIdentifier{}
 	}
 	return o.UserIdentifier
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetUserIdentity() UserIdentity {
+func (o *MerchantCreditCardAuthorization) GetUserIdentity() UserIdentity {
 	if o == nil {
 		return UserIdentity{}
 	}
