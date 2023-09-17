@@ -1,7 +1,5 @@
 # OAuthTokenResponse
 
-OAuth token response.
-
 
 ## Fields
 
