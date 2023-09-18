@@ -1,7 +1,5 @@
 # IAuthorizeResultView
 
-Authorization Successful
-
 
 ## Fields
 

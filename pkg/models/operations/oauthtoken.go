@@ -75,7 +75,8 @@ func (u OAuthTokenRequestBody) MarshalJSON() ([]byte, error) {
 		return json.Marshal(u.OAuthTokenInputRefresh1)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
+
 }
 
 type OAuthTokenRequest struct {
