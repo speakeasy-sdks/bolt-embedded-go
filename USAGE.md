@@ -7,13 +7,13 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.AddAddressSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -21,30 +21,30 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
-        IdempotencyKey: boltembeddedapi.String("corrupti"),
-        XPublishableKey: boltembeddedapi.String("provident"),
+        IdempotencyKey: boltembeddedgo.String("corrupti"),
+        XPublishableKey: boltembeddedgo.String("provident"),
         AddressAccount: &shared.AddressAccount{
-            Company: boltembeddedapi.String("Bolt"),
-            Country: boltembeddedapi.String("United States"),
+            Company: boltembeddedgo.String("Bolt"),
+            Country: boltembeddedgo.String("United States"),
             CountryCode: "US",
-            Default: boltembeddedapi.Bool(false),
-            DoorCode: boltembeddedapi.String("123456"),
+            Default: boltembeddedgo.Bool(false),
+            DoorCode: boltembeddedgo.String("123456"),
             Email: "alan.watts@example.com",
             FirstName: "Alan",
             LastName: "Watts",
             Locality: "Brooklyn",
             Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedapi.String("distinctio"),
+                AdditionalProperties: boltembeddedgo.String("distinctio"),
             },
-            Name: boltembeddedapi.String("Alan Watts"),
-            Phone: boltembeddedapi.String("+12125550199"),
+            Name: boltembeddedgo.String("Alan Watts"),
+            Phone: boltembeddedgo.String("+12125550199"),
             PostalCode: "10044",
             Region: "NY",
-            RegionCode: boltembeddedapi.String("NY"),
+            RegionCode: boltembeddedgo.String("NY"),
             StreetAddress1: "888 main street",
-            StreetAddress2: boltembeddedapi.String("apt 3021"),
-            StreetAddress3: boltembeddedapi.String("c/o Alicia Watts"),
-            StreetAddress4: boltembeddedapi.String("Bridge Street Apartment Building B"),
+            StreetAddress2: boltembeddedgo.String("apt 3021"),
+            StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
+            StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
         },
     }, operationSecurity)
     if err != nil {

@@ -30,13 +30,13 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.AuthorizeTransactionSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -44,9 +44,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.AuthorizeTransaction(ctx, operations.AuthorizeTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("fugit"),
+        IdempotencyKey: boltembeddedgo.String("dolores"),
         RequestBody: &operations.AuthorizeTransactionRequestBody{},
-        XPublishableKey: boltembeddedapi.String("magni"),
+        XPublishableKey: boltembeddedgo.String("distinctio"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -87,25 +87,25 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.CaptureTransactionSecurity{
             XAPIKey: "",
         }
 
     ctx := context.Background()
     res, err := s.Transactions.CaptureTransaction(ctx, operations.CaptureTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("odio"),
+        IdempotencyKey: boltembeddedgo.String("facilis"),
         CaptureTransactionWithReference: &shared.CaptureTransactionWithReference{
             Amount: 754,
             Currency: "USD",
-            MerchantEventID: boltembeddedapi.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
-            SkipHookNotification: boltembeddedapi.Bool(false),
+            MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
+            SkipHookNotification: boltembeddedgo.Bool(false),
             TransactionReference: "LBLJ-TWW7-R9VC",
         },
     }, operationSecurity)
@@ -148,19 +148,19 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.GetTransactionDetailsSecurity{
             XAPIKey: "",
         }
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
-        Reference: "sunt",
+        Reference: "aliquid",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -198,24 +198,24 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.RefundTransactionSecurity{
             XAPIKey: "",
         }
 
     ctx := context.Background()
     res, err := s.Transactions.RefundTransaction(ctx, operations.RefundTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("ullam"),
+        IdempotencyKey: boltembeddedgo.String("quam"),
         RequestBody: &operations.RefundTransactionRequestBody{
             Amount: 754,
             Currency: "USD",
-            MerchantEventID: boltembeddedapi.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
-            SkipHookNotification: boltembeddedapi.Bool(false),
+            MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
+            SkipHookNotification: boltembeddedgo.Bool(false),
             TransactionReference: "LBLJ-TWW7-R9VC",
         },
     }, operationSecurity)
@@ -255,24 +255,24 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.UpdateTransactionSecurity{
             XAPIKey: "",
         }
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("nam"),
-        Reference: "hic",
+        IdempotencyKey: boltembeddedgo.String("molestias"),
+        Reference: "temporibus",
         RequestBody: &operations.UpdateTransactionRequestBody{
-            DisplayID: boltembeddedapi.String("order-123"),
+            DisplayID: boltembeddedgo.String("order-123"),
             Metadata: map[string]string{
-                "voluptatem": "cumque",
+                "qui": "neque",
             },
         },
     }, operationSecurity)
@@ -315,23 +315,23 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.VoidTransactionSecurity{
             XAPIKey: "",
         }
 
     ctx := context.Background()
     res, err := s.Transactions.VoidTransaction(ctx, operations.VoidTransactionRequest{
-        IdempotencyKey: boltembeddedapi.String("soluta"),
+        IdempotencyKey: boltembeddedgo.String("fugit"),
         CreditCardVoid: &shared.CreditCardVoid{
-            MerchantEventID: boltembeddedapi.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
-            SkipHookNotification: boltembeddedapi.Bool(false),
+            MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
+            SkipHookNotification: boltembeddedgo.Bool(false),
             TransactionReference: "LBLJ-TWW7-R9VC",
         },
     }, operationSecurity)

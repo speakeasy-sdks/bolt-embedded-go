@@ -3,34 +3,9 @@
 package shared
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/types"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
-
-// SavedPaypalAccountViewType - Type field indicates this is a saved PayPal to differentiate it from a saved card.
-type SavedPaypalAccountViewType string
-
-const (
-	SavedPaypalAccountViewTypePaypal SavedPaypalAccountViewType = "paypal"
-)
-
-func (e SavedPaypalAccountViewType) ToPointer() *SavedPaypalAccountViewType {
-	return &e
-}
-
-func (e *SavedPaypalAccountViewType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "paypal":
-		*e = SavedPaypalAccountViewType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SavedPaypalAccountViewType: %v", v)
-	}
-}
 
 // SavedPaypalAccountView - Saved PayPal account details.
 type SavedPaypalAccountView struct {
@@ -42,7 +17,18 @@ type SavedPaypalAccountView struct {
 	//
 	Metadata *Metadata `json:"metadata,omitempty"`
 	// Type field indicates this is a saved PayPal to differentiate it from a saved card.
-	Type *SavedPaypalAccountViewType `json:"type,omitempty"`
+	type_ *string `const:"paypal" json:"type,omitempty"`
+}
+
+func (s SavedPaypalAccountView) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SavedPaypalAccountView) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SavedPaypalAccountView) GetDescription() *string {
@@ -66,9 +52,6 @@ func (o *SavedPaypalAccountView) GetMetadata() *Metadata {
 	return o.Metadata
 }
 
-func (o *SavedPaypalAccountView) GetType() *SavedPaypalAccountViewType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
+func (o *SavedPaypalAccountView) GetType() *string {
+	return types.String("paypal")
 }

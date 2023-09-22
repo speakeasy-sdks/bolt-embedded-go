@@ -5,34 +5,8 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
-
-// OAuthTokenInputGrantType - The type of OAuth 2.0 grant being utilized.
-//
-// The value will always be `authorization_code` when exchanging an authorization code for an access token.
-type OAuthTokenInputGrantType string
-
-const (
-	OAuthTokenInputGrantTypeAuthorizationCode OAuthTokenInputGrantType = "authorization_code"
-)
-
-func (e OAuthTokenInputGrantType) ToPointer() *OAuthTokenInputGrantType {
-	return &e
-}
-
-func (e *OAuthTokenInputGrantType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "authorization_code":
-		*e = OAuthTokenInputGrantType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OAuthTokenInputGrantType: %v", v)
-	}
-}
 
 // OAuthTokenInputScope - The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. You can find more information on these options in our [OAuth scope documentation](https://help.bolt.com/developers/references/bolt-oauth/#scopes).
 type OAuthTokenInputScope string
@@ -65,7 +39,7 @@ func (e *OAuthTokenInputScope) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type OAuthTokenInput2 struct {
+type OAuthTokenInput1 struct {
 	// Merchant publishable key which can be found in the merchant dashboard
 	ClientID string `form:"name=client_id"`
 	// Your Bolt API Key.
@@ -76,49 +50,57 @@ type OAuthTokenInput2 struct {
 	//
 	// The value will always be `authorization_code` when exchanging an authorization code for an access token.
 	//
-	GrantType OAuthTokenInputGrantType `form:"name=grant_type"`
+	grantType string `const:"authorization_code" form:"name=grant_type"`
 	// The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. You can find more information on these options in our [OAuth scope documentation](https://help.bolt.com/developers/references/bolt-oauth/#scopes).
 	Scope OAuthTokenInputScope `form:"name=scope"`
 	// A randomly generated string issued to the merchant when receiving an authorization code used to prevent CSRF attacks
 	State *string `form:"name=state"`
 }
 
-func (o *OAuthTokenInput2) GetClientID() string {
+func (o OAuthTokenInput1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OAuthTokenInput1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *OAuthTokenInput1) GetClientID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ClientID
 }
 
-func (o *OAuthTokenInput2) GetClientSecret() string {
+func (o *OAuthTokenInput1) GetClientSecret() string {
 	if o == nil {
 		return ""
 	}
 	return o.ClientSecret
 }
 
-func (o *OAuthTokenInput2) GetCode() string {
+func (o *OAuthTokenInput1) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *OAuthTokenInput2) GetGrantType() OAuthTokenInputGrantType {
-	if o == nil {
-		return OAuthTokenInputGrantType("")
-	}
-	return o.GrantType
+func (o *OAuthTokenInput1) GetGrantType() string {
+	return "authorization_code"
 }
 
-func (o *OAuthTokenInput2) GetScope() OAuthTokenInputScope {
+func (o *OAuthTokenInput1) GetScope() OAuthTokenInputScope {
 	if o == nil {
 		return OAuthTokenInputScope("")
 	}
 	return o.Scope
 }
 
-func (o *OAuthTokenInput2) GetState() *string {
+func (o *OAuthTokenInput1) GetState() *string {
 	if o == nil {
 		return nil
 	}

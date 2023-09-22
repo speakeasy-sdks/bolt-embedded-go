@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### OAuthTokenInput2
+### OAuthTokenInput1
 
 ```go
-oAuthTokenRequestBody := operations.CreateOAuthTokenRequestBodyOAuthTokenInput2(shared.OAuthTokenInput2{/* values here */})
+oAuthTokenRequestBody := operations.CreateOAuthTokenRequestBodyOAuthTokenInput1(shared.OAuthTokenInput1{/* values here */})
 ```
 
-### OAuthTokenInputRefresh1
+### OAuthTokenInputRefresh
 
 ```go
-oAuthTokenRequestBody := operations.CreateOAuthTokenRequestBodyOAuthTokenInputRefresh1(shared.OAuthTokenInputRefresh1{/* values here */})
+oAuthTokenRequestBody := operations.CreateOAuthTokenRequestBodyOAuthTokenInputRefresh(shared.OAuthTokenInputRefresh{/* values here */})
 ```
 

@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 	"time"
 )
 
@@ -66,6 +67,17 @@ type ICartShipmentView struct {
 	TaxAmount       *AmountView  `json:"tax_amount,omitempty"`
 	TotalWeight     *IWeight     `json:"total_weight,omitempty"`
 	Type            *string      `json:"type,omitempty"`
+}
+
+func (i ICartShipmentView) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *ICartShipmentView) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ICartShipmentView) GetCarrier() *string {

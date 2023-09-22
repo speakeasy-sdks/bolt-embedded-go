@@ -3,9 +3,8 @@
 package shared
 
 import (
-	"bytes"
-	"encoding/json"
 	"errors"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
 
 // AccountDetailsAddresses - The address object returned in the response.
@@ -226,23 +225,18 @@ func CreateAccountDetailsPaymentMethodsSavedPaypalAccountView(savedPaypalAccount
 }
 
 func (u *AccountDetailsPaymentMethods) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
-	savedCreditCardView := new(SavedCreditCardView)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&savedCreditCardView); err == nil {
-		u.SavedCreditCardView = savedCreditCardView
-		u.Type = AccountDetailsPaymentMethodsTypeSavedCreditCardView
+	savedPaypalAccountView := new(SavedPaypalAccountView)
+	if err := utils.UnmarshalJSON(data, &savedPaypalAccountView, "", true, true); err == nil {
+		u.SavedPaypalAccountView = savedPaypalAccountView
+		u.Type = AccountDetailsPaymentMethodsTypeSavedPaypalAccountView
 		return nil
 	}
 
-	savedPaypalAccountView := new(SavedPaypalAccountView)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&savedPaypalAccountView); err == nil {
-		u.SavedPaypalAccountView = savedPaypalAccountView
-		u.Type = AccountDetailsPaymentMethodsTypeSavedPaypalAccountView
+	savedCreditCardView := new(SavedCreditCardView)
+	if err := utils.UnmarshalJSON(data, &savedCreditCardView, "", true, true); err == nil {
+		u.SavedCreditCardView = savedCreditCardView
+		u.Type = AccountDetailsPaymentMethodsTypeSavedCreditCardView
 		return nil
 	}
 
@@ -251,17 +245,16 @@ func (u *AccountDetailsPaymentMethods) UnmarshalJSON(data []byte) error {
 
 func (u AccountDetailsPaymentMethods) MarshalJSON() ([]byte, error) {
 	if u.SavedCreditCardView != nil {
-		return json.Marshal(u.SavedCreditCardView)
+		return utils.MarshalJSON(u.SavedCreditCardView, "", true)
 	}
 
 	if u.SavedPaypalAccountView != nil {
-		return json.Marshal(u.SavedPaypalAccountView)
+		return utils.MarshalJSON(u.SavedPaypalAccountView, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-// AccountDetails - Account Details Fetched
 type AccountDetails struct {
 	// A list of all addresses associated to the shopper's account.
 	Addresses []AccountDetailsAddresses `json:"addresses,omitempty"`

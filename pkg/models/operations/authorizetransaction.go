@@ -3,10 +3,9 @@
 package operations
 
 import (
-	"bytes"
-	"encoding/json"
 	"errors"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 	"net/http"
 )
 
@@ -62,23 +61,18 @@ func CreateAuthorizeTransactionRequestBodyMerchantCreditCardAuthorizationRecharg
 }
 
 func (u *AuthorizeTransactionRequestBody) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
-	merchantCreditCardAuthorization := new(shared.MerchantCreditCardAuthorization)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&merchantCreditCardAuthorization); err == nil {
-		u.MerchantCreditCardAuthorization = merchantCreditCardAuthorization
-		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorization
+	merchantCreditCardAuthorizationRecharge := new(shared.MerchantCreditCardAuthorizationRecharge)
+	if err := utils.UnmarshalJSON(data, &merchantCreditCardAuthorizationRecharge, "", true, true); err == nil {
+		u.MerchantCreditCardAuthorizationRecharge = merchantCreditCardAuthorizationRecharge
+		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorizationRecharge
 		return nil
 	}
 
-	merchantCreditCardAuthorizationRecharge := new(shared.MerchantCreditCardAuthorizationRecharge)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&merchantCreditCardAuthorizationRecharge); err == nil {
-		u.MerchantCreditCardAuthorizationRecharge = merchantCreditCardAuthorizationRecharge
-		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorizationRecharge
+	merchantCreditCardAuthorization := new(shared.MerchantCreditCardAuthorization)
+	if err := utils.UnmarshalJSON(data, &merchantCreditCardAuthorization, "", true, true); err == nil {
+		u.MerchantCreditCardAuthorization = merchantCreditCardAuthorization
+		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorization
 		return nil
 	}
 
@@ -87,14 +81,14 @@ func (u *AuthorizeTransactionRequestBody) UnmarshalJSON(data []byte) error {
 
 func (u AuthorizeTransactionRequestBody) MarshalJSON() ([]byte, error) {
 	if u.MerchantCreditCardAuthorization != nil {
-		return json.Marshal(u.MerchantCreditCardAuthorization)
+		return utils.MarshalJSON(u.MerchantCreditCardAuthorization, "", true)
 	}
 
 	if u.MerchantCreditCardAuthorizationRecharge != nil {
-		return json.Marshal(u.MerchantCreditCardAuthorizationRecharge)
+		return utils.MarshalJSON(u.MerchantCreditCardAuthorizationRecharge, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type AuthorizeTransactionRequest struct {

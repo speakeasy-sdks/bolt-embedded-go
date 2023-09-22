@@ -3,63 +3,57 @@
 package operations
 
 import (
-	"bytes"
-	"encoding/json"
 	"errors"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 	"net/http"
 )
 
 type OAuthTokenRequestBodyType string
 
 const (
-	OAuthTokenRequestBodyTypeOAuthTokenInput2        OAuthTokenRequestBodyType = "o_auth_token_input2"
-	OAuthTokenRequestBodyTypeOAuthTokenInputRefresh1 OAuthTokenRequestBodyType = "o_auth_token_input_refresh1"
+	OAuthTokenRequestBodyTypeOAuthTokenInput1       OAuthTokenRequestBodyType = "o_auth_token_input1"
+	OAuthTokenRequestBodyTypeOAuthTokenInputRefresh OAuthTokenRequestBodyType = "o_auth_token_input_refresh"
 )
 
 type OAuthTokenRequestBody struct {
-	OAuthTokenInput2        *shared.OAuthTokenInput2
-	OAuthTokenInputRefresh1 *shared.OAuthTokenInputRefresh1
+	OAuthTokenInput1       *shared.OAuthTokenInput1
+	OAuthTokenInputRefresh *shared.OAuthTokenInputRefresh
 
 	Type OAuthTokenRequestBodyType
 }
 
-func CreateOAuthTokenRequestBodyOAuthTokenInput2(oAuthTokenInput2 shared.OAuthTokenInput2) OAuthTokenRequestBody {
-	typ := OAuthTokenRequestBodyTypeOAuthTokenInput2
+func CreateOAuthTokenRequestBodyOAuthTokenInput1(oAuthTokenInput1 shared.OAuthTokenInput1) OAuthTokenRequestBody {
+	typ := OAuthTokenRequestBodyTypeOAuthTokenInput1
 
 	return OAuthTokenRequestBody{
-		OAuthTokenInput2: &oAuthTokenInput2,
+		OAuthTokenInput1: &oAuthTokenInput1,
 		Type:             typ,
 	}
 }
 
-func CreateOAuthTokenRequestBodyOAuthTokenInputRefresh1(oAuthTokenInputRefresh1 shared.OAuthTokenInputRefresh1) OAuthTokenRequestBody {
-	typ := OAuthTokenRequestBodyTypeOAuthTokenInputRefresh1
+func CreateOAuthTokenRequestBodyOAuthTokenInputRefresh(oAuthTokenInputRefresh shared.OAuthTokenInputRefresh) OAuthTokenRequestBody {
+	typ := OAuthTokenRequestBodyTypeOAuthTokenInputRefresh
 
 	return OAuthTokenRequestBody{
-		OAuthTokenInputRefresh1: &oAuthTokenInputRefresh1,
-		Type:                    typ,
+		OAuthTokenInputRefresh: &oAuthTokenInputRefresh,
+		Type:                   typ,
 	}
 }
 
 func (u *OAuthTokenRequestBody) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
-	oAuthTokenInput2 := new(shared.OAuthTokenInput2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&oAuthTokenInput2); err == nil {
-		u.OAuthTokenInput2 = oAuthTokenInput2
-		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInput2
+	oAuthTokenInput1 := new(shared.OAuthTokenInput1)
+	if err := utils.UnmarshalJSON(data, &oAuthTokenInput1, "", true, true); err == nil {
+		u.OAuthTokenInput1 = oAuthTokenInput1
+		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInput1
 		return nil
 	}
 
-	oAuthTokenInputRefresh1 := new(shared.OAuthTokenInputRefresh1)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&oAuthTokenInputRefresh1); err == nil {
-		u.OAuthTokenInputRefresh1 = oAuthTokenInputRefresh1
-		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInputRefresh1
+	oAuthTokenInputRefresh := new(shared.OAuthTokenInputRefresh)
+	if err := utils.UnmarshalJSON(data, &oAuthTokenInputRefresh, "", true, true); err == nil {
+		u.OAuthTokenInputRefresh = oAuthTokenInputRefresh
+		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInputRefresh
 		return nil
 	}
 
@@ -67,15 +61,15 @@ func (u *OAuthTokenRequestBody) UnmarshalJSON(data []byte) error {
 }
 
 func (u OAuthTokenRequestBody) MarshalJSON() ([]byte, error) {
-	if u.OAuthTokenInput2 != nil {
-		return json.Marshal(u.OAuthTokenInput2)
+	if u.OAuthTokenInput1 != nil {
+		return utils.MarshalJSON(u.OAuthTokenInput1, "", true)
 	}
 
-	if u.OAuthTokenInputRefresh1 != nil {
-		return json.Marshal(u.OAuthTokenInputRefresh1)
+	if u.OAuthTokenInputRefresh != nil {
+		return utils.MarshalJSON(u.OAuthTokenInputRefresh, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type OAuthTokenRequest struct {

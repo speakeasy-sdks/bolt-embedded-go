@@ -26,22 +26,22 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 )
 
 func main() {
-    s := boltembeddedapi.New(
-        boltembeddedapi.WithSecurity(shared.Security{
-            OAuth: boltembeddedapi.String(""),
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String(""),
         }),
     )
 
     ctx := context.Background()
     res, err := s.OAuth.OAuthToken(ctx, operations.OAuthTokenRequest{
         RequestBody: &operations.OAuthTokenRequestBody{},
-        XPublishableKey: boltembeddedapi.String("voluptate"),
+        XPublishableKey: boltembeddedgo.String("perferendis"),
     })
     if err != nil {
         log.Fatal(err)

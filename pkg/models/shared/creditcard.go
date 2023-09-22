@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
 
 // CreditCardPriority - Used to indicate the card's priority. '1' indicates primary, while '2' indicates a secondary card.
@@ -35,31 +36,6 @@ func (e *CreditCardPriority) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// CreditCardTokenType - Used to define which payment processor generated the token for this credit card; for those using Bolt's tokenizer, the value must be `bolt`.
-type CreditCardTokenType string
-
-const (
-	CreditCardTokenTypeBolt CreditCardTokenType = "bolt"
-)
-
-func (e CreditCardTokenType) ToPointer() *CreditCardTokenType {
-	return &e
-}
-
-func (e *CreditCardTokenType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "bolt":
-		*e = CreditCardTokenType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreditCardTokenType: %v", v)
-	}
-}
-
 // CreditCard - The credit_card object is used to to pay for guest-checkout transactions or save payment method details to an account. Once saved, you can reference the credit card with the associated `credit_card_id` for future transactions. Add `billing_address` to this if storing a billing address for a returning shopper.
 type CreditCard struct {
 	// The Address object is used for billing, shipping, and physical store address use cases.
@@ -79,7 +55,18 @@ type CreditCard struct {
 	// The Bolt token associated to the credit card.
 	Token string `json:"token"`
 	// Used to define which payment processor generated the token for this credit card; for those using Bolt's tokenizer, the value must be `bolt`.
-	TokenType CreditCardTokenType `json:"token_type"`
+	tokenType string `const:"bolt" json:"token_type"`
+}
+
+func (c CreditCard) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreditCard) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreditCard) GetBillingAddress() *Address {
@@ -138,9 +125,6 @@ func (o *CreditCard) GetToken() string {
 	return o.Token
 }
 
-func (o *CreditCard) GetTokenType() CreditCardTokenType {
-	if o == nil {
-		return CreditCardTokenType("")
-	}
-	return o.TokenType
+func (o *CreditCard) GetTokenType() string {
+	return "bolt"
 }

@@ -22,13 +22,13 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.CreateTestingShopperAccountSecurity{
             XAPIKey: "",
         }
@@ -36,15 +36,15 @@ func main() {
     ctx := context.Background()
     res, err := s.Testing.CreateTestingShopperAccount(ctx, operations.CreateTestingShopperAccountRequest{
         RequestBody: &operations.CreateTestingShopperAccountRequestBody{
-            DeactivateInDays: boltembeddedapi.Int64(646265),
-            Email: boltembeddedapi.String("Cristobal58@yahoo.com"),
+            DeactivateInDays: boltembeddedgo.Int64(153694),
+            Email: boltembeddedgo.String("Moriah.Hintz@yahoo.com"),
             EmailState: operations.CreateTestingShopperAccountRequestBodyEmailStateVerified.ToPointer(),
-            HasAddress: boltembeddedapi.Bool(false),
-            Migrated: boltembeddedapi.Bool(false),
-            Phone: boltembeddedapi.String("871-752-1177 x34581"),
+            HasAddress: boltembeddedgo.Bool(false),
+            Migrated: boltembeddedgo.Bool(false),
+            Phone: boltembeddedgo.String("415.887.1652"),
             PhoneState: shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailStateVerified.ToPointer(),
         },
-        XPublishableKey: boltembeddedapi.String("neque"),
+        XPublishableKey: boltembeddedgo.String("aspernatur"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -82,12 +82,12 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/speakeasy-sdks/bolt-embedded-go"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 )
 
 func main() {
-    s := boltembeddedapi.New()
+    s := boltembeddedgo.New()
     operationSecurity := operations.GetTestCreditCardTokenSecurity{
             XAPIKey: "",
         }

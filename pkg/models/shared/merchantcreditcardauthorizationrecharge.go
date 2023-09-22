@@ -3,33 +3,8 @@
 package shared
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
-
-type MerchantCreditCardAuthorizationRechargeSource string
-
-const (
-	MerchantCreditCardAuthorizationRechargeSourceDirectPayments MerchantCreditCardAuthorizationRechargeSource = "direct_payments"
-)
-
-func (e MerchantCreditCardAuthorizationRechargeSource) ToPointer() *MerchantCreditCardAuthorizationRechargeSource {
-	return &e
-}
-
-func (e *MerchantCreditCardAuthorizationRechargeSource) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "direct_payments":
-		*e = MerchantCreditCardAuthorizationRechargeSource(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MerchantCreditCardAuthorizationRechargeSource: %v", v)
-	}
-}
 
 // MerchantCreditCardAuthorizationRecharge - This request is used for authorizing an existing, saved card associated with the account.
 type MerchantCreditCardAuthorizationRecharge struct {
@@ -46,11 +21,22 @@ type MerchantCreditCardAuthorizationRecharge struct {
 	// Defines which payment method was used to initiate the transaction.
 	ProcessingInitiator *ProcessingInitiator `json:"processing_initiator,omitempty"`
 	// The Address object is used for billing, shipping, and physical store address use cases.
-	ShippingAddress *Address                                      `json:"shipping_address,omitempty"`
-	Source          MerchantCreditCardAuthorizationRechargeSource `json:"source"`
+	ShippingAddress *Address `json:"shipping_address,omitempty"`
+	source          string   `const:"direct_payments" json:"source"`
 	// The object containing key lookup IDs associated with the shopper's account, such as the unique email address and phone number.
 	UserIdentifier UserIdentifier `json:"user_identifier"`
 	UserIdentity   UserIdentity   `json:"user_identity"`
+}
+
+func (m MerchantCreditCardAuthorizationRecharge) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MerchantCreditCardAuthorizationRecharge) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *MerchantCreditCardAuthorizationRecharge) GetAutoCapture() *bool {
@@ -109,11 +95,8 @@ func (o *MerchantCreditCardAuthorizationRecharge) GetShippingAddress() *Address 
 	return o.ShippingAddress
 }
 
-func (o *MerchantCreditCardAuthorizationRecharge) GetSource() MerchantCreditCardAuthorizationRechargeSource {
-	if o == nil {
-		return MerchantCreditCardAuthorizationRechargeSource("")
-	}
-	return o.Source
+func (o *MerchantCreditCardAuthorizationRecharge) GetSource() string {
+	return "direct_payments"
 }
 
 func (o *MerchantCreditCardAuthorizationRecharge) GetUserIdentifier() UserIdentifier {
