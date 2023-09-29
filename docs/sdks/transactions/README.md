@@ -1,4 +1,5 @@
 # Transactions
+(*Transactions*)
 
 ## Overview
 
@@ -44,9 +45,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.AuthorizeTransaction(ctx, operations.AuthorizeTransactionRequest{
-        IdempotencyKey: boltembeddedgo.String("dolores"),
+        IdempotencyKey: boltembeddedgo.String("Handmade"),
         RequestBody: &operations.AuthorizeTransactionRequestBody{},
-        XPublishableKey: boltembeddedgo.String("distinctio"),
+        XPublishableKey: boltembeddedgo.String("green Northeast online"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -100,7 +101,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.CaptureTransaction(ctx, operations.CaptureTransactionRequest{
-        IdempotencyKey: boltembeddedgo.String("facilis"),
+        IdempotencyKey: boltembeddedgo.String("Metal"),
         CaptureTransactionWithReference: &shared.CaptureTransactionWithReference{
             Amount: 754,
             Currency: "USD",
@@ -160,7 +161,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
-        Reference: "aliquid",
+        Reference: "repurpose Holmium Trans",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -210,7 +211,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.RefundTransaction(ctx, operations.RefundTransactionRequest{
-        IdempotencyKey: boltembeddedgo.String("quam"),
+        IdempotencyKey: boltembeddedgo.String("strategy Gasoline"),
         RequestBody: &operations.RefundTransactionRequestBody{
             Amount: 754,
             Currency: "USD",
@@ -267,12 +268,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
-        IdempotencyKey: boltembeddedgo.String("molestias"),
-        Reference: "temporibus",
+        IdempotencyKey: boltembeddedgo.String("Paterson"),
+        Reference: "set Administrator Networked",
         RequestBody: &operations.UpdateTransactionRequestBody{
             DisplayID: boltembeddedgo.String("order-123"),
             Metadata: map[string]string{
-                "qui": "neque",
+                "rerum": "circuit",
             },
         },
     }, operationSecurity)
@@ -328,7 +329,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.VoidTransaction(ctx, operations.VoidTransactionRequest{
-        IdempotencyKey: boltembeddedgo.String("fugit"),
+        IdempotencyKey: boltembeddedgo.String("Bicycle"),
         CreditCardVoid: &shared.CreditCardVoid{
             MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
             SkipHookNotification: boltembeddedgo.Bool(false),

@@ -39,7 +39,7 @@ func (e *OAuthTokenInputScope) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type OAuthTokenInput1 struct {
+type OAuthTokenInput struct {
 	// Merchant publishable key which can be found in the merchant dashboard
 	ClientID string `form:"name=client_id"`
 	// Your Bolt API Key.
@@ -57,50 +57,50 @@ type OAuthTokenInput1 struct {
 	State *string `form:"name=state"`
 }
 
-func (o OAuthTokenInput1) MarshalJSON() ([]byte, error) {
+func (o OAuthTokenInput) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(o, "", false)
 }
 
-func (o *OAuthTokenInput1) UnmarshalJSON(data []byte) error {
+func (o *OAuthTokenInput) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &o, "", false, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *OAuthTokenInput1) GetClientID() string {
+func (o *OAuthTokenInput) GetClientID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ClientID
 }
 
-func (o *OAuthTokenInput1) GetClientSecret() string {
+func (o *OAuthTokenInput) GetClientSecret() string {
 	if o == nil {
 		return ""
 	}
 	return o.ClientSecret
 }
 
-func (o *OAuthTokenInput1) GetCode() string {
+func (o *OAuthTokenInput) GetCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.Code
 }
 
-func (o *OAuthTokenInput1) GetGrantType() string {
+func (o *OAuthTokenInput) GetGrantType() string {
 	return "authorization_code"
 }
 
-func (o *OAuthTokenInput1) GetScope() OAuthTokenInputScope {
+func (o *OAuthTokenInput) GetScope() OAuthTokenInputScope {
 	if o == nil {
 		return OAuthTokenInputScope("")
 	}
 	return o.Scope
 }
 
-func (o *OAuthTokenInput1) GetState() *string {
+func (o *OAuthTokenInput) GetState() *string {
 	if o == nil {
 		return nil
 	}

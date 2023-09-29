@@ -12,23 +12,23 @@ import (
 type OAuthTokenRequestBodyType string
 
 const (
-	OAuthTokenRequestBodyTypeOAuthTokenInput1       OAuthTokenRequestBodyType = "o_auth_token_input1"
+	OAuthTokenRequestBodyTypeOAuthTokenInput        OAuthTokenRequestBodyType = "o_auth_token_input"
 	OAuthTokenRequestBodyTypeOAuthTokenInputRefresh OAuthTokenRequestBodyType = "o_auth_token_input_refresh"
 )
 
 type OAuthTokenRequestBody struct {
-	OAuthTokenInput1       *shared.OAuthTokenInput1
+	OAuthTokenInput        *shared.OAuthTokenInput
 	OAuthTokenInputRefresh *shared.OAuthTokenInputRefresh
 
 	Type OAuthTokenRequestBodyType
 }
 
-func CreateOAuthTokenRequestBodyOAuthTokenInput1(oAuthTokenInput1 shared.OAuthTokenInput1) OAuthTokenRequestBody {
-	typ := OAuthTokenRequestBodyTypeOAuthTokenInput1
+func CreateOAuthTokenRequestBodyOAuthTokenInput(oAuthTokenInput shared.OAuthTokenInput) OAuthTokenRequestBody {
+	typ := OAuthTokenRequestBodyTypeOAuthTokenInput
 
 	return OAuthTokenRequestBody{
-		OAuthTokenInput1: &oAuthTokenInput1,
-		Type:             typ,
+		OAuthTokenInput: &oAuthTokenInput,
+		Type:            typ,
 	}
 }
 
@@ -43,10 +43,10 @@ func CreateOAuthTokenRequestBodyOAuthTokenInputRefresh(oAuthTokenInputRefresh sh
 
 func (u *OAuthTokenRequestBody) UnmarshalJSON(data []byte) error {
 
-	oAuthTokenInput1 := new(shared.OAuthTokenInput1)
-	if err := utils.UnmarshalJSON(data, &oAuthTokenInput1, "", true, true); err == nil {
-		u.OAuthTokenInput1 = oAuthTokenInput1
-		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInput1
+	oAuthTokenInput := new(shared.OAuthTokenInput)
+	if err := utils.UnmarshalJSON(data, &oAuthTokenInput, "", true, true); err == nil {
+		u.OAuthTokenInput = oAuthTokenInput
+		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInput
 		return nil
 	}
 
@@ -61,8 +61,8 @@ func (u *OAuthTokenRequestBody) UnmarshalJSON(data []byte) error {
 }
 
 func (u OAuthTokenRequestBody) MarshalJSON() ([]byte, error) {
-	if u.OAuthTokenInput1 != nil {
-		return utils.MarshalJSON(u.OAuthTokenInput1, "", true)
+	if u.OAuthTokenInput != nil {
+		return utils.MarshalJSON(u.OAuthTokenInput, "", true)
 	}
 
 	if u.OAuthTokenInputRefresh != nil {
@@ -93,8 +93,11 @@ func (o *OAuthTokenRequest) GetXPublishableKey() *string {
 }
 
 type OAuthTokenResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Invalid request to OAuth Token.
 	ErrorsOauthServerResponse *shared.ErrorsOauthServerResponse

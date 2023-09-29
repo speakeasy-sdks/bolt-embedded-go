@@ -21,8 +21,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
-        IdempotencyKey: boltembeddedgo.String("corrupti"),
-        XPublishableKey: boltembeddedgo.String("provident"),
+        IdempotencyKey: boltembeddedgo.String("Maserati Bespoke frictionless"),
+        XPublishableKey: boltembeddedgo.String("deploy Central"),
         AddressAccount: &shared.AddressAccount{
             Company: boltembeddedgo.String("Bolt"),
             Country: boltembeddedgo.String("United States"),
@@ -34,7 +34,7 @@ func main() {
             LastName: "Watts",
             Locality: "Brooklyn",
             Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedgo.String("distinctio"),
+                AdditionalProperties: boltembeddedgo.String("Loan Dollar"),
             },
             Name: boltembeddedgo.String("Alan Watts"),
             Phone: boltembeddedgo.String("+12125550199"),

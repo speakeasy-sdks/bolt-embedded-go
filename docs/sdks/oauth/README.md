@@ -1,4 +1,5 @@
 # OAuth
+(*OAuth*)
 
 ## Overview
 
@@ -41,7 +42,7 @@ func main() {
     ctx := context.Background()
     res, err := s.OAuth.OAuthToken(ctx, operations.OAuthTokenRequest{
         RequestBody: &operations.OAuthTokenRequestBody{},
-        XPublishableKey: boltembeddedgo.String("perferendis"),
+        XPublishableKey: boltembeddedgo.String("Tesla"),
     })
     if err != nil {
         log.Fatal(err)

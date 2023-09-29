@@ -30,8 +30,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
-        IdempotencyKey: boltembeddedgo.String("quibusdam"),
-        XPublishableKey: boltembeddedgo.String("unde"),
+        IdempotencyKey: boltembeddedgo.String("Maserati Bespoke frictionless"),
+        XPublishableKey: boltembeddedgo.String("deploy Central"),
         AddressAccount: &shared.AddressAccount{
             Company: boltembeddedgo.String("Bolt"),
             Country: boltembeddedgo.String("United States"),
@@ -43,7 +43,7 @@ func main() {
             LastName: "Watts",
             Locality: "Brooklyn",
             Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedgo.String("nulla"),
+                AdditionalProperties: boltembeddedgo.String("Loan Dollar"),
             },
             Name: boltembeddedgo.String("Alan Watts"),
             Phone: boltembeddedgo.String("+12125550199"),
@@ -113,8 +113,6 @@ func main() {
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -127,8 +125,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `nil`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 
