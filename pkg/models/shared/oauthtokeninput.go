@@ -5,8 +5,34 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
+
+// OAuthTokenInputGrantType - The type of OAuth 2.0 grant being utilized.
+//
+// The value will always be `authorization_code` when exchanging an authorization code for an access token.
+type OAuthTokenInputGrantType string
+
+const (
+	OAuthTokenInputGrantTypeAuthorizationCode OAuthTokenInputGrantType = "authorization_code"
+)
+
+func (e OAuthTokenInputGrantType) ToPointer() *OAuthTokenInputGrantType {
+	return &e
+}
+
+func (e *OAuthTokenInputGrantType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "authorization_code":
+		*e = OAuthTokenInputGrantType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OAuthTokenInputGrantType: %v", v)
+	}
+}
 
 // OAuthTokenInputScope - The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. You can find more information on these options in our [OAuth scope documentation](https://help.bolt.com/developers/references/bolt-oauth/#scopes).
 type OAuthTokenInputScope string
@@ -50,22 +76,11 @@ type OAuthTokenInput struct {
 	//
 	// The value will always be `authorization_code` when exchanging an authorization code for an access token.
 	//
-	grantType string `const:"authorization_code" form:"name=grant_type"`
+	GrantType OAuthTokenInputGrantType `form:"name=grant_type"`
 	// The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. You can find more information on these options in our [OAuth scope documentation](https://help.bolt.com/developers/references/bolt-oauth/#scopes).
 	Scope OAuthTokenInputScope `form:"name=scope"`
 	// A randomly generated string issued to the merchant when receiving an authorization code used to prevent CSRF attacks
 	State *string `form:"name=state"`
-}
-
-func (o OAuthTokenInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
-}
-
-func (o *OAuthTokenInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, true); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *OAuthTokenInput) GetClientID() string {
@@ -89,8 +104,11 @@ func (o *OAuthTokenInput) GetCode() string {
 	return o.Code
 }
 
-func (o *OAuthTokenInput) GetGrantType() string {
-	return "authorization_code"
+func (o *OAuthTokenInput) GetGrantType() OAuthTokenInputGrantType {
+	if o == nil {
+		return OAuthTokenInputGrantType("")
+	}
+	return o.GrantType
 }
 
 func (o *OAuthTokenInput) GetScope() OAuthTokenInputScope {

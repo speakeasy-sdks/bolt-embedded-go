@@ -298,6 +298,7 @@ docs/models/shared/accountdetailsaddresses.md
 docs/models/shared/accountdetailspaymentmethods.md
 docs/models/shared/accountdetails.md
 docs/models/shared/profileview.md
+docs/models/shared/savedpaypalaccountviewtype.md
 docs/models/shared/savedpaypalaccountview.md
 docs/models/shared/createaccountinput.md
 docs/models/shared/profilemetadata.md
@@ -312,8 +313,10 @@ docs/models/shared/errorboltapi.md
 docs/models/shared/v1accountsview.md
 docs/models/shared/oauthtokenresponse.md
 docs/models/shared/errorsoauthserverresponse.md
+docs/models/shared/oauthtokeninputgranttype.md
 docs/models/shared/oauthtokeninputscope.md
 docs/models/shared/oauthtokeninput.md
+docs/models/shared/oauthtokeninputrefreshgranttype.md
 docs/models/shared/oauthtokeninputrefresh.md
 docs/models/shared/cartcreatefees.md
 docs/models/shared/cartcreatefulfillmentsdigitaldelivery.md
@@ -385,11 +388,14 @@ docs/models/shared/creditcardauthorizationview.md
 docs/models/shared/creditcardauthorizationstatus.md
 docs/models/shared/creditcardauthorizationreason.md
 docs/models/shared/merchantcreditcardauthorizationprocessinginitiator.md
+docs/models/shared/merchantcreditcardauthorizationsource.md
 docs/models/shared/merchantcreditcardauthorization.md
 docs/models/shared/useridentity.md
 docs/models/shared/useridentifier.md
 docs/models/shared/creditcardpriority.md
+docs/models/shared/creditcardtokentype.md
 docs/models/shared/creditcard.md
+docs/models/shared/merchantcreditcardauthorizationrechargesource.md
 docs/models/shared/merchantcreditcardauthorizationrecharge.md
 docs/models/shared/processinginitiator.md
 docs/models/shared/capturetransactionwithreference.md

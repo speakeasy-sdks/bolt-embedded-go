@@ -3,8 +3,36 @@
 package shared
 
 import (
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
+	"encoding/json"
+	"fmt"
 )
+
+// OAuthTokenInputRefreshGrantType - The type of OAuth 2.0 grant being utilized.
+//
+// The value will always be `refresh_token` when exchanging a refresh token for an access token.
+type OAuthTokenInputRefreshGrantType string
+
+const (
+	OAuthTokenInputRefreshGrantTypeRefreshToken OAuthTokenInputRefreshGrantType = "refresh_token"
+)
+
+func (e OAuthTokenInputRefreshGrantType) ToPointer() *OAuthTokenInputRefreshGrantType {
+	return &e
+}
+
+func (e *OAuthTokenInputRefreshGrantType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "refresh_token":
+		*e = OAuthTokenInputRefreshGrantType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OAuthTokenInputRefreshGrantType: %v", v)
+	}
+}
 
 type OAuthTokenInputRefresh struct {
 	// Merchant publishable key which can be found in the merchant dashboard
@@ -15,24 +43,13 @@ type OAuthTokenInputRefresh struct {
 	//
 	// The value will always be `refresh_token` when exchanging a refresh token for an access token.
 	//
-	grantType string `const:"refresh_token" form:"name=grant_type"`
+	GrantType OAuthTokenInputRefreshGrantType `form:"name=grant_type"`
 	// The value of the refresh token issued to you in the originating OAuth token request.
 	RefreshToken string `form:"name=refresh_token"`
 	// The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`.
 	Scope string `form:"name=scope"`
 	// A randomly generated string issued to the merchant when receiving an authorization code used to prevent CSRF attacks
 	State *string `form:"name=state"`
-}
-
-func (o OAuthTokenInputRefresh) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
-}
-
-func (o *OAuthTokenInputRefresh) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, true); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *OAuthTokenInputRefresh) GetClientID() string {
@@ -49,8 +66,11 @@ func (o *OAuthTokenInputRefresh) GetClientSecret() string {
 	return o.ClientSecret
 }
 
-func (o *OAuthTokenInputRefresh) GetGrantType() string {
-	return "refresh_token"
+func (o *OAuthTokenInputRefresh) GetGrantType() OAuthTokenInputRefreshGrantType {
+	if o == nil {
+		return OAuthTokenInputRefreshGrantType("")
+	}
+	return o.GrantType
 }
 
 func (o *OAuthTokenInputRefresh) GetRefreshToken() string {

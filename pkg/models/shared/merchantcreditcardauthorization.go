@@ -5,7 +5,6 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
 
 // MerchantCreditCardAuthorizationProcessingInitiator - Determines who initiated the transaction (e.g. shopper, merchant) and how they did it (e.g. recurring subscription, on-file card).
@@ -59,6 +58,30 @@ func (e *MerchantCreditCardAuthorizationProcessingInitiator) UnmarshalJSON(data 
 	}
 }
 
+type MerchantCreditCardAuthorizationSource string
+
+const (
+	MerchantCreditCardAuthorizationSourceDirectPayments MerchantCreditCardAuthorizationSource = "direct_payments"
+)
+
+func (e MerchantCreditCardAuthorizationSource) ToPointer() *MerchantCreditCardAuthorizationSource {
+	return &e
+}
+
+func (e *MerchantCreditCardAuthorizationSource) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "direct_payments":
+		*e = MerchantCreditCardAuthorizationSource(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MerchantCreditCardAuthorizationSource: %v", v)
+	}
+}
+
 // MerchantCreditCardAuthorization - This request is used for authorizing a new, unsaved card.
 type MerchantCreditCardAuthorization struct {
 	AutoCapture *bool      `json:"auto_capture,omitempty"`
@@ -85,22 +108,11 @@ type MerchantCreditCardAuthorization struct {
 	//
 	ProcessingInitiator *MerchantCreditCardAuthorizationProcessingInitiator `json:"processing_initiator,omitempty"`
 	// The Address object is used for billing, shipping, and physical store address use cases.
-	ShippingAddress *Address `json:"shipping_address,omitempty"`
-	source          string   `const:"direct_payments" json:"source"`
+	ShippingAddress *Address                              `json:"shipping_address,omitempty"`
+	Source          MerchantCreditCardAuthorizationSource `json:"source"`
 	// The object containing key lookup IDs associated with the shopper's account, such as the unique email address and phone number.
 	UserIdentifier UserIdentifier `json:"user_identifier"`
 	UserIdentity   UserIdentity   `json:"user_identity"`
-}
-
-func (m MerchantCreditCardAuthorization) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
-}
-
-func (m *MerchantCreditCardAuthorization) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *MerchantCreditCardAuthorization) GetAutoCapture() *bool {
@@ -166,8 +178,11 @@ func (o *MerchantCreditCardAuthorization) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *MerchantCreditCardAuthorization) GetSource() string {
-	return "direct_payments"
+func (o *MerchantCreditCardAuthorization) GetSource() MerchantCreditCardAuthorizationSource {
+	if o == nil {
+		return MerchantCreditCardAuthorizationSource("")
+	}
+	return o.Source
 }
 
 func (o *MerchantCreditCardAuthorization) GetUserIdentifier() UserIdentifier {
