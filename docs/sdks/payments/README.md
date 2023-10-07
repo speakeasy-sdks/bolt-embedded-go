@@ -37,15 +37,14 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Payments.FinalizePayment(ctx, operations.FinalizePaymentRequest{
-        IdempotencyKey: boltembeddedgo.String("triumphantly generating SQL"),
         RequestBody: &operations.FinalizePaymentRequestBody{
             MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
             ShopperIdentity: &operations.FinalizePaymentRequestBodyShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
-                Email: "Janie_Ondricka6@hotmail.com",
-                FirstName: "Bryana",
-                LastName: "Schuster",
-                Phone: "(576) 993-3446 x04190",
+                Email: "Shanon_Sipes@hotmail.com",
+                FirstName: "Jalyn",
+                LastName: "Reichert",
+                Phone: "567.701.8847 x69933",
             },
         },
         ID: "<ID>",
@@ -100,17 +99,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Payments.InitializePayment(ctx, operations.InitializePaymentRequest{
-        IdempotencyKey: boltembeddedgo.String("Bicycle"),
         RequestBody: &operations.InitializePaymentRequestBody{
             Cart: shared.CartCreate{
                 AddOns: []shared.CartAddOn{
                     shared.CartAddOn{
-                        Description: boltembeddedgo.String("Cloned actuating knowledge user"),
-                        ImageURL: boltembeddedgo.String("Auto"),
-                        Name: "Plastic IP Architect",
-                        Price: 1981.96,
-                        ProductID: "sketch silently",
-                        ProductPageURL: boltembeddedgo.String("red wireless Recumbent"),
+                        Name: "Bicycle",
+                        Price: 807.72,
+                        ProductID: "override",
                     },
                 },
                 BillingAddress: &shared.Address{
@@ -141,7 +136,6 @@ func main() {
                         Code: boltembeddedgo.String("SUMMER10DISCOUNT"),
                         Description: boltembeddedgo.String("10% off our summer collection"),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/SUMMERSALE"),
-                        DiscountCategory: shared.CartDiscountDiscountCategoryRewardsDiscount.ToPointer(),
                         Reference: boltembeddedgo.String("DISC-1234"),
                         Type: shared.CartDiscountTypePercentage.ToPointer(),
                     },
@@ -151,10 +145,10 @@ func main() {
                     shared.CartCreateFees{
                         Description: boltembeddedgo.String("Item Fee"),
                         Name: "Item Fee",
-                        Quantity: 4604.82,
+                        Quantity: 4039.97,
                         Reference: "ItemFee",
-                        UnitPrice: 9895.87,
-                        UnitTaxAmount: 4855.31,
+                        UnitPrice: 7837.59,
+                        UnitTaxAmount: 643.7,
                     },
                 },
                 Fulfillments: []shared.CartCreateFulfillments{
@@ -170,9 +164,9 @@ func main() {
                                 Customizations: []shared.CartItemCustomization{
                                     shared.CartItemCustomization{
                                         Attributes: map[string]string{
-                                            "ratione": "Northeast",
+                                            "key1": "value1",
+                                            "key2": "value2",
                                         },
-                                        Name: boltembeddedgo.String("simplistic Berkshire"),
                                         Price: &shared.AmountView{
                                             Amount: boltembeddedgo.Float64(754),
                                             Currency: boltembeddedgo.String("USD"),
@@ -182,11 +176,7 @@ func main() {
                                 },
                                 Description: boltembeddedgo.String("Large tote with Bolt logo."),
                                 DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
-                                ExternalInputs: &shared.ICartItemExternalInputs{
-                                    ShopifyLineItemReference: boltembeddedgo.Float64(2484.13),
-                                    ShopifyProductReference: boltembeddedgo.Float64(9036.66),
-                                    ShopifyProductVariantReference: boltembeddedgo.Float64(2155.16),
-                                },
+                                ExternalInputs: &shared.ICartItemExternalInputs{},
                                 GiftOption: &shared.CartItemGiftOption{
                                     Cost: boltembeddedgo.Int64(770),
                                     MerchantProductID: boltembeddedgo.String("881"),
@@ -195,22 +185,13 @@ func main() {
                                 },
                                 ImageURL: boltembeddedgo.String("https://boltswagstore.com/products/123456/images/1.png"),
                                 Isbn: boltembeddedgo.String("9780091347314"),
-                                ItemGroup: boltembeddedgo.String("Cisgender female"),
                                 Manufacturer: boltembeddedgo.String("Bolt Textiles USA"),
                                 MerchantProductID: boltembeddedgo.String("881"),
                                 MerchantVariantID: boltembeddedgo.String("888"),
-                                Msrp: boltembeddedgo.Float64(6633.02),
                                 Name: "Bolt Swag Bag",
                                 Options: boltembeddedgo.String("Special Edition"),
                                 Properties: []shared.CartItemProperty{
-                                    shared.CartItemProperty{
-                                        Color: boltembeddedgo.String("yellow"),
-                                        Display: boltembeddedgo.Bool(false),
-                                        Name: boltembeddedgo.String("invoice programming"),
-                                        NameID: boltembeddedgo.Float64(7703.73),
-                                        Value: boltembeddedgo.String("open"),
-                                        ValueID: boltembeddedgo.Float64(8814.48),
-                                    },
+                                    shared.CartItemProperty{},
                                 },
                                 Quantity: 1,
                                 Reference: "item_100",
@@ -256,16 +237,11 @@ func main() {
                                     TotalWeightUnit: boltembeddedgo.String("kg"),
                                     Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                                 },
-                                ShipmentType: shared.CartItemShipmentTypeShipToStore.ToPointer(),
                                 Size: boltembeddedgo.String("Large"),
                                 Sku: boltembeddedgo.String("BOLT-SKU_100"),
-                                Source: boltembeddedgo.String("Strategist THX"),
                                 Tags: boltembeddedgo.String("tote, blue, linen, eco-friendly"),
                                 TaxAmount: boltembeddedgo.Float64(0),
-                                TaxCode: boltembeddedgo.String("Sedan haptic"),
-                                Taxable: boltembeddedgo.Bool(false),
                                 TotalAmount: 1000,
-                                Type: shared.CartItemTypePhysical.ToPointer(),
                                 UnitPrice: 1000,
                                 Uom: boltembeddedgo.String("inches"),
                                 Upc: boltembeddedgo.String("825764603119"),
@@ -315,10 +291,7 @@ func main() {
                             TotalWeightUnit: boltembeddedgo.String("kg"),
                             Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                         },
-                        DigitalDelivery: &shared.CartCreateFulfillmentsDigitalDelivery{
-                            Email: boltembeddedgo.String("Weldon4@gmail.com"),
-                            Phone: boltembeddedgo.String("459.697.0696 x62730"),
-                        },
+                        DigitalDelivery: &shared.CartCreateFulfillmentsDigitalDelivery{},
                         InStoreCartShipment: &shared.InStoreCartShipment{
                             CartShipment: &shared.CartShipment{
                                 Carrier: boltembeddedgo.String("FedEx"),
@@ -385,11 +358,8 @@ func main() {
                                 StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
                                 StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
                             },
-                            PickupWindowClose: boltembeddedgo.Int64(344315),
-                            PickupWindowOpen: boltembeddedgo.Int64(707410),
                             StoreName: boltembeddedgo.String("Bolt Collective"),
                         },
-                        Type: shared.CartCreateFulfillmentsTypePhysicalShipToStore.ToPointer(),
                     },
                 },
                 InStoreCartShipments: []shared.InStoreCartShipment{
@@ -459,8 +429,6 @@ func main() {
                             StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
                             StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
                         },
-                        PickupWindowClose: boltembeddedgo.Int64(14054),
-                        PickupWindowOpen: boltembeddedgo.Int64(692493),
                         StoreName: boltembeddedgo.String("Bolt Collective"),
                     },
                 },
@@ -475,9 +443,9 @@ func main() {
                         Customizations: []shared.CartItemCustomization{
                             shared.CartItemCustomization{
                                 Attributes: map[string]string{
-                                    "dignissimos": "male",
+                                    "key2": "value2",
+                                    "key1": "value1",
                                 },
-                                Name: boltembeddedgo.String("Future Altenwerth"),
                                 Price: &shared.AmountView{
                                     Amount: boltembeddedgo.Float64(754),
                                     Currency: boltembeddedgo.String("USD"),
@@ -487,11 +455,7 @@ func main() {
                         },
                         Description: boltembeddedgo.String("Large tote with Bolt logo."),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
-                        ExternalInputs: &shared.ICartItemExternalInputs{
-                            ShopifyLineItemReference: boltembeddedgo.Float64(1650.3),
-                            ShopifyProductReference: boltembeddedgo.Float64(7121.75),
-                            ShopifyProductVariantReference: boltembeddedgo.Float64(5414.12),
-                        },
+                        ExternalInputs: &shared.ICartItemExternalInputs{},
                         GiftOption: &shared.CartItemGiftOption{
                             Cost: boltembeddedgo.Int64(770),
                             MerchantProductID: boltembeddedgo.String("881"),
@@ -500,22 +464,13 @@ func main() {
                         },
                         ImageURL: boltembeddedgo.String("https://boltswagstore.com/products/123456/images/1.png"),
                         Isbn: boltembeddedgo.String("9780091347314"),
-                        ItemGroup: boltembeddedgo.String("Virginia"),
                         Manufacturer: boltembeddedgo.String("Bolt Textiles USA"),
                         MerchantProductID: boltembeddedgo.String("881"),
                         MerchantVariantID: boltembeddedgo.String("888"),
-                        Msrp: boltembeddedgo.Float64(4440.99),
                         Name: "Bolt Swag Bag",
                         Options: boltembeddedgo.String("Special Edition"),
                         Properties: []shared.CartItemProperty{
-                            shared.CartItemProperty{
-                                Color: boltembeddedgo.String("mint green"),
-                                Display: boltembeddedgo.Bool(false),
-                                Name: boltembeddedgo.String("Principal"),
-                                NameID: boltembeddedgo.Float64(1271.55),
-                                Value: boltembeddedgo.String("Facilitator female"),
-                                ValueID: boltembeddedgo.Float64(8076.7),
-                            },
+                            shared.CartItemProperty{},
                         },
                         Quantity: 1,
                         Reference: "item_100",
@@ -561,16 +516,11 @@ func main() {
                             TotalWeightUnit: boltembeddedgo.String("kg"),
                             Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                         },
-                        ShipmentType: shared.CartItemShipmentTypeInStorePickup.ToPointer(),
                         Size: boltembeddedgo.String("Large"),
                         Sku: boltembeddedgo.String("BOLT-SKU_100"),
-                        Source: boltembeddedgo.String("Jazz"),
                         Tags: boltembeddedgo.String("tote, blue, linen, eco-friendly"),
                         TaxAmount: boltembeddedgo.Float64(0),
-                        TaxCode: boltembeddedgo.String("Folk Porsche Berkshire"),
-                        Taxable: boltembeddedgo.Bool(false),
                         TotalAmount: 1000,
-                        Type: shared.CartItemTypePhysical.ToPointer(),
                         UnitPrice: 1000,
                         Uom: boltembeddedgo.String("inches"),
                         Upc: boltembeddedgo.String("825764603119"),
@@ -580,17 +530,13 @@ func main() {
                 },
                 LoyaltyRewards: []shared.CartLoyaltyRewards{
                     shared.CartLoyaltyRewards{
-                        Amount: boltembeddedgo.Float64(1851.98),
-                        CouponCode: boltembeddedgo.String("newton offering Infrastructure"),
                         Description: boltembeddedgo.String("$5 off (100 Points)"),
                         Details: boltembeddedgo.String("{\"id\": 123456, \"icon\": \"fa-dollar\", \"name\": \"$15.00 Off\", \"type\": \"Coupon\", \"amount\": 100, \"duration\": \"single_use\", \"cost_text\": \"150 Points\",  \"description\": \"Get $15 off your next purchase for 150 points\", \"discount_type\": \"fixed_amount\", \"unrendered_name\": \"$15.00 Off\",  \"discount_percentage\": null, \"discount_rate_cents\": null, \"discount_value_cents\": null, \"discount_amount_cents\": 1500,  \"unrendered_description\": \"Get $15 off your next purchase for 150 points\", \"applies_to_product_type\": \"ALL\"}"),
-                        Points: boltembeddedgo.Float64(811.42),
-                        Source: boltembeddedgo.String("Fiat by"),
-                        Type: boltembeddedgo.String("hertz blah integrated"),
                     },
                 },
                 Metadata: map[string]string{
-                    "aliquid": "Cheese",
+                    "key1": "value1",
+                    "key2": "value2",
                 },
                 OrderDescription: boltembeddedgo.String("Order #1234567890"),
                 OrderReference: "order_100",
@@ -638,18 +584,16 @@ func main() {
                         Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                     },
                 },
-                TaxAmount: boltembeddedgo.Float64(2899.19),
                 TotalAmount: 900,
             },
             ShopperIdentity: &operations.InitializePaymentRequestBodyShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
-                Email: "Violet92@hotmail.com",
-                FirstName: "Stephen",
-                LastName: "Powlowski",
-                Phone: "(354) 487-8136 x6300",
+                Email: "Deondre.Hudson@hotmail.com",
+                FirstName: "Marlin",
+                LastName: "Konopelski",
+                Phone: "698.508.7970",
             },
         },
-        XPublishableKey: boltembeddedgo.String("sky evolve"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -701,17 +645,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Payments.UpdatePayment(ctx, operations.UpdatePaymentRequest{
-        IdempotencyKey: boltembeddedgo.String("Northeast Pataca OCR"),
         RequestBody: &operations.UpdatePaymentRequestBody{
             Cart: &shared.CartCreate{
                 AddOns: []shared.CartAddOn{
                     shared.CartAddOn{
-                        Description: boltembeddedgo.String("Open-source contextually-based access"),
-                        ImageURL: boltembeddedgo.String("kelvin bus gadzooks"),
-                        Name: "Tennessee Loan lumen",
-                        Price: 621.91,
-                        ProductID: "Southwest ah",
-                        ProductPageURL: boltembeddedgo.String("Wagon calculate"),
+                        Name: "Northeast Pataca OCR",
+                        Price: 5220.84,
+                        ProductID: "West",
                     },
                 },
                 BillingAddress: &shared.Address{
@@ -742,7 +682,6 @@ func main() {
                         Code: boltembeddedgo.String("SUMMER10DISCOUNT"),
                         Description: boltembeddedgo.String("10% off our summer collection"),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/SUMMERSALE"),
-                        DiscountCategory: shared.CartDiscountDiscountCategoryManagedGiftcard.ToPointer(),
                         Reference: boltembeddedgo.String("DISC-1234"),
                         Type: shared.CartDiscountTypePercentage.ToPointer(),
                     },
@@ -752,10 +691,10 @@ func main() {
                     shared.CartCreateFees{
                         Description: boltembeddedgo.String("Item Fee"),
                         Name: "Item Fee",
-                        Quantity: 6255.34,
+                        Quantity: 7407.21,
                         Reference: "ItemFee",
-                        UnitPrice: 3605.33,
-                        UnitTaxAmount: 2097.19,
+                        UnitPrice: 1430.94,
+                        UnitTaxAmount: 5206.57,
                     },
                 },
                 Fulfillments: []shared.CartCreateFulfillments{
@@ -771,9 +710,9 @@ func main() {
                                 Customizations: []shared.CartItemCustomization{
                                     shared.CartItemCustomization{
                                         Attributes: map[string]string{
-                                            "cupiditate": "female",
+                                            "key1": "value1",
+                                            "key2": "value2",
                                         },
-                                        Name: boltembeddedgo.String("Platinum finally"),
                                         Price: &shared.AmountView{
                                             Amount: boltembeddedgo.Float64(754),
                                             Currency: boltembeddedgo.String("USD"),
@@ -783,11 +722,7 @@ func main() {
                                 },
                                 Description: boltembeddedgo.String("Large tote with Bolt logo."),
                                 DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
-                                ExternalInputs: &shared.ICartItemExternalInputs{
-                                    ShopifyLineItemReference: boltembeddedgo.Float64(1604.67),
-                                    ShopifyProductReference: boltembeddedgo.Float64(2435.65),
-                                    ShopifyProductVariantReference: boltembeddedgo.Float64(3021.98),
-                                },
+                                ExternalInputs: &shared.ICartItemExternalInputs{},
                                 GiftOption: &shared.CartItemGiftOption{
                                     Cost: boltembeddedgo.Int64(770),
                                     MerchantProductID: boltembeddedgo.String("881"),
@@ -796,22 +731,13 @@ func main() {
                                 },
                                 ImageURL: boltembeddedgo.String("https://boltswagstore.com/products/123456/images/1.png"),
                                 Isbn: boltembeddedgo.String("9780091347314"),
-                                ItemGroup: boltembeddedgo.String("Face HTTP"),
                                 Manufacturer: boltembeddedgo.String("Bolt Textiles USA"),
                                 MerchantProductID: boltembeddedgo.String("881"),
                                 MerchantVariantID: boltembeddedgo.String("888"),
-                                Msrp: boltembeddedgo.Float64(7950.1),
                                 Name: "Bolt Swag Bag",
                                 Options: boltembeddedgo.String("Special Edition"),
                                 Properties: []shared.CartItemProperty{
-                                    shared.CartItemProperty{
-                                        Color: boltembeddedgo.String("black"),
-                                        Display: boltembeddedgo.Bool(false),
-                                        Name: boltembeddedgo.String("zero Human"),
-                                        NameID: boltembeddedgo.Float64(1634.01),
-                                        Value: boltembeddedgo.String("Dynamic"),
-                                        ValueID: boltembeddedgo.Float64(6209.8),
-                                    },
+                                    shared.CartItemProperty{},
                                 },
                                 Quantity: 1,
                                 Reference: "item_100",
@@ -857,16 +783,11 @@ func main() {
                                     TotalWeightUnit: boltembeddedgo.String("kg"),
                                     Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                                 },
-                                ShipmentType: shared.CartItemShipmentTypeDoorDelivery.ToPointer(),
                                 Size: boltembeddedgo.String("Large"),
                                 Sku: boltembeddedgo.String("BOLT-SKU_100"),
-                                Source: boltembeddedgo.String("facilitate"),
                                 Tags: boltembeddedgo.String("tote, blue, linen, eco-friendly"),
                                 TaxAmount: boltembeddedgo.Float64(0),
-                                TaxCode: boltembeddedgo.String("ivory"),
-                                Taxable: boltembeddedgo.Bool(false),
                                 TotalAmount: 1000,
-                                Type: shared.CartItemTypeDigital.ToPointer(),
                                 UnitPrice: 1000,
                                 Uom: boltembeddedgo.String("inches"),
                                 Upc: boltembeddedgo.String("825764603119"),
@@ -916,10 +837,7 @@ func main() {
                             TotalWeightUnit: boltembeddedgo.String("kg"),
                             Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                         },
-                        DigitalDelivery: &shared.CartCreateFulfillmentsDigitalDelivery{
-                            Email: boltembeddedgo.String("Tatyana_Kessler25@hotmail.com"),
-                            Phone: boltembeddedgo.String("968-639-4285 x877"),
-                        },
+                        DigitalDelivery: &shared.CartCreateFulfillmentsDigitalDelivery{},
                         InStoreCartShipment: &shared.InStoreCartShipment{
                             CartShipment: &shared.CartShipment{
                                 Carrier: boltembeddedgo.String("FedEx"),
@@ -986,11 +904,8 @@ func main() {
                                 StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
                                 StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
                             },
-                            PickupWindowClose: boltembeddedgo.Int64(358861),
-                            PickupWindowOpen: boltembeddedgo.Int64(924450),
                             StoreName: boltembeddedgo.String("Bolt Collective"),
                         },
-                        Type: shared.CartCreateFulfillmentsTypePhysicalInStorePickup.ToPointer(),
                     },
                 },
                 InStoreCartShipments: []shared.InStoreCartShipment{
@@ -1060,8 +975,6 @@ func main() {
                             StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
                             StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
                         },
-                        PickupWindowClose: boltembeddedgo.Int64(428066),
-                        PickupWindowOpen: boltembeddedgo.Int64(597057),
                         StoreName: boltembeddedgo.String("Bolt Collective"),
                     },
                 },
@@ -1076,9 +989,9 @@ func main() {
                         Customizations: []shared.CartItemCustomization{
                             shared.CartItemCustomization{
                                 Attributes: map[string]string{
-                                    "tenetur": "Northwest",
+                                    "key1": "value1",
+                                    "key2": "value2",
                                 },
-                                Name: boltembeddedgo.String("Beauty siemens"),
                                 Price: &shared.AmountView{
                                     Amount: boltembeddedgo.Float64(754),
                                     Currency: boltembeddedgo.String("USD"),
@@ -1088,11 +1001,7 @@ func main() {
                         },
                         Description: boltembeddedgo.String("Large tote with Bolt logo."),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
-                        ExternalInputs: &shared.ICartItemExternalInputs{
-                            ShopifyLineItemReference: boltembeddedgo.Float64(1393.18),
-                            ShopifyProductReference: boltembeddedgo.Float64(2477.99),
-                            ShopifyProductVariantReference: boltembeddedgo.Float64(2493.09),
-                        },
+                        ExternalInputs: &shared.ICartItemExternalInputs{},
                         GiftOption: &shared.CartItemGiftOption{
                             Cost: boltembeddedgo.Int64(770),
                             MerchantProductID: boltembeddedgo.String("881"),
@@ -1101,22 +1010,13 @@ func main() {
                         },
                         ImageURL: boltembeddedgo.String("https://boltswagstore.com/products/123456/images/1.png"),
                         Isbn: boltembeddedgo.String("9780091347314"),
-                        ItemGroup: boltembeddedgo.String("withdrawal Southeast"),
                         Manufacturer: boltembeddedgo.String("Bolt Textiles USA"),
                         MerchantProductID: boltembeddedgo.String("881"),
                         MerchantVariantID: boltembeddedgo.String("888"),
-                        Msrp: boltembeddedgo.Float64(8791.42),
                         Name: "Bolt Swag Bag",
                         Options: boltembeddedgo.String("Special Edition"),
                         Properties: []shared.CartItemProperty{
-                            shared.CartItemProperty{
-                                Color: boltembeddedgo.String("indigo"),
-                                Display: boltembeddedgo.Bool(false),
-                                Name: boltembeddedgo.String("overriding"),
-                                NameID: boltembeddedgo.Float64(2419.8),
-                                Value: boltembeddedgo.String("holistic salmon"),
-                                ValueID: boltembeddedgo.Float64(4786.08),
-                            },
+                            shared.CartItemProperty{},
                         },
                         Quantity: 1,
                         Reference: "item_100",
@@ -1162,16 +1062,11 @@ func main() {
                             TotalWeightUnit: boltembeddedgo.String("kg"),
                             Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                         },
-                        ShipmentType: shared.CartItemShipmentTypeDoorDelivery.ToPointer(),
                         Size: boltembeddedgo.String("Large"),
                         Sku: boltembeddedgo.String("BOLT-SKU_100"),
-                        Source: boltembeddedgo.String("Home transmitting"),
                         Tags: boltembeddedgo.String("tote, blue, linen, eco-friendly"),
                         TaxAmount: boltembeddedgo.Float64(0),
-                        TaxCode: boltembeddedgo.String("nonconforming non although"),
-                        Taxable: boltembeddedgo.Bool(false),
                         TotalAmount: 1000,
-                        Type: shared.CartItemTypeDigital.ToPointer(),
                         UnitPrice: 1000,
                         Uom: boltembeddedgo.String("inches"),
                         Upc: boltembeddedgo.String("825764603119"),
@@ -1181,17 +1076,13 @@ func main() {
                 },
                 LoyaltyRewards: []shared.CartLoyaltyRewards{
                     shared.CartLoyaltyRewards{
-                        Amount: boltembeddedgo.Float64(9114.8),
-                        CouponCode: boltembeddedgo.String("synergies Hop deposit"),
                         Description: boltembeddedgo.String("$5 off (100 Points)"),
                         Details: boltembeddedgo.String("{\"id\": 123456, \"icon\": \"fa-dollar\", \"name\": \"$15.00 Off\", \"type\": \"Coupon\", \"amount\": 100, \"duration\": \"single_use\", \"cost_text\": \"150 Points\",  \"description\": \"Get $15 off your next purchase for 150 points\", \"discount_type\": \"fixed_amount\", \"unrendered_name\": \"$15.00 Off\",  \"discount_percentage\": null, \"discount_rate_cents\": null, \"discount_value_cents\": null, \"discount_amount_cents\": 1500,  \"unrendered_description\": \"Get $15 off your next purchase for 150 points\", \"applies_to_product_type\": \"ALL\"}"),
-                        Points: boltembeddedgo.Float64(8306.32),
-                        Source: boltembeddedgo.String("Stracke"),
-                        Type: boltembeddedgo.String("interactive saepe North"),
                     },
                 },
                 Metadata: map[string]string{
-                    "beatae": "Sulfur",
+                    "key1": "value1",
+                    "key2": "value2",
                 },
                 OrderDescription: boltembeddedgo.String("Order #1234567890"),
                 OrderReference: "order_100",
@@ -1239,18 +1130,16 @@ func main() {
                         Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                     },
                 },
-                TaxAmount: boltembeddedgo.Float64(1438.01),
                 TotalAmount: 900,
             },
             ShopperIdentity: &operations.UpdatePaymentRequestBodyShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
-                Email: "Cameron_Borer@hotmail.com",
-                FirstName: "Mona",
-                LastName: "Maggio",
-                Phone: "580-305-9242 x56905",
+                Email: "Trey.Ondricka83@hotmail.com",
+                FirstName: "Hayden",
+                LastName: "Volkman",
+                Phone: "(760) 517-9258 x9562",
             },
         },
-        XPublishableKey: boltembeddedgo.String("Pakistan hack"),
         ID: "<ID>",
     }, operationSecurity)
     if err != nil {

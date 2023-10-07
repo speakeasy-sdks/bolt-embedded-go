@@ -41,8 +41,15 @@ func main() {
 
     ctx := context.Background()
     res, err := s.OAuth.OAuthToken(ctx, operations.OAuthTokenRequest{
-        RequestBody: &operations.OAuthTokenRequestBody{},
-        XPublishableKey: boltembeddedgo.String("Tesla"),
+        RequestBody: operations.CreateOAuthTokenRequestBodyOAuthTokenInput(
+                shared.OAuthTokenInput{
+                    ClientID: "marvelous East female",
+                    ClientSecret: "systems",
+                    Code: "Northwest Pants Strategist",
+                    GrantType: shared.OAuthTokenInputGrantTypeAuthorizationCode,
+                    Scope: shared.OAuthTokenInputScopeOpenid,
+                },
+        ),
     })
     if err != nil {
         log.Fatal(err)

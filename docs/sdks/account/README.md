@@ -45,21 +45,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
-        IdempotencyKey: boltembeddedgo.String("Maserati Bespoke frictionless"),
-        XPublishableKey: boltembeddedgo.String("deploy Central"),
         AddressAccount: &shared.AddressAccount{
             Company: boltembeddedgo.String("Bolt"),
             Country: boltembeddedgo.String("United States"),
             CountryCode: "US",
-            Default: boltembeddedgo.Bool(false),
             DoorCode: boltembeddedgo.String("123456"),
             Email: "alan.watts@example.com",
             FirstName: "Alan",
             LastName: "Watts",
             Locality: "Brooklyn",
-            Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedgo.String("Loan Dollar"),
-            },
+            Metadata: &shared.Metadata{},
             Name: boltembeddedgo.String("Alan Watts"),
             Phone: boltembeddedgo.String("+12125550199"),
             PostalCode: "10044",
@@ -124,7 +119,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.AddPaymentMethod(ctx, operations.AddPaymentMethodRequest{
-        IdempotencyKey: boltembeddedgo.String("violet Scandium"),
         RequestBody: &operations.AddPaymentMethodRequestBody{
             BillingAddress: shared.Address{
                 Company: boltembeddedgo.String("Bolt"),
@@ -148,23 +142,14 @@ func main() {
             },
             BillingAddressID: boltembeddedgo.String("null"),
             Bin: boltembeddedgo.String("411111"),
-            Cryptogram: boltembeddedgo.String("Gasoline aggregate"),
             Currency: boltembeddedgo.String("USD"),
-            Eci: boltembeddedgo.String("District"),
             Expiration: "2025-11",
             Last4: boltembeddedgo.String("1234"),
-            Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedgo.String("male Chips termite"),
-            },
-            Network: operations.AddPaymentMethodRequestBodyNetworkAmex.ToPointer(),
-            Number: boltembeddedgo.String("Fish Transgender ivory"),
+            Metadata: &shared.Metadata{},
             PostalCode: boltembeddedgo.String("10044"),
-            Priority: operations.AddPaymentMethodRequestBodyPriorityOne.ToPointer(),
-            Save: boltembeddedgo.Bool(false),
             Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
             TokenType: operations.AddPaymentMethodRequestBodyTokenTypeBolt.ToPointer(),
         },
-        XPublishableKey: boltembeddedgo.String("katal Buckinghamshire"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -215,23 +200,18 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.CreateAccount(ctx, operations.CreateAccountRequest{
-        IdempotencyKey: boltembeddedgo.String("grey North rare"),
-        XPublishableKey: boltembeddedgo.String("content Man"),
         CreateAccountInput: &shared.CreateAccountInput{
             Addresses: []shared.AddressAccount{
                 shared.AddressAccount{
                     Company: boltembeddedgo.String("Bolt"),
                     Country: boltembeddedgo.String("United States"),
                     CountryCode: "US",
-                    Default: boltembeddedgo.Bool(false),
                     DoorCode: boltembeddedgo.String("123456"),
                     Email: "alan.watts@example.com",
                     FirstName: "Alan",
                     LastName: "Watts",
                     Locality: "Brooklyn",
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedgo.String("Handmade"),
-                    },
+                    Metadata: &shared.Metadata{},
                     Name: boltembeddedgo.String("Alan Watts"),
                     Phone: boltembeddedgo.String("+12125550199"),
                     PostalCode: "10044",
@@ -267,19 +247,10 @@ func main() {
                     },
                     BillingAddressID: boltembeddedgo.String("null"),
                     Bin: boltembeddedgo.String("411111"),
-                    Cryptogram: boltembeddedgo.String("West Rap"),
-                    Default: boltembeddedgo.Bool(false),
-                    Eci: boltembeddedgo.String("matrix"),
                     Expiration: "2025-11",
                     Last4: boltembeddedgo.String("1234"),
-                    Metadata: &shared.Metadata{
-                        AdditionalProperties: boltembeddedgo.String("Bicycle Lauderhill"),
-                    },
-                    Network: shared.PaymentMethodAccountNetworkAmex.ToPointer(),
-                    Number: boltembeddedgo.String("Hybrid frame Alabama"),
+                    Metadata: &shared.Metadata{},
                     PostalCode: boltembeddedgo.String("10044"),
-                    Priority: shared.PaymentMethodAccountPriorityTwo.ToPointer(),
-                    Save: boltembeddedgo.Bool(false),
                     Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
                     TokenType: shared.PaymentMethodAccountTokenTypeBolt.ToPointer(),
                 },
@@ -288,9 +259,7 @@ func main() {
                 Email: "alan.watts@example.com",
                 FirstName: "Alan",
                 LastName: "Watts",
-                Metadata: &shared.ProfileMetadata{
-                    AdditionalProperties: boltembeddedgo.String("payment"),
-                },
+                Metadata: &shared.ProfileMetadata{},
                 Phone: "+12125550199",
             },
         },
@@ -345,7 +314,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DeleteAddress(ctx, operations.DeleteAddressRequest{
-        XPublishableKey: boltembeddedgo.String("Grocery Configurable Larissa"),
         ID: "<ID>",
     }, operationSecurity)
     if err != nil {
@@ -397,8 +365,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DeletePaymentMethod(ctx, operations.DeletePaymentMethodRequest{
-        XPublishableKey: boltembeddedgo.String("Rico Security aha"),
-        PaymentMethodID: "sed",
+        PaymentMethodID: "Rico Security aha",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -451,9 +418,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Account.DetectAccount(ctx, operations.DetectAccountRequest{
         XPublishableKey: "Specialist",
-        Email: boltembeddedgo.String("Connor42@gmail.com"),
-        Phone: boltembeddedgo.String("935-762-8190 x328"),
-        Sha256Email: boltembeddedgo.String("markets Frozen"),
     })
     if err != nil {
         log.Fatal(err)
@@ -506,20 +470,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.EditAddress(ctx, operations.EditAddressRequest{
-        XPublishableKey: boltembeddedgo.String("Latin Lead"),
         AddressAccount: &shared.AddressAccount{
             Company: boltembeddedgo.String("Bolt"),
             Country: boltembeddedgo.String("United States"),
             CountryCode: "US",
-            Default: boltembeddedgo.Bool(false),
             DoorCode: boltembeddedgo.String("123456"),
             Email: "alan.watts@example.com",
             FirstName: "Alan",
             LastName: "Watts",
             Locality: "Brooklyn",
-            Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedgo.String("Nauru Frozen"),
-            },
+            Metadata: &shared.Metadata{},
             Name: boltembeddedgo.String("Alan Watts"),
             Phone: boltembeddedgo.String("+12125550199"),
             PostalCode: "10044",
@@ -580,9 +540,7 @@ func main() {
         }
 
     ctx := context.Background()
-    res, err := s.Account.GetAccount(ctx, operations.GetAccountRequest{
-        XPublishableKey: boltembeddedgo.String("Market"),
-    }, operationSecurity)
+    res, err := s.Account.GetAccount(ctx, operations.GetAccountRequest{}, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -635,21 +593,16 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.ReplaceAddress(ctx, operations.ReplaceAddressRequest{
-        IdempotencyKey: boltembeddedgo.String("West Northwest logistical"),
-        XPublishableKey: boltembeddedgo.String("purple"),
         AddressAccount: &shared.AddressAccount{
             Company: boltembeddedgo.String("Bolt"),
             Country: boltembeddedgo.String("United States"),
             CountryCode: "US",
-            Default: boltembeddedgo.Bool(false),
             DoorCode: boltembeddedgo.String("123456"),
             Email: "alan.watts@example.com",
             FirstName: "Alan",
             LastName: "Watts",
             Locality: "Brooklyn",
-            Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedgo.String("Frozen Zealand Passenger"),
-            },
+            Metadata: &shared.Metadata{},
             Name: boltembeddedgo.String("Alan Watts"),
             Phone: boltembeddedgo.String("+12125550199"),
             PostalCode: "10044",
@@ -715,11 +668,8 @@ func main() {
         RequestBody: &operations.UpdateAccountProfileRequestBody{
             FirstName: boltembeddedgo.String("Alan"),
             LastName: boltembeddedgo.String("Watts"),
-            Metadata: &shared.Metadata{
-                AdditionalProperties: boltembeddedgo.String("over"),
-            },
+            Metadata: &shared.Metadata{},
         },
-        XPublishableKey: boltembeddedgo.String("monetize Northwest"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

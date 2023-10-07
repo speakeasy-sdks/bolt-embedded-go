@@ -37,15 +37,9 @@ func main() {
     ctx := context.Background()
     res, err := s.Testing.CreateTestingShopperAccount(ctx, operations.CreateTestingShopperAccountRequest{
         RequestBody: &operations.CreateTestingShopperAccountRequestBody{
-            DeactivateInDays: boltembeddedgo.Int64(277760),
-            Email: boltembeddedgo.String("Estella.Hoeger@hotmail.com"),
             EmailState: operations.CreateTestingShopperAccountRequestBodyEmailStateVerified.ToPointer(),
-            HasAddress: boltembeddedgo.Bool(false),
-            Migrated: boltembeddedgo.Bool(false),
-            Phone: boltembeddedgo.String("1-459-828-6149 x8692"),
             PhoneState: shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailStateVerified.ToPointer(),
         },
-        XPublishableKey: boltembeddedgo.String("Coupe Reggae Plastic"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

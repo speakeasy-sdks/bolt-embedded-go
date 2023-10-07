@@ -22,6 +22,7 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
+tests/helpers.go
 pkg/models/operations/addaddress.go
 pkg/models/operations/addpaymentmethod.go
 pkg/models/operations/createaccount.go
