@@ -30,9 +30,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.CreateTestingShopperAccountSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Testing.CreateTestingShopperAccount(ctx, operations.CreateTestingShopperAccountRequest{
@@ -83,9 +83,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.GetTestCreditCardTokenSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Testing.GetTestCreditCardToken(ctx, operationSecurity)

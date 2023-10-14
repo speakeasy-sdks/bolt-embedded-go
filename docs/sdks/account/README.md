@@ -38,6 +38,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.AddAddressSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -112,6 +114,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.AddPaymentMethodSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -194,9 +198,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.CreateAccountSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Account.CreateAccount(ctx, operations.CreateAccountRequest{
@@ -307,6 +311,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.DeleteAddressSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -358,6 +364,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.DeletePaymentMethodSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -463,6 +471,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.EditAddressSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -534,6 +544,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.GetAccountSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -586,6 +598,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.ReplaceAddressSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -658,6 +672,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.UpdateAccountProfileSecurity{
             OAuth: "",
             XAPIKey: "",

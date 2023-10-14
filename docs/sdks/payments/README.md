@@ -31,6 +31,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.FinalizePaymentSecurity{
             OAuth: boltembeddedgo.String(""),
         }
@@ -93,6 +95,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.InitializePaymentSecurity{
             OAuth: boltembeddedgo.String(""),
         }
@@ -443,8 +447,8 @@ func main() {
                         Customizations: []shared.CartItemCustomization{
                             shared.CartItemCustomization{
                                 Attributes: map[string]string{
-                                    "key2": "value2",
                                     "key1": "value1",
+                                    "key2": "value2",
                                 },
                                 Price: &shared.AmountView{
                                     Amount: boltembeddedgo.Float64(754),
@@ -639,6 +643,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.UpdatePaymentSecurity{
             OAuth: boltembeddedgo.String(""),
         }

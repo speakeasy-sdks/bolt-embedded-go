@@ -38,6 +38,8 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
+
+
     operationSecurity := operations.AuthorizeTransactionSecurity{
             OAuth: "",
             XAPIKey: "",
@@ -646,9 +648,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.CaptureTransactionSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Transactions.CaptureTransaction(ctx, operations.CaptureTransactionRequest{
@@ -705,9 +707,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.GetTransactionDetailsSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
@@ -755,9 +757,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.RefundTransactionSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Transactions.RefundTransaction(ctx, operations.RefundTransactionRequest{
@@ -811,9 +813,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.UpdateTransactionSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
@@ -872,9 +874,9 @@ import(
 
 func main() {
     s := boltembeddedgo.New()
-    operationSecurity := operations.VoidTransactionSecurity{
-            XAPIKey: "",
-        }
+
+
+    operationSecurity := ""
 
     ctx := context.Background()
     res, err := s.Transactions.VoidTransaction(ctx, operations.VoidTransactionRequest{
