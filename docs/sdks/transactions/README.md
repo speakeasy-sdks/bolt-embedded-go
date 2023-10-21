@@ -52,9 +52,9 @@ func main() {
                     Cart: shared.CartCreate{
                         AddOns: []shared.CartAddOn{
                             shared.CartAddOn{
-                                Name: "male",
-                                Price: 7842.96,
-                                ProductID: "Northeast",
+                                Name: "string",
+                                Price: 2208.11,
+                                ProductID: "string",
                             },
                         },
                         BillingAddress: &shared.Address{
@@ -94,10 +94,10 @@ func main() {
                             shared.CartCreateFees{
                                 Description: boltembeddedgo.String("Item Fee"),
                                 Name: "Item Fee",
-                                Quantity: 4825.84,
+                                Quantity: 7162.31,
                                 Reference: "ItemFee",
-                                UnitPrice: 4488.34,
-                                UnitTaxAmount: 4885.1,
+                                UnitPrice: 7867.96,
+                                UnitTaxAmount: 7842.96,
                             },
                         },
                         Fulfillments: []shared.CartCreateFulfillments{
@@ -713,7 +713,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
-        Reference: "repurpose Holmium Trans",
+        Reference: "string",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -819,7 +819,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
-        Reference: "Paterson",
+        Reference: "string",
         RequestBody: &operations.UpdateTransactionRequestBody{
             DisplayID: boltembeddedgo.String("order-123"),
             Metadata: map[string]string{

@@ -373,7 +373,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DeletePaymentMethod(ctx, operations.DeletePaymentMethodRequest{
-        PaymentMethodID: "Rico Security aha",
+        PaymentMethodID: "string",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -425,7 +425,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DetectAccount(ctx, operations.DetectAccountRequest{
-        XPublishableKey: "Specialist",
+        XPublishableKey: "string",
     })
     if err != nil {
         log.Fatal(err)

@@ -107,9 +107,9 @@ func main() {
             Cart: shared.CartCreate{
                 AddOns: []shared.CartAddOn{
                     shared.CartAddOn{
-                        Name: "Bicycle",
-                        Price: 807.72,
-                        ProductID: "override",
+                        Name: "string",
+                        Price: 3089.77,
+                        ProductID: "string",
                     },
                 },
                 BillingAddress: &shared.Address{
@@ -149,10 +149,10 @@ func main() {
                     shared.CartCreateFees{
                         Description: boltembeddedgo.String("Item Fee"),
                         Name: "Item Fee",
-                        Quantity: 4039.97,
+                        Quantity: 7673.67,
                         Reference: "ItemFee",
-                        UnitPrice: 7837.59,
-                        UnitTaxAmount: 643.7,
+                        UnitPrice: 7770.83,
+                        UnitTaxAmount: 7895.06,
                     },
                 },
                 Fulfillments: []shared.CartCreateFulfillments{
@@ -539,8 +539,8 @@ func main() {
                     },
                 },
                 Metadata: map[string]string{
-                    "key1": "value1",
                     "key2": "value2",
+                    "key1": "value1",
                 },
                 OrderDescription: boltembeddedgo.String("Order #1234567890"),
                 OrderReference: "order_100",
@@ -592,10 +592,10 @@ func main() {
             },
             ShopperIdentity: &operations.InitializePaymentRequestBodyShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
-                Email: "Deondre.Hudson@hotmail.com",
-                FirstName: "Marlin",
-                LastName: "Konopelski",
-                Phone: "698.508.7970",
+                Email: "Angelica40@gmail.com",
+                FirstName: "Ottis",
+                LastName: "Bergnaum",
+                Phone: "434-564-1598 x40879",
             },
         },
     }, operationSecurity)
@@ -655,9 +655,9 @@ func main() {
             Cart: &shared.CartCreate{
                 AddOns: []shared.CartAddOn{
                     shared.CartAddOn{
-                        Name: "Northeast Pataca OCR",
-                        Price: 5220.84,
-                        ProductID: "West",
+                        Name: "string",
+                        Price: 8194.81,
+                        ProductID: "string",
                     },
                 },
                 BillingAddress: &shared.Address{
@@ -697,10 +697,10 @@ func main() {
                     shared.CartCreateFees{
                         Description: boltembeddedgo.String("Item Fee"),
                         Name: "Item Fee",
-                        Quantity: 7407.21,
+                        Quantity: 1095.6,
                         Reference: "ItemFee",
-                        UnitPrice: 1430.94,
-                        UnitTaxAmount: 5206.57,
+                        UnitPrice: 2053.88,
+                        UnitTaxAmount: 4201.73,
                     },
                 },
                 Fulfillments: []shared.CartCreateFulfillments{
@@ -995,8 +995,8 @@ func main() {
                         Customizations: []shared.CartItemCustomization{
                             shared.CartItemCustomization{
                                 Attributes: map[string]string{
-                                    "key1": "value1",
                                     "key2": "value2",
+                                    "key1": "value1",
                                 },
                                 Price: &shared.AmountView{
                                     Amount: boltembeddedgo.Float64(754),
@@ -1140,10 +1140,10 @@ func main() {
             },
             ShopperIdentity: &operations.UpdatePaymentRequestBodyShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
-                Email: "Trey.Ondricka83@hotmail.com",
-                FirstName: "Hayden",
-                LastName: "Volkman",
-                Phone: "(760) 517-9258 x9562",
+                Email: "Jannie.Kshlerin@yahoo.com",
+                FirstName: "Adeline",
+                LastName: "Wyman",
+                Phone: "358.969.1849 x6760",
             },
         },
         ID: "<ID>",

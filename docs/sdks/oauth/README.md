@@ -43,9 +43,9 @@ func main() {
     res, err := s.OAuth.OAuthToken(ctx, operations.OAuthTokenRequest{
         RequestBody: operations.CreateOAuthTokenRequestBodyOAuthTokenInput(
                 shared.OAuthTokenInput{
-                    ClientID: "marvelous East female",
-                    ClientSecret: "systems",
-                    Code: "Northwest Pants Strategist",
+                    ClientID: "string",
+                    ClientSecret: "string",
+                    Code: "string",
                     GrantType: shared.OAuthTokenInputGrantTypeAuthorizationCode,
                     Scope: shared.OAuthTokenInputScopeOpenid,
                 },
