@@ -130,6 +130,182 @@ Here's an example of one such pagination call:
 
 <!-- End Go Types -->
 
+
+
+<!-- Start Error Handling -->
+# Error Handling
+
+Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+
+
+<!-- End Error Handling -->
+
+
+
+<!-- Start Server Selection -->
+# Server Selection
+
+## Select Server by Index
+
+You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| # | Server | Variables |
+| - | ------ | --------- |
+| 0 | `https://api.bolt.com` | None |
+| 1 | `https://api-sandbox.bolt.com` | None |
+| 2 | `https://api-staging.bolt.com` | None |
+
+For example:
+
+
+```go
+package main
+
+import (
+	"context"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := boltembeddedgo.New(
+		boltembeddedgo.WithServerIndex(2),
+	)
+
+	operationSecurity := operations.AddAddressSecurity{
+		OAuth:   "",
+		XAPIKey: "",
+	}
+
+	ctx := context.Background()
+	res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
+		AddressAccount: &shared.AddressAccount{
+			Company:        boltembeddedgo.String("Bolt"),
+			Country:        boltembeddedgo.String("United States"),
+			CountryCode:    "US",
+			DoorCode:       boltembeddedgo.String("123456"),
+			Email:          "alan.watts@example.com",
+			FirstName:      "Alan",
+			LastName:       "Watts",
+			Locality:       "Brooklyn",
+			Metadata:       &shared.Metadata{},
+			Name:           boltembeddedgo.String("Alan Watts"),
+			Phone:          boltembeddedgo.String("+12125550199"),
+			PostalCode:     "10044",
+			Region:         "NY",
+			RegionCode:     boltembeddedgo.String("NY"),
+			StreetAddress1: "888 main street",
+			StreetAddress2: boltembeddedgo.String("apt 3021"),
+			StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
+			StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
+		},
+	}, operationSecurity)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.AddAddress200ApplicationJSONObject != nil {
+		// handle response
+	}
+}
+
+```
+
+
+## Override Server URL Per-Client
+
+The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+
+
+```go
+package main
+
+import (
+	"context"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := boltembeddedgo.New(
+		boltembeddedgo.WithServerURL("https://api.bolt.com"),
+	)
+
+	operationSecurity := operations.AddAddressSecurity{
+		OAuth:   "",
+		XAPIKey: "",
+	}
+
+	ctx := context.Background()
+	res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
+		AddressAccount: &shared.AddressAccount{
+			Company:        boltembeddedgo.String("Bolt"),
+			Country:        boltembeddedgo.String("United States"),
+			CountryCode:    "US",
+			DoorCode:       boltembeddedgo.String("123456"),
+			Email:          "alan.watts@example.com",
+			FirstName:      "Alan",
+			LastName:       "Watts",
+			Locality:       "Brooklyn",
+			Metadata:       &shared.Metadata{},
+			Name:           boltembeddedgo.String("Alan Watts"),
+			Phone:          boltembeddedgo.String("+12125550199"),
+			PostalCode:     "10044",
+			Region:         "NY",
+			RegionCode:     boltembeddedgo.String("NY"),
+			StreetAddress1: "888 main street",
+			StreetAddress2: boltembeddedgo.String("apt 3021"),
+			StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
+			StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
+		},
+	}, operationSecurity)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.AddAddress200ApplicationJSONObject != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Server Selection -->
+
+
+
+<!-- Start Custom HTTP Client -->
+# Custom HTTP Client
+
+The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
+
+```go
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+```
+
+The built-in `net/http` client satisfies this interface and a default client based on the built-in is provided by default. To replace this default with a client of your own, you can implement this interface yourself or provide your own client configured as desired. Here's a simple example, which adds a client with a 30 second timeout.
+
+```go
+import (
+	"net/http"
+	"time"
+	"github.com/myorg/your-go-sdk"
+)
+
+var (
+	httpClient = &http.Client{Timeout: 30 * time.Second}
+	sdkClient  = sdk.New(sdk.WithClient(httpClient))
+)
+```
+
+This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
+<!-- End Custom HTTP Client -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 

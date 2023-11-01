@@ -62,16 +62,16 @@ func CreateAuthorizeTransactionRequestBodyMerchantCreditCardAuthorizationRecharg
 
 func (u *AuthorizeTransactionRequestBody) UnmarshalJSON(data []byte) error {
 
-	merchantCreditCardAuthorizationRecharge := new(shared.MerchantCreditCardAuthorizationRecharge)
+	merchantCreditCardAuthorizationRecharge := shared.MerchantCreditCardAuthorizationRecharge{}
 	if err := utils.UnmarshalJSON(data, &merchantCreditCardAuthorizationRecharge, "", true, true); err == nil {
-		u.MerchantCreditCardAuthorizationRecharge = merchantCreditCardAuthorizationRecharge
+		u.MerchantCreditCardAuthorizationRecharge = &merchantCreditCardAuthorizationRecharge
 		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorizationRecharge
 		return nil
 	}
 
-	merchantCreditCardAuthorization := new(shared.MerchantCreditCardAuthorization)
+	merchantCreditCardAuthorization := shared.MerchantCreditCardAuthorization{}
 	if err := utils.UnmarshalJSON(data, &merchantCreditCardAuthorization, "", true, true); err == nil {
-		u.MerchantCreditCardAuthorization = merchantCreditCardAuthorization
+		u.MerchantCreditCardAuthorization = &merchantCreditCardAuthorization
 		u.Type = AuthorizeTransactionRequestBodyTypeMerchantCreditCardAuthorization
 		return nil
 	}

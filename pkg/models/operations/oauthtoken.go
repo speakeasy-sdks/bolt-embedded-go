@@ -43,16 +43,16 @@ func CreateOAuthTokenRequestBodyOAuthTokenInputRefresh(oAuthTokenInputRefresh sh
 
 func (u *OAuthTokenRequestBody) UnmarshalJSON(data []byte) error {
 
-	oAuthTokenInput := new(shared.OAuthTokenInput)
+	oAuthTokenInput := shared.OAuthTokenInput{}
 	if err := utils.UnmarshalJSON(data, &oAuthTokenInput, "", true, true); err == nil {
-		u.OAuthTokenInput = oAuthTokenInput
+		u.OAuthTokenInput = &oAuthTokenInput
 		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInput
 		return nil
 	}
 
-	oAuthTokenInputRefresh := new(shared.OAuthTokenInputRefresh)
+	oAuthTokenInputRefresh := shared.OAuthTokenInputRefresh{}
 	if err := utils.UnmarshalJSON(data, &oAuthTokenInputRefresh, "", true, true); err == nil {
-		u.OAuthTokenInputRefresh = oAuthTokenInputRefresh
+		u.OAuthTokenInputRefresh = &oAuthTokenInputRefresh
 		u.Type = OAuthTokenRequestBodyTypeOAuthTokenInputRefresh
 		return nil
 	}

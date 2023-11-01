@@ -226,16 +226,16 @@ func CreateAccountDetailsPaymentMethodsSavedPaypalAccountView(savedPaypalAccount
 
 func (u *AccountDetailsPaymentMethods) UnmarshalJSON(data []byte) error {
 
-	savedPaypalAccountView := new(SavedPaypalAccountView)
+	savedPaypalAccountView := SavedPaypalAccountView{}
 	if err := utils.UnmarshalJSON(data, &savedPaypalAccountView, "", true, true); err == nil {
-		u.SavedPaypalAccountView = savedPaypalAccountView
+		u.SavedPaypalAccountView = &savedPaypalAccountView
 		u.Type = AccountDetailsPaymentMethodsTypeSavedPaypalAccountView
 		return nil
 	}
 
-	savedCreditCardView := new(SavedCreditCardView)
+	savedCreditCardView := SavedCreditCardView{}
 	if err := utils.UnmarshalJSON(data, &savedCreditCardView, "", true, true); err == nil {
-		u.SavedCreditCardView = savedCreditCardView
+		u.SavedCreditCardView = &savedCreditCardView
 		u.Type = AccountDetailsPaymentMethodsTypeSavedCreditCardView
 		return nil
 	}
