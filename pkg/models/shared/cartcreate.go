@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-type CartCreateFees struct {
+type Fees struct {
 	// Description of the fee that will appear in the tooltip if the mouse hovers over the fee.
 	Description *string `json:"description,omitempty"`
 	// Name of the fee that will appear in the order ledger.
@@ -19,82 +19,82 @@ type CartCreateFees struct {
 	UnitTaxAmount float64 `json:"unit_tax_amount"`
 }
 
-func (o *CartCreateFees) GetDescription() *string {
+func (o *Fees) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *CartCreateFees) GetName() *string {
+func (o *Fees) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CartCreateFees) GetQuantity() float64 {
+func (o *Fees) GetQuantity() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Quantity
 }
 
-func (o *CartCreateFees) GetReference() string {
+func (o *Fees) GetReference() string {
 	if o == nil {
 		return ""
 	}
 	return o.Reference
 }
 
-func (o *CartCreateFees) GetUnitPrice() float64 {
+func (o *Fees) GetUnitPrice() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.UnitPrice
 }
 
-func (o *CartCreateFees) GetUnitTaxAmount() float64 {
+func (o *Fees) GetUnitTaxAmount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.UnitTaxAmount
 }
 
-type CartCreateFulfillmentsDigitalDelivery struct {
+type DigitalDelivery struct {
 	Email *string `json:"email,omitempty"`
 	Phone *string `json:"phone,omitempty"`
 }
 
-func (o *CartCreateFulfillmentsDigitalDelivery) GetEmail() *string {
+func (o *DigitalDelivery) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *CartCreateFulfillmentsDigitalDelivery) GetPhone() *string {
+func (o *DigitalDelivery) GetPhone() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Phone
 }
 
-type CartCreateFulfillmentsType string
+type CartCreateType string
 
 const (
-	CartCreateFulfillmentsTypePhysicalDoorDelivery  CartCreateFulfillmentsType = "physical_door_delivery"
-	CartCreateFulfillmentsTypePhysicalShipToStore   CartCreateFulfillmentsType = "physical_ship_to_store"
-	CartCreateFulfillmentsTypePhysicalInStorePickup CartCreateFulfillmentsType = "physical_in_store_pickup"
-	CartCreateFulfillmentsTypeDigitalDownload       CartCreateFulfillmentsType = "digital_download"
-	CartCreateFulfillmentsTypeDigitalNoDelivery     CartCreateFulfillmentsType = "digital_no_delivery"
+	CartCreateTypePhysicalDoorDelivery  CartCreateType = "physical_door_delivery"
+	CartCreateTypePhysicalShipToStore   CartCreateType = "physical_ship_to_store"
+	CartCreateTypePhysicalInStorePickup CartCreateType = "physical_in_store_pickup"
+	CartCreateTypeDigitalDownload       CartCreateType = "digital_download"
+	CartCreateTypeDigitalNoDelivery     CartCreateType = "digital_no_delivery"
 )
 
-func (e CartCreateFulfillmentsType) ToPointer() *CartCreateFulfillmentsType {
+func (e CartCreateType) ToPointer() *CartCreateType {
 	return &e
 }
 
-func (e *CartCreateFulfillmentsType) UnmarshalJSON(data []byte) error {
+func (e *CartCreateType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -109,52 +109,52 @@ func (e *CartCreateFulfillmentsType) UnmarshalJSON(data []byte) error {
 	case "digital_download":
 		fallthrough
 	case "digital_no_delivery":
-		*e = CartCreateFulfillmentsType(v)
+		*e = CartCreateType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CartCreateFulfillmentsType: %v", v)
+		return fmt.Errorf("invalid value for CartCreateType: %v", v)
 	}
 }
 
-// CartCreateFulfillments - Defines the shipments associated with the cart items.
-type CartCreateFulfillments struct {
+// Fulfillments - Defines the shipments associated with the cart items.
+type Fulfillments struct {
 	CartItems []CartItem `json:"cart_items,omitempty"`
 	// A cart that is being prepared for shipment
-	CartShipment        *CartShipment                          `json:"cart_shipment,omitempty"`
-	DigitalDelivery     *CartCreateFulfillmentsDigitalDelivery `json:"digital_delivery,omitempty"`
-	InStoreCartShipment *InStoreCartShipment                   `json:"in_store_cart_shipment,omitempty"`
-	Type                *CartCreateFulfillmentsType            `json:"type,omitempty"`
+	CartShipment        *CartShipment        `json:"cart_shipment,omitempty"`
+	DigitalDelivery     *DigitalDelivery     `json:"digital_delivery,omitempty"`
+	InStoreCartShipment *InStoreCartShipment `json:"in_store_cart_shipment,omitempty"`
+	Type                *CartCreateType      `json:"type,omitempty"`
 }
 
-func (o *CartCreateFulfillments) GetCartItems() []CartItem {
+func (o *Fulfillments) GetCartItems() []CartItem {
 	if o == nil {
 		return nil
 	}
 	return o.CartItems
 }
 
-func (o *CartCreateFulfillments) GetCartShipment() *CartShipment {
+func (o *Fulfillments) GetCartShipment() *CartShipment {
 	if o == nil {
 		return nil
 	}
 	return o.CartShipment
 }
 
-func (o *CartCreateFulfillments) GetDigitalDelivery() *CartCreateFulfillmentsDigitalDelivery {
+func (o *Fulfillments) GetDigitalDelivery() *DigitalDelivery {
 	if o == nil {
 		return nil
 	}
 	return o.DigitalDelivery
 }
 
-func (o *CartCreateFulfillments) GetInStoreCartShipment() *InStoreCartShipment {
+func (o *Fulfillments) GetInStoreCartShipment() *InStoreCartShipment {
 	if o == nil {
 		return nil
 	}
 	return o.InStoreCartShipment
 }
 
-func (o *CartCreateFulfillments) GetType() *CartCreateFulfillmentsType {
+func (o *Fulfillments) GetType() *CartCreateType {
 	if o == nil {
 		return nil
 	}
@@ -171,10 +171,10 @@ type CartCreate struct {
 	Currency  string         `json:"currency"`
 	Discounts []CartDiscount `json:"discounts,omitempty"`
 	// This field, although required, can be an empty string.
-	DisplayID            *string                  `json:"display_id,omitempty"`
-	Fees                 []CartCreateFees         `json:"fees,omitempty"`
-	Fulfillments         []CartCreateFulfillments `json:"fulfillments,omitempty"`
-	InStoreCartShipments []InStoreCartShipment    `json:"in_store_cart_shipments,omitempty"`
+	DisplayID            *string               `json:"display_id,omitempty"`
+	Fees                 []Fees                `json:"fees,omitempty"`
+	Fulfillments         []Fulfillments        `json:"fulfillments,omitempty"`
+	InStoreCartShipments []InStoreCartShipment `json:"in_store_cart_shipments,omitempty"`
 	// The list of items associated with the cart.
 	Items          []CartItem           `json:"items,omitempty"`
 	LoyaltyRewards []CartLoyaltyRewards `json:"loyalty_rewards,omitempty"`
@@ -233,14 +233,14 @@ func (o *CartCreate) GetDisplayID() *string {
 	return o.DisplayID
 }
 
-func (o *CartCreate) GetFees() []CartCreateFees {
+func (o *CartCreate) GetFees() []Fees {
 	if o == nil {
 		return nil
 	}
 	return o.Fees
 }
 
-func (o *CartCreate) GetFulfillments() []CartCreateFulfillments {
+func (o *CartCreate) GetFulfillments() []Fulfillments {
 	if o == nil {
 		return nil
 	}

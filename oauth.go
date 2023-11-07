@@ -15,13 +15,13 @@ import (
 	"strings"
 )
 
-// oAuth - Interact with Shopper data by completing the Bolt OAuth process.
-type oAuth struct {
+// OAuth - Interact with Shopper data by completing the Bolt OAuth process.
+type OAuth struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newOAuth(sdkConfig sdkConfiguration) *oAuth {
-	return &oAuth{
+func newOAuth(sdkConfig sdkConfiguration) *OAuth {
+	return &OAuth{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -32,7 +32,7 @@ func newOAuth(sdkConfig sdkConfiguration) *oAuth {
 // To use this endpoint, first use the Authorization Code Request flow by using the `authorization_code` Grant Type (`grant_type`). Then, in the event that you would need a second or subsequent code, use the `refresh_token` value returned from a successful request as the `refresh_token` input value in your subsequent `refresh_token` Grant Type (`grant_type`) request.
 //
 //	**Reminder - the Content-Type of this request must be application/x-www-form-urlencoded**
-func (s *oAuth) OAuthToken(ctx context.Context, request operations.OAuthTokenRequest) (*operations.OAuthTokenResponse, error) {
+func (s *OAuth) OAuthToken(ctx context.Context, request operations.OAuthTokenRequest) (*operations.OAuthTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/oauth/token"
 
@@ -96,15 +96,18 @@ func (s *oAuth) OAuthToken(ctx context.Context, request operations.OAuthTokenReq
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsOauthServerResponse
+			var out sdkerrors.ErrorsOauthServerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsOauthServerResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

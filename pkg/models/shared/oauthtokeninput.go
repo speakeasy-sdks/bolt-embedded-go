@@ -7,47 +7,47 @@ import (
 	"fmt"
 )
 
-// OAuthTokenInputGrantType - The type of OAuth 2.0 grant being utilized.
+// GrantType - The type of OAuth 2.0 grant being utilized.
 //
 // The value will always be `authorization_code` when exchanging an authorization code for an access token.
-type OAuthTokenInputGrantType string
+type GrantType string
 
 const (
-	OAuthTokenInputGrantTypeAuthorizationCode OAuthTokenInputGrantType = "authorization_code"
+	GrantTypeAuthorizationCode GrantType = "authorization_code"
 )
 
-func (e OAuthTokenInputGrantType) ToPointer() *OAuthTokenInputGrantType {
+func (e GrantType) ToPointer() *GrantType {
 	return &e
 }
 
-func (e *OAuthTokenInputGrantType) UnmarshalJSON(data []byte) error {
+func (e *GrantType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "authorization_code":
-		*e = OAuthTokenInputGrantType(v)
+		*e = GrantType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OAuthTokenInputGrantType: %v", v)
+		return fmt.Errorf("invalid value for GrantType: %v", v)
 	}
 }
 
-// OAuthTokenInputScope - The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. You can find more information on these options in our [OAuth scope documentation](https://help.bolt.com/developers/references/bolt-oauth/#scopes).
-type OAuthTokenInputScope string
+// Scope - The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. You can find more information on these options in our [OAuth scope documentation](https://help.bolt.com/developers/references/bolt-oauth/#scopes).
+type Scope string
 
 const (
-	OAuthTokenInputScopeBoltAccountManage OAuthTokenInputScope = "bolt.account.manage"
-	OAuthTokenInputScopeBoltAccountView   OAuthTokenInputScope = "bolt.account.view"
-	OAuthTokenInputScopeOpenid            OAuthTokenInputScope = "openid"
+	ScopeBoltAccountManage Scope = "bolt.account.manage"
+	ScopeBoltAccountView   Scope = "bolt.account.view"
+	ScopeOpenid            Scope = "openid"
 )
 
-func (e OAuthTokenInputScope) ToPointer() *OAuthTokenInputScope {
+func (e Scope) ToPointer() *Scope {
 	return &e
 }
 
-func (e *OAuthTokenInputScope) UnmarshalJSON(data []byte) error {
+func (e *Scope) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -58,10 +58,10 @@ func (e *OAuthTokenInputScope) UnmarshalJSON(data []byte) error {
 	case "bolt.account.view":
 		fallthrough
 	case "openid":
-		*e = OAuthTokenInputScope(v)
+		*e = Scope(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OAuthTokenInputScope: %v", v)
+		return fmt.Errorf("invalid value for Scope: %v", v)
 	}
 }
 
@@ -76,9 +76,9 @@ type OAuthTokenInput struct {
 	//
 	// The value will always be `authorization_code` when exchanging an authorization code for an access token.
 	//
-	GrantType OAuthTokenInputGrantType `form:"name=grant_type"`
+	GrantType GrantType `form:"name=grant_type"`
 	// The scope issued to the merchant when receiving an authorization code. Options include `bolt.account.manage`, `bolt.account.view`, `openid`. You can find more information on these options in our [OAuth scope documentation](https://help.bolt.com/developers/references/bolt-oauth/#scopes).
-	Scope OAuthTokenInputScope `form:"name=scope"`
+	Scope Scope `form:"name=scope"`
 	// A randomly generated string issued to the merchant when receiving an authorization code used to prevent CSRF attacks
 	State *string `form:"name=state"`
 }
@@ -104,16 +104,16 @@ func (o *OAuthTokenInput) GetCode() string {
 	return o.Code
 }
 
-func (o *OAuthTokenInput) GetGrantType() OAuthTokenInputGrantType {
+func (o *OAuthTokenInput) GetGrantType() GrantType {
 	if o == nil {
-		return OAuthTokenInputGrantType("")
+		return GrantType("")
 	}
 	return o.GrantType
 }
 
-func (o *OAuthTokenInput) GetScope() OAuthTokenInputScope {
+func (o *OAuthTokenInput) GetScope() Scope {
 	if o == nil {
-		return OAuthTokenInputScope("")
+		return Scope("")
 	}
 	return o.Scope
 }

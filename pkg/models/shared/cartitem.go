@@ -7,8 +7,8 @@ import (
 	"fmt"
 )
 
-// CartItemGiftOption - Contains the gift option settings for wrapping and custom messages.
-type CartItemGiftOption struct {
+// GiftOption - Contains the gift option settings for wrapping and custom messages.
+type GiftOption struct {
 	// The cost in cents.
 	Cost *int64 `json:"cost,omitempty"`
 	// The merchant's unique ID for the product.
@@ -19,48 +19,48 @@ type CartItemGiftOption struct {
 	Wrap *bool `json:"wrap,omitempty"`
 }
 
-func (o *CartItemGiftOption) GetCost() *int64 {
+func (o *GiftOption) GetCost() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Cost
 }
 
-func (o *CartItemGiftOption) GetMerchantProductID() *string {
+func (o *GiftOption) GetMerchantProductID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.MerchantProductID
 }
 
-func (o *CartItemGiftOption) GetMessage() *string {
+func (o *GiftOption) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *CartItemGiftOption) GetWrap() *bool {
+func (o *GiftOption) GetWrap() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Wrap
 }
 
-type CartItemShipmentType string
+type ShipmentType string
 
 const (
-	CartItemShipmentTypeUnknown       CartItemShipmentType = "unknown"
-	CartItemShipmentTypeDoorDelivery  CartItemShipmentType = "door_delivery"
-	CartItemShipmentTypeShipToStore   CartItemShipmentType = "ship_to_store"
-	CartItemShipmentTypeInStorePickup CartItemShipmentType = "in_store_pickup"
+	ShipmentTypeUnknown       ShipmentType = "unknown"
+	ShipmentTypeDoorDelivery  ShipmentType = "door_delivery"
+	ShipmentTypeShipToStore   ShipmentType = "ship_to_store"
+	ShipmentTypeInStorePickup ShipmentType = "in_store_pickup"
 )
 
-func (e CartItemShipmentType) ToPointer() *CartItemShipmentType {
+func (e ShipmentType) ToPointer() *ShipmentType {
 	return &e
 }
 
-func (e *CartItemShipmentType) UnmarshalJSON(data []byte) error {
+func (e *ShipmentType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -73,10 +73,10 @@ func (e *CartItemShipmentType) UnmarshalJSON(data []byte) error {
 	case "ship_to_store":
 		fallthrough
 	case "in_store_pickup":
-		*e = CartItemShipmentType(v)
+		*e = ShipmentType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CartItemShipmentType: %v", v)
+		return fmt.Errorf("invalid value for ShipmentType: %v", v)
 	}
 }
 
@@ -126,7 +126,7 @@ type CartItem struct {
 	DetailsURL     *string                  `json:"details_url,omitempty"`
 	ExternalInputs *ICartItemExternalInputs `json:"external_inputs,omitempty"`
 	// Contains the gift option settings for wrapping and custom messages.
-	GiftOption *CartItemGiftOption `json:"gift_option,omitempty"`
+	GiftOption *GiftOption `json:"gift_option,omitempty"`
 	// Used to provide a link to the image associated with the item.
 	ImageURL *string `json:"image_url,omitempty"`
 	// Used to define the International Standard Book Number associated with the book.
@@ -145,8 +145,8 @@ type CartItem struct {
 	Quantity          float64            `json:"quantity"`
 	Reference         string             `json:"reference"`
 	// A cart that is being prepared for shipment
-	Shipment     *CartShipment         `json:"shipment,omitempty"`
-	ShipmentType *CartItemShipmentType `json:"shipment_type,omitempty"`
+	Shipment     *CartShipment `json:"shipment,omitempty"`
+	ShipmentType *ShipmentType `json:"shipment_type,omitempty"`
 	// Used to define the size of the item.
 	Size *string `json:"size,omitempty"`
 	// Used to define the alpha-numberic Stock Keeping Unit associated with the item as it is mapped to your internal product catalogue.
@@ -227,7 +227,7 @@ func (o *CartItem) GetExternalInputs() *ICartItemExternalInputs {
 	return o.ExternalInputs
 }
 
-func (o *CartItem) GetGiftOption() *CartItemGiftOption {
+func (o *CartItem) GetGiftOption() *GiftOption {
 	if o == nil {
 		return nil
 	}
@@ -325,7 +325,7 @@ func (o *CartItem) GetShipment() *CartShipment {
 	return o.Shipment
 }
 
-func (o *CartItem) GetShipmentType() *CartItemShipmentType {
+func (o *CartItem) GetShipmentType() *ShipmentType {
 	if o == nil {
 		return nil
 	}

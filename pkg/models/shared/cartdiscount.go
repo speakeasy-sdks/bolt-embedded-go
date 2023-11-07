@@ -7,26 +7,26 @@ import (
 	"fmt"
 )
 
-type CartDiscountDiscountCategory string
+type DiscountCategory string
 
 const (
-	CartDiscountDiscountCategoryCoupon               CartDiscountDiscountCategory = "coupon"
-	CartDiscountDiscountCategoryGiftcard             CartDiscountDiscountCategory = "giftcard"
-	CartDiscountDiscountCategoryManagedGiftcard      CartDiscountDiscountCategory = "managed_giftcard"
-	CartDiscountDiscountCategoryStoreCredit          CartDiscountDiscountCategory = "store_credit"
-	CartDiscountDiscountCategoryAutomaticPromotion   CartDiscountDiscountCategory = "automatic_promotion"
-	CartDiscountDiscountCategoryMembershipDiscount   CartDiscountDiscountCategory = "membership_discount"
-	CartDiscountDiscountCategoryMembershipGiftcard   CartDiscountDiscountCategory = "membership_giftcard"
-	CartDiscountDiscountCategorySubscriptionDiscount CartDiscountDiscountCategory = "subscription_discount"
-	CartDiscountDiscountCategoryRewardsDiscount      CartDiscountDiscountCategory = "rewards_discount"
-	CartDiscountDiscountCategoryUnknown              CartDiscountDiscountCategory = "unknown"
+	DiscountCategoryCoupon               DiscountCategory = "coupon"
+	DiscountCategoryGiftcard             DiscountCategory = "giftcard"
+	DiscountCategoryManagedGiftcard      DiscountCategory = "managed_giftcard"
+	DiscountCategoryStoreCredit          DiscountCategory = "store_credit"
+	DiscountCategoryAutomaticPromotion   DiscountCategory = "automatic_promotion"
+	DiscountCategoryMembershipDiscount   DiscountCategory = "membership_discount"
+	DiscountCategoryMembershipGiftcard   DiscountCategory = "membership_giftcard"
+	DiscountCategorySubscriptionDiscount DiscountCategory = "subscription_discount"
+	DiscountCategoryRewardsDiscount      DiscountCategory = "rewards_discount"
+	DiscountCategoryUnknown              DiscountCategory = "unknown"
 )
 
-func (e CartDiscountDiscountCategory) ToPointer() *CartDiscountDiscountCategory {
+func (e DiscountCategory) ToPointer() *DiscountCategory {
 	return &e
 }
 
-func (e *CartDiscountDiscountCategory) UnmarshalJSON(data []byte) error {
+func (e *DiscountCategory) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -51,27 +51,27 @@ func (e *CartDiscountDiscountCategory) UnmarshalJSON(data []byte) error {
 	case "rewards_discount":
 		fallthrough
 	case "unknown":
-		*e = CartDiscountDiscountCategory(v)
+		*e = DiscountCategory(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CartDiscountDiscountCategory: %v", v)
+		return fmt.Errorf("invalid value for DiscountCategory: %v", v)
 	}
 }
 
-// CartDiscountType - The type of discount.
-type CartDiscountType string
+// Type - The type of discount.
+type Type string
 
 const (
-	CartDiscountTypeFixedAmount  CartDiscountType = "fixed_amount"
-	CartDiscountTypePercentage   CartDiscountType = "percentage"
-	CartDiscountTypeFreeShipping CartDiscountType = "free_shipping"
+	TypeFixedAmount  Type = "fixed_amount"
+	TypePercentage   Type = "percentage"
+	TypeFreeShipping Type = "free_shipping"
 )
 
-func (e CartDiscountType) ToPointer() *CartDiscountType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
-func (e *CartDiscountType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -82,10 +82,10 @@ func (e *CartDiscountType) UnmarshalJSON(data []byte) error {
 	case "percentage":
 		fallthrough
 	case "free_shipping":
-		*e = CartDiscountType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CartDiscountType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
@@ -95,12 +95,12 @@ type CartDiscount struct {
 	// Used to define the discount offering.
 	Description *string `json:"description,omitempty"`
 	// Used to provide a link to additional details, such as a landing page, associated with the discount offering.
-	DetailsURL       *string                       `json:"details_url,omitempty"`
-	DiscountCategory *CartDiscountDiscountCategory `json:"discount_category,omitempty"`
+	DetailsURL       *string           `json:"details_url,omitempty"`
+	DiscountCategory *DiscountCategory `json:"discount_category,omitempty"`
 	// Used to define the reference ID associated with the discount available.
 	Reference *string `json:"reference,omitempty"`
 	// The type of discount.
-	Type *CartDiscountType `json:"type,omitempty"`
+	Type *Type `json:"type,omitempty"`
 }
 
 func (o *CartDiscount) GetAmount() *float64 {
@@ -131,7 +131,7 @@ func (o *CartDiscount) GetDetailsURL() *string {
 	return o.DetailsURL
 }
 
-func (o *CartDiscount) GetDiscountCategory() *CartDiscountDiscountCategory {
+func (o *CartDiscount) GetDiscountCategory() *DiscountCategory {
 	if o == nil {
 		return nil
 	}
@@ -145,7 +145,7 @@ func (o *CartDiscount) GetReference() *string {
 	return o.Reference
 }
 
-func (o *CartDiscount) GetType() *CartDiscountType {
+func (o *CartDiscount) GetType() *Type {
 	if o == nil {
 		return nil
 	}

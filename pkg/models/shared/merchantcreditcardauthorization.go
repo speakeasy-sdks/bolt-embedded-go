@@ -58,27 +58,27 @@ func (e *MerchantCreditCardAuthorizationProcessingInitiator) UnmarshalJSON(data 
 	}
 }
 
-type MerchantCreditCardAuthorizationSource string
+type Source string
 
 const (
-	MerchantCreditCardAuthorizationSourceDirectPayments MerchantCreditCardAuthorizationSource = "direct_payments"
+	SourceDirectPayments Source = "direct_payments"
 )
 
-func (e MerchantCreditCardAuthorizationSource) ToPointer() *MerchantCreditCardAuthorizationSource {
+func (e Source) ToPointer() *Source {
 	return &e
 }
 
-func (e *MerchantCreditCardAuthorizationSource) UnmarshalJSON(data []byte) error {
+func (e *Source) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "direct_payments":
-		*e = MerchantCreditCardAuthorizationSource(v)
+		*e = Source(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MerchantCreditCardAuthorizationSource: %v", v)
+		return fmt.Errorf("invalid value for Source: %v", v)
 	}
 }
 
@@ -108,8 +108,8 @@ type MerchantCreditCardAuthorization struct {
 	//
 	ProcessingInitiator *MerchantCreditCardAuthorizationProcessingInitiator `json:"processing_initiator,omitempty"`
 	// The Address object is used for billing, shipping, and physical store address use cases.
-	ShippingAddress *Address                              `json:"shipping_address,omitempty"`
-	Source          MerchantCreditCardAuthorizationSource `json:"source"`
+	ShippingAddress *Address `json:"shipping_address,omitempty"`
+	Source          Source   `json:"source"`
 	// The object containing key lookup IDs associated with the shopper's account, such as the unique email address and phone number.
 	UserIdentifier UserIdentifier `json:"user_identifier"`
 	UserIdentity   UserIdentity   `json:"user_identity"`
@@ -178,9 +178,9 @@ func (o *MerchantCreditCardAuthorization) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *MerchantCreditCardAuthorization) GetSource() MerchantCreditCardAuthorizationSource {
+func (o *MerchantCreditCardAuthorization) GetSource() Source {
 	if o == nil {
-		return MerchantCreditCardAuthorizationSource("")
+		return Source("")
 	}
 	return o.Source
 }

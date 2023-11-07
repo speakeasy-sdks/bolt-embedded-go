@@ -27,8 +27,8 @@ func (o *FinalizePaymentSecurity) GetXAPIKey() *string {
 	return o.XAPIKey
 }
 
-// FinalizePaymentRequestBodyShopperIdentity - Identification information for the Shopper
-type FinalizePaymentRequestBodyShopperIdentity struct {
+// ShopperIdentity - Identification information for the Shopper
+type ShopperIdentity struct {
 	// determines whether to create a bolt account for this shopper
 	CreateBoltAccount *bool `json:"create_bolt_account,omitempty"`
 	// Email address of the shopper
@@ -41,35 +41,35 @@ type FinalizePaymentRequestBodyShopperIdentity struct {
 	Phone string `json:"phone"`
 }
 
-func (o *FinalizePaymentRequestBodyShopperIdentity) GetCreateBoltAccount() *bool {
+func (o *ShopperIdentity) GetCreateBoltAccount() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.CreateBoltAccount
 }
 
-func (o *FinalizePaymentRequestBodyShopperIdentity) GetEmail() string {
+func (o *ShopperIdentity) GetEmail() string {
 	if o == nil {
 		return ""
 	}
 	return o.Email
 }
 
-func (o *FinalizePaymentRequestBodyShopperIdentity) GetFirstName() string {
+func (o *ShopperIdentity) GetFirstName() string {
 	if o == nil {
 		return ""
 	}
 	return o.FirstName
 }
 
-func (o *FinalizePaymentRequestBodyShopperIdentity) GetLastName() string {
+func (o *ShopperIdentity) GetLastName() string {
 	if o == nil {
 		return ""
 	}
 	return o.LastName
 }
 
-func (o *FinalizePaymentRequestBodyShopperIdentity) GetPhone() string {
+func (o *ShopperIdentity) GetPhone() string {
 	if o == nil {
 		return ""
 	}
@@ -80,7 +80,7 @@ type FinalizePaymentRequestBody struct {
 	// The reference ID associated with a transaction event (auth, capture, refund, void). This is an arbitrary identifier created by the merchant. Bolt does not enforce any uniqueness constraints on this ID. It is up to the merchant to generate identifiers that properly fulfill its needs.
 	MerchantEventID *string `json:"merchant_event_id,omitempty"`
 	// Identification information for the Shopper
-	ShopperIdentity *FinalizePaymentRequestBodyShopperIdentity `json:"shopper_identity,omitempty"`
+	ShopperIdentity *ShopperIdentity `json:"shopper_identity,omitempty"`
 }
 
 func (o *FinalizePaymentRequestBody) GetMerchantEventID() *string {
@@ -90,7 +90,7 @@ func (o *FinalizePaymentRequestBody) GetMerchantEventID() *string {
 	return o.MerchantEventID
 }
 
-func (o *FinalizePaymentRequestBody) GetShopperIdentity() *FinalizePaymentRequestBodyShopperIdentity {
+func (o *FinalizePaymentRequestBody) GetShopperIdentity() *ShopperIdentity {
 	if o == nil {
 		return nil
 	}
@@ -126,32 +126,32 @@ func (o *FinalizePaymentRequest) GetID() string {
 	return o.ID
 }
 
-type FinalizePayment200ApplicationJSONPaypal struct {
+type Paypal struct {
 	// An email address.
 	Email *string `json:"email,omitempty"`
 }
 
-func (o *FinalizePayment200ApplicationJSONPaypal) GetEmail() *string {
+func (o *Paypal) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-// FinalizePayment200ApplicationJSONStatus - The current payment status.
-type FinalizePayment200ApplicationJSONStatus string
+// Status - The current payment status.
+type Status string
 
 const (
-	FinalizePayment200ApplicationJSONStatusAwaitingUserConfirmation FinalizePayment200ApplicationJSONStatus = "awaiting_user_confirmation"
-	FinalizePayment200ApplicationJSONStatusPaymentReady             FinalizePayment200ApplicationJSONStatus = "payment_ready"
-	FinalizePayment200ApplicationJSONStatusSuccess                  FinalizePayment200ApplicationJSONStatus = "success"
+	StatusAwaitingUserConfirmation Status = "awaiting_user_confirmation"
+	StatusPaymentReady             Status = "payment_ready"
+	StatusSuccess                  Status = "success"
 )
 
-func (e FinalizePayment200ApplicationJSONStatus) ToPointer() *FinalizePayment200ApplicationJSONStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *FinalizePayment200ApplicationJSONStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -162,66 +162,66 @@ func (e *FinalizePayment200ApplicationJSONStatus) UnmarshalJSON(data []byte) err
 	case "payment_ready":
 		fallthrough
 	case "success":
-		*e = FinalizePayment200ApplicationJSONStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FinalizePayment200ApplicationJSONStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
-type FinalizePayment200ApplicationJSONTransaction struct {
+type Transaction struct {
 	// The Bolt transaction reference (can be used to fetch transaction details, capture, void or refund transaction)
 	Reference *string `json:"reference,omitempty"`
 }
 
-func (o *FinalizePayment200ApplicationJSONTransaction) GetReference() *string {
+func (o *Transaction) GetReference() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-// FinalizePayment200ApplicationJSON - Payment Token Retrieved
-type FinalizePayment200ApplicationJSON struct {
+// FinalizePaymentResponseBody - Payment Token Retrieved
+type FinalizePaymentResponseBody struct {
 	// The ID for the given Payment Attempt
 	ID *string `json:"id,omitempty"`
 	// ID of the payment method in Bolt's system, only if the payment method is saved.
-	PaymentMethodID *string                                  `json:"payment_method_id,omitempty"`
-	Paypal          *FinalizePayment200ApplicationJSONPaypal `json:"paypal,omitempty"`
+	PaymentMethodID *string `json:"payment_method_id,omitempty"`
+	Paypal          *Paypal `json:"paypal,omitempty"`
 	// The current payment status.
-	Status      *FinalizePayment200ApplicationJSONStatus      `json:"status,omitempty"`
-	Transaction *FinalizePayment200ApplicationJSONTransaction `json:"transaction,omitempty"`
+	Status      *Status      `json:"status,omitempty"`
+	Transaction *Transaction `json:"transaction,omitempty"`
 }
 
-func (o *FinalizePayment200ApplicationJSON) GetID() *string {
+func (o *FinalizePaymentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *FinalizePayment200ApplicationJSON) GetPaymentMethodID() *string {
+func (o *FinalizePaymentResponseBody) GetPaymentMethodID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethodID
 }
 
-func (o *FinalizePayment200ApplicationJSON) GetPaypal() *FinalizePayment200ApplicationJSONPaypal {
+func (o *FinalizePaymentResponseBody) GetPaypal() *Paypal {
 	if o == nil {
 		return nil
 	}
 	return o.Paypal
 }
 
-func (o *FinalizePayment200ApplicationJSON) GetStatus() *FinalizePayment200ApplicationJSONStatus {
+func (o *FinalizePaymentResponseBody) GetStatus() *Status {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *FinalizePayment200ApplicationJSON) GetTransaction() *FinalizePayment200ApplicationJSONTransaction {
+func (o *FinalizePaymentResponseBody) GetTransaction() *Transaction {
 	if o == nil {
 		return nil
 	}
@@ -236,7 +236,7 @@ type FinalizePaymentResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Payment Token Retrieved
-	FinalizePayment200ApplicationJSONObject *FinalizePayment200ApplicationJSON
+	Object *FinalizePaymentResponseBody
 }
 
 func (o *FinalizePaymentResponse) GetContentType() string {
@@ -260,9 +260,9 @@ func (o *FinalizePaymentResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *FinalizePaymentResponse) GetFinalizePayment200ApplicationJSONObject() *FinalizePayment200ApplicationJSON {
+func (o *FinalizePaymentResponse) GetObject() *FinalizePaymentResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.FinalizePayment200ApplicationJSONObject
+	return o.Object
 }

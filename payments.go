@@ -14,20 +14,20 @@ import (
 	"strings"
 )
 
-// payments - Create and manage transactions for non credit card payments such as Paypal in your Embedded Accounts experience.
-type payments struct {
+// Payments - Create and manage transactions for non credit card payments such as Paypal in your Embedded Accounts experience.
+type Payments struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPayments(sdkConfig sdkConfiguration) *payments {
-	return &payments{
+func newPayments(sdkConfig sdkConfiguration) *Payments {
+	return &Payments{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // FinalizePayment - Finalize Payment
 // Finalize a Bolt Payment. NOTE: The authorization header is NOT required for payments associated with users who do not have a Bolt account.
-func (s *payments) FinalizePayment(ctx context.Context, request operations.FinalizePaymentRequest, security operations.FinalizePaymentSecurity) (*operations.FinalizePaymentResponse, error) {
+func (s *Payments) FinalizePayment(ctx context.Context, request operations.FinalizePaymentRequest, security operations.FinalizePaymentSecurity) (*operations.FinalizePaymentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/payments/{id}/finalize", request, nil)
 	if err != nil {
@@ -78,16 +78,21 @@ func (s *payments) FinalizePayment(ctx context.Context, request operations.Final
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.FinalizePayment200ApplicationJSON
+			var out operations.FinalizePaymentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.FinalizePayment200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -95,7 +100,7 @@ func (s *payments) FinalizePayment(ctx context.Context, request operations.Final
 
 // InitializePayment - Initialize Payment
 // Initialize a Bolt payment token that will be used to reference this payment to Bolt when it is updated or finalized. NOTE: The authorization header is NOT required for payments associated with users who do not have a Bolt account.
-func (s *payments) InitializePayment(ctx context.Context, request operations.InitializePaymentRequest, security operations.InitializePaymentSecurity) (*operations.InitializePaymentResponse, error) {
+func (s *Payments) InitializePayment(ctx context.Context, request operations.InitializePaymentRequest, security operations.InitializePaymentSecurity) (*operations.InitializePaymentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/payments"
 
@@ -143,16 +148,21 @@ func (s *payments) InitializePayment(ctx context.Context, request operations.Ini
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.InitializePayment200ApplicationJSON
+			var out operations.InitializePaymentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.InitializePayment200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -160,7 +170,7 @@ func (s *payments) InitializePayment(ctx context.Context, request operations.Ini
 
 // UpdatePayment - Update Payment
 // Update a Bolt payment using the token given after initializing a payment.  Updates will completely replace the original top-level resource (for example, if a cart is sent in with the request it will replace the existing cart).  Any included object should be sent as complete object. NOTE: The authorization header is NOT required for payments associated with users who do not have a Bolt account.
-func (s *payments) UpdatePayment(ctx context.Context, request operations.UpdatePaymentRequest, security operations.UpdatePaymentSecurity) (*operations.UpdatePaymentResponse, error) {
+func (s *Payments) UpdatePayment(ctx context.Context, request operations.UpdatePaymentRequest, security operations.UpdatePaymentSecurity) (*operations.UpdatePaymentResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/payments/{id}", request, nil)
 	if err != nil {
@@ -211,16 +221,21 @@ func (s *payments) UpdatePayment(ctx context.Context, request operations.UpdateP
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdatePayment200ApplicationJSON
+			var out operations.UpdatePaymentResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdatePayment200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

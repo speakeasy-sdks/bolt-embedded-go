@@ -7,26 +7,26 @@ import (
 	"fmt"
 )
 
-type PaymentMethodAccountNetwork string
+type Network string
 
 const (
-	PaymentMethodAccountNetworkUnknown        PaymentMethodAccountNetwork = "unknown"
-	PaymentMethodAccountNetworkVisa           PaymentMethodAccountNetwork = "visa"
-	PaymentMethodAccountNetworkMastercard     PaymentMethodAccountNetwork = "mastercard"
-	PaymentMethodAccountNetworkAmex           PaymentMethodAccountNetwork = "amex"
-	PaymentMethodAccountNetworkDiscover       PaymentMethodAccountNetwork = "discover"
-	PaymentMethodAccountNetworkDinersClubUsCa PaymentMethodAccountNetwork = "diners_club_us_ca"
-	PaymentMethodAccountNetworkJcb            PaymentMethodAccountNetwork = "jcb"
-	PaymentMethodAccountNetworkUnionpay       PaymentMethodAccountNetwork = "unionpay"
-	PaymentMethodAccountNetworkAlliancedata   PaymentMethodAccountNetwork = "alliancedata"
-	PaymentMethodAccountNetworkCitiplcc       PaymentMethodAccountNetwork = "citiplcc"
+	NetworkUnknown        Network = "unknown"
+	NetworkVisa           Network = "visa"
+	NetworkMastercard     Network = "mastercard"
+	NetworkAmex           Network = "amex"
+	NetworkDiscover       Network = "discover"
+	NetworkDinersClubUsCa Network = "diners_club_us_ca"
+	NetworkJcb            Network = "jcb"
+	NetworkUnionpay       Network = "unionpay"
+	NetworkAlliancedata   Network = "alliancedata"
+	NetworkCitiplcc       Network = "citiplcc"
 )
 
-func (e PaymentMethodAccountNetwork) ToPointer() *PaymentMethodAccountNetwork {
+func (e Network) ToPointer() *Network {
 	return &e
 }
 
-func (e *PaymentMethodAccountNetwork) UnmarshalJSON(data []byte) error {
+func (e *Network) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -51,10 +51,10 @@ func (e *PaymentMethodAccountNetwork) UnmarshalJSON(data []byte) error {
 	case "alliancedata":
 		fallthrough
 	case "citiplcc":
-		*e = PaymentMethodAccountNetwork(v)
+		*e = Network(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PaymentMethodAccountNetwork: %v", v)
+		return fmt.Errorf("invalid value for Network: %v", v)
 	}
 }
 
@@ -142,8 +142,8 @@ type PaymentMethodAccount struct {
 	Last4 *string `json:"last4,omitempty"`
 	// A key-value pair object that allows users to store arbitrary information associated with an object.  For any individual account object, we allow up to 50 keys. Keys can be up to 40 characters long and values can be up to 500 characters long.  Metadata should not contain any sensitive customer information, like PII (Personally Identifiable Information). For more information about metadata, see our [documentation](https://help.bolt.com/developers/references/embedded-metadata/).
 	//
-	Metadata *Metadata                    `json:"metadata,omitempty"`
-	Network  *PaymentMethodAccountNetwork `json:"network,omitempty"`
+	Metadata *Metadata `json:"metadata,omitempty"`
+	Network  *Network  `json:"network,omitempty"`
 	// Used to provide ApplePay DPAN or private label credit card PAN when applicable. Required when charging a private label credit card.
 	Number *string `json:"number,omitempty"`
 	// Used for the postal or zip code associated with the credit card.
@@ -224,7 +224,7 @@ func (o *PaymentMethodAccount) GetMetadata() *Metadata {
 	return o.Metadata
 }
 
-func (o *PaymentMethodAccount) GetNetwork() *PaymentMethodAccountNetwork {
+func (o *PaymentMethodAccount) GetNetwork() *Network {
 	if o == nil {
 		return nil
 	}

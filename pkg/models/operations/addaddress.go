@@ -55,8 +55,8 @@ func (o *AddAddressRequest) GetAddressAccount() *shared.AddressAccount {
 	return o.AddressAccount
 }
 
-// AddAddress200ApplicationJSON - The address object returned in the response.
-type AddAddress200ApplicationJSON struct {
+// AddAddressResponseBody - The address object returned in the response.
+type AddAddressResponseBody struct {
 	// The company name associated with this address.
 	Company *string `json:"company,omitempty"`
 	// The name of the country associated with this address.
@@ -99,140 +99,140 @@ type AddAddress200ApplicationJSON struct {
 	StreetAddress4 *string `json:"street_address4,omitempty"`
 }
 
-func (o *AddAddress200ApplicationJSON) GetCompany() *string {
+func (o *AddAddressResponseBody) GetCompany() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Company
 }
 
-func (o *AddAddress200ApplicationJSON) GetCountry() *string {
+func (o *AddAddressResponseBody) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *AddAddress200ApplicationJSON) GetCountryCode() *string {
+func (o *AddAddressResponseBody) GetCountryCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CountryCode
 }
 
-func (o *AddAddress200ApplicationJSON) GetDefault() *bool {
+func (o *AddAddressResponseBody) GetDefault() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Default
 }
 
-func (o *AddAddress200ApplicationJSON) GetDoorCode() *string {
+func (o *AddAddressResponseBody) GetDoorCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DoorCode
 }
 
-func (o *AddAddress200ApplicationJSON) GetEmailAddress() *string {
+func (o *AddAddressResponseBody) GetEmailAddress() *string {
 	if o == nil {
 		return nil
 	}
 	return o.EmailAddress
 }
 
-func (o *AddAddress200ApplicationJSON) GetFirstName() *string {
+func (o *AddAddressResponseBody) GetFirstName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *AddAddress200ApplicationJSON) GetID() *string {
+func (o *AddAddressResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AddAddress200ApplicationJSON) GetLastName() *string {
+func (o *AddAddressResponseBody) GetLastName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *AddAddress200ApplicationJSON) GetLocality() *string {
+func (o *AddAddressResponseBody) GetLocality() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Locality
 }
 
-func (o *AddAddress200ApplicationJSON) GetMetadata() *shared.Metadata {
+func (o *AddAddressResponseBody) GetMetadata() *shared.Metadata {
 	if o == nil {
 		return nil
 	}
 	return o.Metadata
 }
 
-func (o *AddAddress200ApplicationJSON) GetName() *string {
+func (o *AddAddressResponseBody) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *AddAddress200ApplicationJSON) GetPhoneNumber() *string {
+func (o *AddAddressResponseBody) GetPhoneNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PhoneNumber
 }
 
-func (o *AddAddress200ApplicationJSON) GetPostalCode() *string {
+func (o *AddAddressResponseBody) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *AddAddress200ApplicationJSON) GetRegion() *string {
+func (o *AddAddressResponseBody) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *AddAddress200ApplicationJSON) GetRegionCode() *string {
+func (o *AddAddressResponseBody) GetRegionCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RegionCode
 }
 
-func (o *AddAddress200ApplicationJSON) GetStreetAddress1() *string {
+func (o *AddAddressResponseBody) GetStreetAddress1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreetAddress1
 }
 
-func (o *AddAddress200ApplicationJSON) GetStreetAddress2() *string {
+func (o *AddAddressResponseBody) GetStreetAddress2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreetAddress2
 }
 
-func (o *AddAddress200ApplicationJSON) GetStreetAddress3() *string {
+func (o *AddAddressResponseBody) GetStreetAddress3() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreetAddress3
 }
 
-func (o *AddAddress200ApplicationJSON) GetStreetAddress4() *string {
+func (o *AddAddressResponseBody) GetStreetAddress4() *string {
 	if o == nil {
 		return nil
 	}
@@ -247,7 +247,7 @@ type AddAddressResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Address Added Successfully
-	AddAddress200ApplicationJSONObject *AddAddress200ApplicationJSON
+	Object *AddAddressResponseBody
 }
 
 func (o *AddAddressResponse) GetContentType() string {
@@ -271,9 +271,9 @@ func (o *AddAddressResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *AddAddressResponse) GetAddAddress200ApplicationJSONObject() *AddAddress200ApplicationJSON {
+func (o *AddAddressResponse) GetObject() *AddAddressResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.AddAddress200ApplicationJSONObject
+	return o.Object
 }

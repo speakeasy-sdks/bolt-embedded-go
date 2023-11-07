@@ -1,5 +1,5 @@
 # OAuth
-(*OAuth*)
+(*.OAuth*)
 
 ## Overview
 
@@ -46,8 +46,8 @@ func main() {
                     ClientID: "string",
                     ClientSecret: "string",
                     Code: "string",
-                    GrantType: shared.OAuthTokenInputGrantTypeAuthorizationCode,
-                    Scope: shared.OAuthTokenInputScopeOpenid,
+                    GrantType: shared.GrantTypeAuthorizationCode,
+                    Scope: shared.ScopeOpenid,
                 },
         ),
     })

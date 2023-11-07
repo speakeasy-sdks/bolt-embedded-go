@@ -56,7 +56,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if res.AddAddress200ApplicationJSONObject != nil {
+	if res.Object != nil {
 		// handle response
 	}
 }
@@ -68,7 +68,7 @@ func main() {
 ## Available Resources and Operations
 
 
-### [Account](docs/sdks/account/README.md)
+### [.Account](docs/sdks/account/README.md)
 
 * [AddAddress](docs/sdks/account/README.md#addaddress) - Add Address
 * [AddPaymentMethod](docs/sdks/account/README.md#addpaymentmethod) - Add Payment Method
@@ -81,22 +81,7 @@ func main() {
 * [ReplaceAddress](docs/sdks/account/README.md#replaceaddress) - Replace Address
 * [UpdateAccountProfile](docs/sdks/account/README.md#updateaccountprofile) - Update Profile
 
-### [OAuth](docs/sdks/oauth/README.md)
-
-* [OAuthToken](docs/sdks/oauth/README.md#oauthtoken) - OAuth Token Endpoint
-
-### [Payments](docs/sdks/payments/README.md)
-
-* [FinalizePayment](docs/sdks/payments/README.md#finalizepayment) - Finalize Payment
-* [InitializePayment](docs/sdks/payments/README.md#initializepayment) - Initialize Payment
-* [UpdatePayment](docs/sdks/payments/README.md#updatepayment) - Update Payment
-
-### [Testing](docs/sdks/testing/README.md)
-
-* [CreateTestingShopperAccount](docs/sdks/testing/README.md#createtestingshopperaccount) - Create Testing Shopper Account
-* [GetTestCreditCardToken](docs/sdks/testing/README.md#gettestcreditcardtoken) - Fetch a Test Credit Card Token
-
-### [Transactions](docs/sdks/transactions/README.md)
+### [.Transactions](docs/sdks/transactions/README.md)
 
 * [AuthorizeTransaction](docs/sdks/transactions/README.md#authorizetransaction) - Authorize a Card
 * [CaptureTransaction](docs/sdks/transactions/README.md#capturetransaction) - Capture a Transaction
@@ -104,6 +89,21 @@ func main() {
 * [RefundTransaction](docs/sdks/transactions/README.md#refundtransaction) - Refund a Transaction
 * [UpdateTransaction](docs/sdks/transactions/README.md#updatetransaction) - Update a Transaction
 * [VoidTransaction](docs/sdks/transactions/README.md#voidtransaction) - Void a Transaction
+
+### [.OAuth](docs/sdks/oauth/README.md)
+
+* [OAuthToken](docs/sdks/oauth/README.md#oauthtoken) - OAuth Token Endpoint
+
+### [.Payments](docs/sdks/payments/README.md)
+
+* [FinalizePayment](docs/sdks/payments/README.md#finalizepayment) - Finalize Payment
+* [InitializePayment](docs/sdks/payments/README.md#initializepayment) - Initialize Payment
+* [UpdatePayment](docs/sdks/payments/README.md#updatepayment) - Update Payment
+
+### [.Testing](docs/sdks/testing/README.md)
+
+* [CreateTestingShopperAccount](docs/sdks/testing/README.md#createtestingshopperaccount) - Create Testing Shopper Account
+* [GetTestCreditCardToken](docs/sdks/testing/README.md#gettestcreditcardtoken) - Fetch a Test Credit Card Token
 <!-- End SDK Available Operations -->
 
 
@@ -138,6 +138,42 @@ Here's an example of one such pagination call:
 Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
 
 
+## Example
+
+```go
+package main
+
+import (
+	"context"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"log"
+)
+
+func main() {
+	s := boltembeddedgo.New()
+
+	operationSecurity := operations.DeletePaymentMethodSecurity{
+		OAuth:   "",
+		XAPIKey: "",
+	}
+
+	ctx := context.Background()
+	res, err := s.Account.DeletePaymentMethod(ctx, operations.DeletePaymentMethodRequest{
+		PaymentMethodID: "string",
+	}, operationSecurity)
+	if err != nil {
+
+		var e *sdkerrors.ErrorsBoltAPIResponse
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+	}
+}
+
+```
 <!-- End Error Handling -->
 
 
@@ -156,7 +192,6 @@ You can override the default server globally using the `WithServerIndex` option 
 | 2 | `https://api-staging.bolt.com` | None |
 
 For example:
-
 
 ```go
 package main
@@ -206,7 +241,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if res.AddAddress200ApplicationJSONObject != nil {
+	if res.Object != nil {
 		// handle response
 	}
 }
@@ -217,7 +252,6 @@ func main() {
 ## Override Server URL Per-Client
 
 The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
-
 
 ```go
 package main
@@ -267,7 +301,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if res.AddAddress200ApplicationJSONObject != nil {
+	if res.Object != nil {
 		// handle response
 	}
 }
@@ -305,6 +339,134 @@ var (
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client -->
+
+
+
+<!-- Start Authentication -->
+
+# Authentication
+
+## Per-Client Security Schemes
+
+Your SDK supports the following security schemes globally:
+
+| Name         | Type         | Scheme       |
+| ------------ | ------------ | ------------ |
+| `OAuth`      | oauth2       | OAuth2 token |
+| `XAPIKey`    | apiKey       | API key      |
+
+You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+
+```go
+package main
+
+import (
+	"context"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := boltembeddedgo.New()
+
+	operationSecurity := operations.AddAddressSecurity{
+		OAuth:   "",
+		XAPIKey: "",
+	}
+
+	ctx := context.Background()
+	res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
+		AddressAccount: &shared.AddressAccount{
+			Company:        boltembeddedgo.String("Bolt"),
+			Country:        boltembeddedgo.String("United States"),
+			CountryCode:    "US",
+			DoorCode:       boltembeddedgo.String("123456"),
+			Email:          "alan.watts@example.com",
+			FirstName:      "Alan",
+			LastName:       "Watts",
+			Locality:       "Brooklyn",
+			Metadata:       &shared.Metadata{},
+			Name:           boltembeddedgo.String("Alan Watts"),
+			Phone:          boltembeddedgo.String("+12125550199"),
+			PostalCode:     "10044",
+			Region:         "NY",
+			RegionCode:     boltembeddedgo.String("NY"),
+			StreetAddress1: "888 main street",
+			StreetAddress2: boltembeddedgo.String("apt 3021"),
+			StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
+			StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
+		},
+	}, operationSecurity)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+
+## Per-Operation Security Schemes
+
+Some operations in your SDK require the security scheme to be specified at the request level. For example:
+
+```go
+package main
+
+import (
+	"context"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := boltembeddedgo.New()
+
+	operationSecurity := operations.AddAddressSecurity{
+		OAuth:   "",
+		XAPIKey: "",
+	}
+
+	ctx := context.Background()
+	res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
+		AddressAccount: &shared.AddressAccount{
+			Company:        boltembeddedgo.String("Bolt"),
+			Country:        boltembeddedgo.String("United States"),
+			CountryCode:    "US",
+			DoorCode:       boltembeddedgo.String("123456"),
+			Email:          "alan.watts@example.com",
+			FirstName:      "Alan",
+			LastName:       "Watts",
+			Locality:       "Brooklyn",
+			Metadata:       &shared.Metadata{},
+			Name:           boltembeddedgo.String("Alan Watts"),
+			Phone:          boltembeddedgo.String("+12125550199"),
+			PostalCode:     "10044",
+			Region:         "NY",
+			RegionCode:     boltembeddedgo.String("NY"),
+			StreetAddress1: "888 main street",
+			StreetAddress2: boltembeddedgo.String("apt 3021"),
+			StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
+			StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
+		},
+	}, operationSecurity)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

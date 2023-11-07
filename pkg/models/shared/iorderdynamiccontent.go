@@ -7,45 +7,45 @@ import (
 	"fmt"
 )
 
-type IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType string
+type TransactionProcessorType string
 
 const (
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeAffirm          IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "affirm"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeAfterpay        IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "afterpay"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeAmazonPay       IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "amazon_pay"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeCredova         IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "credova"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeKlarna          IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "klarna"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypePaypal          IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "paypal"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeSezzle          IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "sezzle"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeRadialKlarna    IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "radial_klarna"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeRadialPaypal    IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "radial_paypal"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeAdyenGateway    IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "adyen_gateway"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeAllianceData    IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "alliance_data"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeAuthorizeNet    IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "authorize_net"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeBraintree       IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "braintree"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeCardconnect     IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "cardconnect"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeCheckoutCom     IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "checkout_com"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeCybersource     IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "cybersource"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeFirstData       IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "first_data"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeNmi             IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "nmi"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeOrbital         IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "orbital"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypePaypalPayflow   IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "paypal_payflow"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeRadial          IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "radial"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeRocketgate      IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "rocketgate"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeShopifyPayments IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "shopify_payments"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeStripe          IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "stripe"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeMagentopayment  IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "magentopayment"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeAdyenPayfac     IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "adyen_payfac"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeVantiv          IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "vantiv"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeGooglePay       IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "google_pay"
-	IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorTypeBolt            IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType = "bolt"
+	TransactionProcessorTypeAffirm          TransactionProcessorType = "affirm"
+	TransactionProcessorTypeAfterpay        TransactionProcessorType = "afterpay"
+	TransactionProcessorTypeAmazonPay       TransactionProcessorType = "amazon_pay"
+	TransactionProcessorTypeCredova         TransactionProcessorType = "credova"
+	TransactionProcessorTypeKlarna          TransactionProcessorType = "klarna"
+	TransactionProcessorTypePaypal          TransactionProcessorType = "paypal"
+	TransactionProcessorTypeSezzle          TransactionProcessorType = "sezzle"
+	TransactionProcessorTypeRadialKlarna    TransactionProcessorType = "radial_klarna"
+	TransactionProcessorTypeRadialPaypal    TransactionProcessorType = "radial_paypal"
+	TransactionProcessorTypeAdyenGateway    TransactionProcessorType = "adyen_gateway"
+	TransactionProcessorTypeAllianceData    TransactionProcessorType = "alliance_data"
+	TransactionProcessorTypeAuthorizeNet    TransactionProcessorType = "authorize_net"
+	TransactionProcessorTypeBraintree       TransactionProcessorType = "braintree"
+	TransactionProcessorTypeCardconnect     TransactionProcessorType = "cardconnect"
+	TransactionProcessorTypeCheckoutCom     TransactionProcessorType = "checkout_com"
+	TransactionProcessorTypeCybersource     TransactionProcessorType = "cybersource"
+	TransactionProcessorTypeFirstData       TransactionProcessorType = "first_data"
+	TransactionProcessorTypeNmi             TransactionProcessorType = "nmi"
+	TransactionProcessorTypeOrbital         TransactionProcessorType = "orbital"
+	TransactionProcessorTypePaypalPayflow   TransactionProcessorType = "paypal_payflow"
+	TransactionProcessorTypeRadial          TransactionProcessorType = "radial"
+	TransactionProcessorTypeRocketgate      TransactionProcessorType = "rocketgate"
+	TransactionProcessorTypeShopifyPayments TransactionProcessorType = "shopify_payments"
+	TransactionProcessorTypeStripe          TransactionProcessorType = "stripe"
+	TransactionProcessorTypeMagentopayment  TransactionProcessorType = "magentopayment"
+	TransactionProcessorTypeAdyenPayfac     TransactionProcessorType = "adyen_payfac"
+	TransactionProcessorTypeVantiv          TransactionProcessorType = "vantiv"
+	TransactionProcessorTypeGooglePay       TransactionProcessorType = "google_pay"
+	TransactionProcessorTypeBolt            TransactionProcessorType = "bolt"
 )
 
-func (e IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType) ToPointer() *IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType {
+func (e TransactionProcessorType) ToPointer() *TransactionProcessorType {
 	return &e
 }
 
-func (e *IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType) UnmarshalJSON(data []byte) error {
+func (e *TransactionProcessorType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -108,52 +108,52 @@ func (e *IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType) Unm
 	case "google_pay":
 		fallthrough
 	case "bolt":
-		*e = IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType(v)
+		*e = TransactionProcessorType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType: %v", v)
+		return fmt.Errorf("invalid value for TransactionProcessorType: %v", v)
 	}
 }
 
-type IOrderDynamicContentEligiblePaymentMethods struct {
-	Eligible                 *bool                                                               `json:"eligible,omitempty"`
-	TransactionProcessorType *IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType `json:"transaction_processor_type,omitempty"`
+type EligiblePaymentMethods struct {
+	Eligible                 *bool                     `json:"eligible,omitempty"`
+	TransactionProcessorType *TransactionProcessorType `json:"transaction_processor_type,omitempty"`
 }
 
-func (o *IOrderDynamicContentEligiblePaymentMethods) GetEligible() *bool {
+func (o *EligiblePaymentMethods) GetEligible() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Eligible
 }
 
-func (o *IOrderDynamicContentEligiblePaymentMethods) GetTransactionProcessorType() *IOrderDynamicContentEligiblePaymentMethodsTransactionProcessorType {
+func (o *EligiblePaymentMethods) GetTransactionProcessorType() *TransactionProcessorType {
 	if o == nil {
 		return nil
 	}
 	return o.TransactionProcessorType
 }
 
-type IOrderDynamicContentHideApm string
+type HideApm string
 
 const (
-	IOrderDynamicContentHideApmPaypal       IOrderDynamicContentHideApm = "PAYPAL"
-	IOrderDynamicContentHideApmAffirm       IOrderDynamicContentHideApm = "AFFIRM"
-	IOrderDynamicContentHideApmAfterpay     IOrderDynamicContentHideApm = "AFTERPAY"
-	IOrderDynamicContentHideApmAmazonpay    IOrderDynamicContentHideApm = "AMAZONPAY"
-	IOrderDynamicContentHideApmKlarna       IOrderDynamicContentHideApm = "KLARNA"
-	IOrderDynamicContentHideApmRadialpaypal IOrderDynamicContentHideApm = "RADIALPAYPAL"
-	IOrderDynamicContentHideApmSezzle       IOrderDynamicContentHideApm = "SEZZLE"
-	IOrderDynamicContentHideApmRadialklarna IOrderDynamicContentHideApm = "RADIALKLARNA"
-	IOrderDynamicContentHideApmCredova      IOrderDynamicContentHideApm = "CREDOVA"
-	IOrderDynamicContentHideApmGooglepay    IOrderDynamicContentHideApm = "GOOGLEPAY"
+	HideApmPaypal       HideApm = "PAYPAL"
+	HideApmAffirm       HideApm = "AFFIRM"
+	HideApmAfterpay     HideApm = "AFTERPAY"
+	HideApmAmazonpay    HideApm = "AMAZONPAY"
+	HideApmKlarna       HideApm = "KLARNA"
+	HideApmRadialpaypal HideApm = "RADIALPAYPAL"
+	HideApmSezzle       HideApm = "SEZZLE"
+	HideApmRadialklarna HideApm = "RADIALKLARNA"
+	HideApmCredova      HideApm = "CREDOVA"
+	HideApmGooglepay    HideApm = "GOOGLEPAY"
 )
 
-func (e IOrderDynamicContentHideApm) ToPointer() *IOrderDynamicContentHideApm {
+func (e HideApm) ToPointer() *HideApm {
 	return &e
 }
 
-func (e *IOrderDynamicContentHideApm) UnmarshalJSON(data []byte) error {
+func (e *HideApm) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -178,22 +178,22 @@ func (e *IOrderDynamicContentHideApm) UnmarshalJSON(data []byte) error {
 	case "CREDOVA":
 		fallthrough
 	case "GOOGLEPAY":
-		*e = IOrderDynamicContentHideApm(v)
+		*e = HideApm(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for IOrderDynamicContentHideApm: %v", v)
+		return fmt.Errorf("invalid value for HideApm: %v", v)
 	}
 }
 
 type IOrderDynamicContent struct {
-	CustomFields           []ICustomFieldView                           `json:"custom_fields,omitempty"`
-	EligiblePaymentMethods []IOrderDynamicContentEligiblePaymentMethods `json:"eligible_payment_methods,omitempty"`
-	GiftOptionView         *IGiftOptionView                             `json:"gift_option_view,omitempty"`
-	HideApm                []IOrderDynamicContentHideApm                `json:"hide_apm,omitempty"`
-	OrderNotice            *string                                      `json:"order_notice,omitempty"`
-	PaymentNotice          *string                                      `json:"payment_notice,omitempty"`
-	ShippingInfoNotice     *string                                      `json:"shipping_info_notice,omitempty"`
-	ShippingNotice         *string                                      `json:"shipping_notice,omitempty"`
+	CustomFields           []ICustomFieldView       `json:"custom_fields,omitempty"`
+	EligiblePaymentMethods []EligiblePaymentMethods `json:"eligible_payment_methods,omitempty"`
+	GiftOptionView         *IGiftOptionView         `json:"gift_option_view,omitempty"`
+	HideApm                []HideApm                `json:"hide_apm,omitempty"`
+	OrderNotice            *string                  `json:"order_notice,omitempty"`
+	PaymentNotice          *string                  `json:"payment_notice,omitempty"`
+	ShippingInfoNotice     *string                  `json:"shipping_info_notice,omitempty"`
+	ShippingNotice         *string                  `json:"shipping_notice,omitempty"`
 }
 
 func (o *IOrderDynamicContent) GetCustomFields() []ICustomFieldView {
@@ -203,7 +203,7 @@ func (o *IOrderDynamicContent) GetCustomFields() []ICustomFieldView {
 	return o.CustomFields
 }
 
-func (o *IOrderDynamicContent) GetEligiblePaymentMethods() []IOrderDynamicContentEligiblePaymentMethods {
+func (o *IOrderDynamicContent) GetEligiblePaymentMethods() []EligiblePaymentMethods {
 	if o == nil {
 		return nil
 	}
@@ -217,7 +217,7 @@ func (o *IOrderDynamicContent) GetGiftOptionView() *IGiftOptionView {
 	return o.GiftOptionView
 }
 
-func (o *IOrderDynamicContent) GetHideApm() []IOrderDynamicContentHideApm {
+func (o *IOrderDynamicContent) GetHideApm() []HideApm {
 	if o == nil {
 		return nil
 	}

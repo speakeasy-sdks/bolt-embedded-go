@@ -1,5 +1,5 @@
 # Payments
-(*Payments*)
+(*.Payments*)
 
 ## Overview
 
@@ -41,7 +41,7 @@ func main() {
     res, err := s.Payments.FinalizePayment(ctx, operations.FinalizePaymentRequest{
         RequestBody: &operations.FinalizePaymentRequestBody{
             MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
-            ShopperIdentity: &operations.FinalizePaymentRequestBodyShopperIdentity{
+            ShopperIdentity: &operations.ShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
                 Email: "Shanon_Sipes@hotmail.com",
                 FirstName: "Jalyn",
@@ -55,7 +55,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.FinalizePayment200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -141,12 +141,12 @@ func main() {
                         Description: boltembeddedgo.String("10% off our summer collection"),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/SUMMERSALE"),
                         Reference: boltembeddedgo.String("DISC-1234"),
-                        Type: shared.CartDiscountTypePercentage.ToPointer(),
+                        Type: shared.TypePercentage.ToPointer(),
                     },
                 },
                 DisplayID: boltembeddedgo.String("displayid_100"),
-                Fees: []shared.CartCreateFees{
-                    shared.CartCreateFees{
+                Fees: []shared.Fees{
+                    shared.Fees{
                         Description: boltembeddedgo.String("Item Fee"),
                         Name: "Item Fee",
                         Quantity: 7673.67,
@@ -155,8 +155,8 @@ func main() {
                         UnitTaxAmount: 7895.06,
                     },
                 },
-                Fulfillments: []shared.CartCreateFulfillments{
-                    shared.CartCreateFulfillments{
+                Fulfillments: []shared.Fulfillments{
+                    shared.Fulfillments{
                         CartItems: []shared.CartItem{
                             shared.CartItem{
                                 Brand: boltembeddedgo.String("Bolt"),
@@ -168,8 +168,8 @@ func main() {
                                 Customizations: []shared.CartItemCustomization{
                                     shared.CartItemCustomization{
                                         Attributes: map[string]string{
-                                            "key1": "value1",
                                             "key2": "value2",
+                                            "key1": "value1",
                                         },
                                         Price: &shared.AmountView{
                                             Amount: boltembeddedgo.Float64(754),
@@ -181,7 +181,7 @@ func main() {
                                 Description: boltembeddedgo.String("Large tote with Bolt logo."),
                                 DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
                                 ExternalInputs: &shared.ICartItemExternalInputs{},
-                                GiftOption: &shared.CartItemGiftOption{
+                                GiftOption: &shared.GiftOption{
                                     Cost: boltembeddedgo.Int64(770),
                                     MerchantProductID: boltembeddedgo.String("881"),
                                     Message: boltembeddedgo.String("Happy Anniversary, Smoochy Poo!"),
@@ -295,7 +295,7 @@ func main() {
                             TotalWeightUnit: boltembeddedgo.String("kg"),
                             Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                         },
-                        DigitalDelivery: &shared.CartCreateFulfillmentsDigitalDelivery{},
+                        DigitalDelivery: &shared.DigitalDelivery{},
                         InStoreCartShipment: &shared.InStoreCartShipment{
                             CartShipment: &shared.CartShipment{
                                 Carrier: boltembeddedgo.String("FedEx"),
@@ -341,7 +341,7 @@ func main() {
                             },
                             Description: boltembeddedgo.String("Pick up in-store at 123 Main St."),
                             Distance: boltembeddedgo.Float64(3),
-                            DistanceUnit: shared.InStoreCartShipmentDistanceUnitMile.ToPointer(),
+                            DistanceUnit: shared.DistanceUnitMile.ToPointer(),
                             InStorePickupAddress: &shared.Address{
                                 Company: boltembeddedgo.String("Bolt"),
                                 Country: boltembeddedgo.String("United States"),
@@ -412,7 +412,7 @@ func main() {
                         },
                         Description: boltembeddedgo.String("Pick up in-store at 123 Main St."),
                         Distance: boltembeddedgo.Float64(3),
-                        DistanceUnit: shared.InStoreCartShipmentDistanceUnitMile.ToPointer(),
+                        DistanceUnit: shared.DistanceUnitMile.ToPointer(),
                         InStorePickupAddress: &shared.Address{
                             Company: boltembeddedgo.String("Bolt"),
                             Country: boltembeddedgo.String("United States"),
@@ -460,7 +460,7 @@ func main() {
                         Description: boltembeddedgo.String("Large tote with Bolt logo."),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
                         ExternalInputs: &shared.ICartItemExternalInputs{},
-                        GiftOption: &shared.CartItemGiftOption{
+                        GiftOption: &shared.GiftOption{
                             Cost: boltembeddedgo.Int64(770),
                             MerchantProductID: boltembeddedgo.String("881"),
                             Message: boltembeddedgo.String("Happy Anniversary, Smoochy Poo!"),
@@ -590,7 +590,7 @@ func main() {
                 },
                 TotalAmount: 900,
             },
-            ShopperIdentity: &operations.InitializePaymentRequestBodyShopperIdentity{
+            ShopperIdentity: &operations.InitializePaymentShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
                 Email: "Angelica40@gmail.com",
                 FirstName: "Ottis",
@@ -603,7 +603,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.InitializePayment200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -689,12 +689,12 @@ func main() {
                         Description: boltembeddedgo.String("10% off our summer collection"),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/SUMMERSALE"),
                         Reference: boltembeddedgo.String("DISC-1234"),
-                        Type: shared.CartDiscountTypePercentage.ToPointer(),
+                        Type: shared.TypePercentage.ToPointer(),
                     },
                 },
                 DisplayID: boltembeddedgo.String("displayid_100"),
-                Fees: []shared.CartCreateFees{
-                    shared.CartCreateFees{
+                Fees: []shared.Fees{
+                    shared.Fees{
                         Description: boltembeddedgo.String("Item Fee"),
                         Name: "Item Fee",
                         Quantity: 1095.6,
@@ -703,8 +703,8 @@ func main() {
                         UnitTaxAmount: 4201.73,
                     },
                 },
-                Fulfillments: []shared.CartCreateFulfillments{
-                    shared.CartCreateFulfillments{
+                Fulfillments: []shared.Fulfillments{
+                    shared.Fulfillments{
                         CartItems: []shared.CartItem{
                             shared.CartItem{
                                 Brand: boltembeddedgo.String("Bolt"),
@@ -729,7 +729,7 @@ func main() {
                                 Description: boltembeddedgo.String("Large tote with Bolt logo."),
                                 DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
                                 ExternalInputs: &shared.ICartItemExternalInputs{},
-                                GiftOption: &shared.CartItemGiftOption{
+                                GiftOption: &shared.GiftOption{
                                     Cost: boltembeddedgo.Int64(770),
                                     MerchantProductID: boltembeddedgo.String("881"),
                                     Message: boltembeddedgo.String("Happy Anniversary, Smoochy Poo!"),
@@ -843,7 +843,7 @@ func main() {
                             TotalWeightUnit: boltembeddedgo.String("kg"),
                             Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                         },
-                        DigitalDelivery: &shared.CartCreateFulfillmentsDigitalDelivery{},
+                        DigitalDelivery: &shared.DigitalDelivery{},
                         InStoreCartShipment: &shared.InStoreCartShipment{
                             CartShipment: &shared.CartShipment{
                                 Carrier: boltembeddedgo.String("FedEx"),
@@ -889,7 +889,7 @@ func main() {
                             },
                             Description: boltembeddedgo.String("Pick up in-store at 123 Main St."),
                             Distance: boltembeddedgo.Float64(3),
-                            DistanceUnit: shared.InStoreCartShipmentDistanceUnitMile.ToPointer(),
+                            DistanceUnit: shared.DistanceUnitMile.ToPointer(),
                             InStorePickupAddress: &shared.Address{
                                 Company: boltembeddedgo.String("Bolt"),
                                 Country: boltembeddedgo.String("United States"),
@@ -960,7 +960,7 @@ func main() {
                         },
                         Description: boltembeddedgo.String("Pick up in-store at 123 Main St."),
                         Distance: boltembeddedgo.Float64(3),
-                        DistanceUnit: shared.InStoreCartShipmentDistanceUnitMile.ToPointer(),
+                        DistanceUnit: shared.DistanceUnitMile.ToPointer(),
                         InStorePickupAddress: &shared.Address{
                             Company: boltembeddedgo.String("Bolt"),
                             Country: boltembeddedgo.String("United States"),
@@ -995,8 +995,8 @@ func main() {
                         Customizations: []shared.CartItemCustomization{
                             shared.CartItemCustomization{
                                 Attributes: map[string]string{
-                                    "key1": "value1",
                                     "key2": "value2",
+                                    "key1": "value1",
                                 },
                                 Price: &shared.AmountView{
                                     Amount: boltembeddedgo.Float64(754),
@@ -1008,7 +1008,7 @@ func main() {
                         Description: boltembeddedgo.String("Large tote with Bolt logo."),
                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
                         ExternalInputs: &shared.ICartItemExternalInputs{},
-                        GiftOption: &shared.CartItemGiftOption{
+                        GiftOption: &shared.GiftOption{
                             Cost: boltembeddedgo.Int64(770),
                             MerchantProductID: boltembeddedgo.String("881"),
                             Message: boltembeddedgo.String("Happy Anniversary, Smoochy Poo!"),
@@ -1087,8 +1087,8 @@ func main() {
                     },
                 },
                 Metadata: map[string]string{
-                    "key1": "value1",
                     "key2": "value2",
+                    "key1": "value1",
                 },
                 OrderDescription: boltembeddedgo.String("Order #1234567890"),
                 OrderReference: "order_100",
@@ -1138,7 +1138,7 @@ func main() {
                 },
                 TotalAmount: 900,
             },
-            ShopperIdentity: &operations.UpdatePaymentRequestBodyShopperIdentity{
+            ShopperIdentity: &operations.UpdatePaymentShopperIdentity{
                 CreateBoltAccount: boltembeddedgo.Bool(true),
                 Email: "Jannie.Kshlerin@yahoo.com",
                 FirstName: "Adeline",
@@ -1152,7 +1152,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.UpdatePayment200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }

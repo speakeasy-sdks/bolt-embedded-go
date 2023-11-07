@@ -7,24 +7,24 @@ import (
 	"fmt"
 )
 
-// TransactionViewCaptureSplitsType - Fee type options. **Nullable** for Transactions Details.
-type TransactionViewCaptureSplitsType string
+// TransactionViewType - Fee type options. **Nullable** for Transactions Details.
+type TransactionViewType string
 
 const (
-	TransactionViewCaptureSplitsTypeNet            TransactionViewCaptureSplitsType = "net"
-	TransactionViewCaptureSplitsTypeProcessingFee  TransactionViewCaptureSplitsType = "processing_fee"
-	TransactionViewCaptureSplitsTypeRiskFee        TransactionViewCaptureSplitsType = "risk_fee"
-	TransactionViewCaptureSplitsTypeApmFee         TransactionViewCaptureSplitsType = "apm_fee"
-	TransactionViewCaptureSplitsTypeNetworkFee     TransactionViewCaptureSplitsType = "network_fee"
-	TransactionViewCaptureSplitsTypePlatformFee    TransactionViewCaptureSplitsType = "platform_fee"
-	TransactionViewCaptureSplitsTypeBoltAccountFee TransactionViewCaptureSplitsType = "bolt_account_fee"
+	TransactionViewTypeNet            TransactionViewType = "net"
+	TransactionViewTypeProcessingFee  TransactionViewType = "processing_fee"
+	TransactionViewTypeRiskFee        TransactionViewType = "risk_fee"
+	TransactionViewTypeApmFee         TransactionViewType = "apm_fee"
+	TransactionViewTypeNetworkFee     TransactionViewType = "network_fee"
+	TransactionViewTypePlatformFee    TransactionViewType = "platform_fee"
+	TransactionViewTypeBoltAccountFee TransactionViewType = "bolt_account_fee"
 )
 
-func (e TransactionViewCaptureSplitsType) ToPointer() *TransactionViewCaptureSplitsType {
+func (e TransactionViewType) ToPointer() *TransactionViewType {
 	return &e
 }
 
-func (e *TransactionViewCaptureSplitsType) UnmarshalJSON(data []byte) error {
+func (e *TransactionViewType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,29 +43,29 @@ func (e *TransactionViewCaptureSplitsType) UnmarshalJSON(data []byte) error {
 	case "platform_fee":
 		fallthrough
 	case "bolt_account_fee":
-		*e = TransactionViewCaptureSplitsType(v)
+		*e = TransactionViewType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TransactionViewCaptureSplitsType: %v", v)
+		return fmt.Errorf("invalid value for TransactionViewType: %v", v)
 	}
 }
 
-// TransactionViewCaptureSplits - A split of fees by type and amount.
-type TransactionViewCaptureSplits struct {
+// TransactionViewSplits - A split of fees by type and amount.
+type TransactionViewSplits struct {
 	Amount *AmountView `json:"amount,omitempty"`
 	// Fee type options. **Nullable** for Transactions Details.
 	//
-	Type *TransactionViewCaptureSplitsType `json:"type,omitempty"`
+	Type *TransactionViewType `json:"type,omitempty"`
 }
 
-func (o *TransactionViewCaptureSplits) GetAmount() *AmountView {
+func (o *TransactionViewSplits) GetAmount() *AmountView {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *TransactionViewCaptureSplits) GetType() *TransactionViewCaptureSplitsType {
+func (o *TransactionViewSplits) GetType() *TransactionViewType {
 	if o == nil {
 		return nil
 	}
@@ -82,7 +82,7 @@ type TransactionViewCapture struct {
 	// Additional information about the capture. For example, the processor capture ID. **Nullable** for Transactions Details.
 	Metadata map[string]string `json:"metadata,omitempty"`
 	// A split of fees by type and amount. **Nullable** for Transactions Details.
-	Splits []TransactionViewCaptureSplits `json:"splits,omitempty"`
+	Splits []TransactionViewSplits `json:"splits,omitempty"`
 	// The status of the capture. **Nullable** for Transactions Details.
 	Status *CaptureStatus `json:"status,omitempty"`
 }
@@ -115,7 +115,7 @@ func (o *TransactionViewCapture) GetMetadata() map[string]string {
 	return o.Metadata
 }
 
-func (o *TransactionViewCapture) GetSplits() []TransactionViewCaptureSplits {
+func (o *TransactionViewCapture) GetSplits() []TransactionViewSplits {
 	if o == nil {
 		return nil
 	}
@@ -160,19 +160,19 @@ func (e *TransactionViewRiskReviewStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type TransactionViewViewStatus string
+type ViewStatus string
 
 const (
-	TransactionViewViewStatusNotViewed TransactionViewViewStatus = "not_viewed"
-	TransactionViewViewStatusViewed    TransactionViewViewStatus = "viewed"
-	TransactionViewViewStatusViewing   TransactionViewViewStatus = "viewing"
+	ViewStatusNotViewed ViewStatus = "not_viewed"
+	ViewStatusViewed    ViewStatus = "viewed"
+	ViewStatusViewing   ViewStatus = "viewing"
 )
 
-func (e TransactionViewViewStatus) ToPointer() *TransactionViewViewStatus {
+func (e ViewStatus) ToPointer() *ViewStatus {
 	return &e
 }
 
-func (e *TransactionViewViewStatus) UnmarshalJSON(data []byte) error {
+func (e *ViewStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -183,32 +183,32 @@ func (e *TransactionViewViewStatus) UnmarshalJSON(data []byte) error {
 	case "viewed":
 		fallthrough
 	case "viewing":
-		*e = TransactionViewViewStatus(v)
+		*e = ViewStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TransactionViewViewStatus: %v", v)
+		return fmt.Errorf("invalid value for ViewStatus: %v", v)
 	}
 }
 
-// TransactionViewVoidCause - Specifies why this particular transaction is voided.
-type TransactionViewVoidCause string
+// TransactionViewCause - Specifies why this particular transaction is voided.
+type TransactionViewCause string
 
 const (
-	TransactionViewVoidCauseMerchantAction          TransactionViewVoidCause = "merchant_action"
-	TransactionViewVoidCausePaypalSync              TransactionViewVoidCause = "paypal_sync"
-	TransactionViewVoidCauseAmazonPaySync           TransactionViewVoidCause = "amazon_pay_sync"
-	TransactionViewVoidCauseIrreversibleReject      TransactionViewVoidCause = "irreversible_reject"
-	TransactionViewVoidCauseAuthExpire              TransactionViewVoidCause = "auth_expire"
-	TransactionViewVoidCauseAuthVerificationExpired TransactionViewVoidCause = "auth_verification_expired"
-	TransactionViewVoidCausePaymentMethodUpdater    TransactionViewVoidCause = "payment_method_updater"
-	TransactionViewVoidCauseLessThanNilGreaterThan  TransactionViewVoidCause = "<nil>"
+	TransactionViewCauseMerchantAction          TransactionViewCause = "merchant_action"
+	TransactionViewCausePaypalSync              TransactionViewCause = "paypal_sync"
+	TransactionViewCauseAmazonPaySync           TransactionViewCause = "amazon_pay_sync"
+	TransactionViewCauseIrreversibleReject      TransactionViewCause = "irreversible_reject"
+	TransactionViewCauseAuthExpire              TransactionViewCause = "auth_expire"
+	TransactionViewCauseAuthVerificationExpired TransactionViewCause = "auth_verification_expired"
+	TransactionViewCausePaymentMethodUpdater    TransactionViewCause = "payment_method_updater"
+	TransactionViewCauseLessThanNilGreaterThan  TransactionViewCause = "<nil>"
 )
 
-func (e TransactionViewVoidCause) ToPointer() *TransactionViewVoidCause {
+func (e TransactionViewCause) ToPointer() *TransactionViewCause {
 	return &e
 }
 
-func (e *TransactionViewVoidCause) UnmarshalJSON(data []byte) error {
+func (e *TransactionViewCause) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -229,27 +229,27 @@ func (e *TransactionViewVoidCause) UnmarshalJSON(data []byte) error {
 	case "payment_method_updater":
 		fallthrough
 	case "<nil>":
-		*e = TransactionViewVoidCause(v)
+		*e = TransactionViewCause(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TransactionViewVoidCause: %v", v)
+		return fmt.Errorf("invalid value for TransactionViewCause: %v", v)
 	}
 }
 
-// TransactionViewVoidStatus - The status of the void request.
-type TransactionViewVoidStatus string
+// TransactionViewStatus - The status of the void request.
+type TransactionViewStatus string
 
 const (
-	TransactionViewVoidStatusSucceeded TransactionViewVoidStatus = "succeeded"
-	TransactionViewVoidStatusDeclined  TransactionViewVoidStatus = "declined"
-	TransactionViewVoidStatusError     TransactionViewVoidStatus = "error"
+	TransactionViewStatusSucceeded TransactionViewStatus = "succeeded"
+	TransactionViewStatusDeclined  TransactionViewStatus = "declined"
+	TransactionViewStatusError     TransactionViewStatus = "error"
 )
 
-func (e TransactionViewVoidStatus) ToPointer() *TransactionViewVoidStatus {
+func (e TransactionViewStatus) ToPointer() *TransactionViewStatus {
 	return &e
 }
 
-func (e *TransactionViewVoidStatus) UnmarshalJSON(data []byte) error {
+func (e *TransactionViewStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -260,25 +260,25 @@ func (e *TransactionViewVoidStatus) UnmarshalJSON(data []byte) error {
 	case "declined":
 		fallthrough
 	case "error":
-		*e = TransactionViewVoidStatus(v)
+		*e = TransactionViewStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TransactionViewVoidStatus: %v", v)
+		return fmt.Errorf("invalid value for TransactionViewStatus: %v", v)
 	}
 }
 
 type TransactionViewVoid struct {
 	// Specifies why this particular transaction is voided.
-	Cause *TransactionViewVoidCause `json:"cause,omitempty"`
+	Cause *TransactionViewCause `json:"cause,omitempty"`
 	// The reference ID associated with a transaction event (auth, capture, refund, void). This is an arbitrary identifier created by the merchant. Bolt does not enforce any uniqueness constraints on this ID. It is up to the merchant to generate identifiers that properly fulfill its needs.
 	MerchantEventID *string `json:"merchant_event_id,omitempty"`
 	// The status of the void request.
-	Status *TransactionViewVoidStatus `json:"status,omitempty"`
+	Status *TransactionViewStatus `json:"status,omitempty"`
 	// The void ID returned from the payment processor.
 	Void *string `json:"void,omitempty"`
 }
 
-func (o *TransactionViewVoid) GetCause() *TransactionViewVoidCause {
+func (o *TransactionViewVoid) GetCause() *TransactionViewCause {
 	if o == nil {
 		return nil
 	}
@@ -292,7 +292,7 @@ func (o *TransactionViewVoid) GetMerchantEventID() *string {
 	return o.MerchantEventID
 }
 
-func (o *TransactionViewVoid) GetStatus() *TransactionViewVoidStatus {
+func (o *TransactionViewVoid) GetStatus() *TransactionViewStatus {
 	if o == nil {
 		return nil
 	}
@@ -349,9 +349,9 @@ type TransactionView struct {
 	ToCreditCard          *CreditCardView   `json:"to_credit_card,omitempty"`
 	TransactionProperties map[string]string `json:"transaction_properties,omitempty"`
 	// The type of transaction.
-	Type       *TransactionType           `json:"type,omitempty"`
-	ViewStatus *TransactionViewViewStatus `json:"view_status,omitempty"`
-	Void       *TransactionViewVoid       `json:"void,omitempty"`
+	Type       *TransactionType     `json:"type,omitempty"`
+	ViewStatus *ViewStatus          `json:"view_status,omitempty"`
+	Void       *TransactionViewVoid `json:"void,omitempty"`
 }
 
 func (o *TransactionView) GetAmount() *AmountView {
@@ -550,7 +550,7 @@ func (o *TransactionView) GetType() *TransactionType {
 	return o.Type
 }
 
-func (o *TransactionView) GetViewStatus() *TransactionViewViewStatus {
+func (o *TransactionView) GetViewStatus() *ViewStatus {
 	if o == nil {
 		return nil
 	}

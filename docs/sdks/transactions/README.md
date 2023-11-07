@@ -1,5 +1,5 @@
 # Transactions
-(*Transactions*)
+(*.Transactions*)
 
 ## Overview
 
@@ -86,12 +86,12 @@ func main() {
                                 Description: boltembeddedgo.String("10% off our summer collection"),
                                 DetailsURL: boltembeddedgo.String("https://boltswagstore.com/SUMMERSALE"),
                                 Reference: boltembeddedgo.String("DISC-1234"),
-                                Type: shared.CartDiscountTypePercentage.ToPointer(),
+                                Type: shared.TypePercentage.ToPointer(),
                             },
                         },
                         DisplayID: boltembeddedgo.String("displayid_100"),
-                        Fees: []shared.CartCreateFees{
-                            shared.CartCreateFees{
+                        Fees: []shared.Fees{
+                            shared.Fees{
                                 Description: boltembeddedgo.String("Item Fee"),
                                 Name: "Item Fee",
                                 Quantity: 7162.31,
@@ -100,8 +100,8 @@ func main() {
                                 UnitTaxAmount: 7842.96,
                             },
                         },
-                        Fulfillments: []shared.CartCreateFulfillments{
-                            shared.CartCreateFulfillments{
+                        Fulfillments: []shared.Fulfillments{
+                            shared.Fulfillments{
                                 CartItems: []shared.CartItem{
                                     shared.CartItem{
                                         Brand: boltembeddedgo.String("Bolt"),
@@ -126,7 +126,7 @@ func main() {
                                         Description: boltembeddedgo.String("Large tote with Bolt logo."),
                                         DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
                                         ExternalInputs: &shared.ICartItemExternalInputs{},
-                                        GiftOption: &shared.CartItemGiftOption{
+                                        GiftOption: &shared.GiftOption{
                                             Cost: boltembeddedgo.Int64(770),
                                             MerchantProductID: boltembeddedgo.String("881"),
                                             Message: boltembeddedgo.String("Happy Anniversary, Smoochy Poo!"),
@@ -240,7 +240,7 @@ func main() {
                                     TotalWeightUnit: boltembeddedgo.String("kg"),
                                     Type: shared.CartShipmentTypeDoorDelivery.ToPointer(),
                                 },
-                                DigitalDelivery: &shared.CartCreateFulfillmentsDigitalDelivery{},
+                                DigitalDelivery: &shared.DigitalDelivery{},
                                 InStoreCartShipment: &shared.InStoreCartShipment{
                                     CartShipment: &shared.CartShipment{
                                         Carrier: boltembeddedgo.String("FedEx"),
@@ -286,7 +286,7 @@ func main() {
                                     },
                                     Description: boltembeddedgo.String("Pick up in-store at 123 Main St."),
                                     Distance: boltembeddedgo.Float64(3),
-                                    DistanceUnit: shared.InStoreCartShipmentDistanceUnitMile.ToPointer(),
+                                    DistanceUnit: shared.DistanceUnitMile.ToPointer(),
                                     InStorePickupAddress: &shared.Address{
                                         Company: boltembeddedgo.String("Bolt"),
                                         Country: boltembeddedgo.String("United States"),
@@ -357,7 +357,7 @@ func main() {
                                 },
                                 Description: boltembeddedgo.String("Pick up in-store at 123 Main St."),
                                 Distance: boltembeddedgo.Float64(3),
-                                DistanceUnit: shared.InStoreCartShipmentDistanceUnitMile.ToPointer(),
+                                DistanceUnit: shared.DistanceUnitMile.ToPointer(),
                                 InStorePickupAddress: &shared.Address{
                                     Company: boltembeddedgo.String("Bolt"),
                                     Country: boltembeddedgo.String("United States"),
@@ -405,7 +405,7 @@ func main() {
                                 Description: boltembeddedgo.String("Large tote with Bolt logo."),
                                 DetailsURL: boltembeddedgo.String("https://boltswagstore.com/products/123456"),
                                 ExternalInputs: &shared.ICartItemExternalInputs{},
-                                GiftOption: &shared.CartItemGiftOption{
+                                GiftOption: &shared.GiftOption{
                                     Cost: boltembeddedgo.Int64(770),
                                     MerchantProductID: boltembeddedgo.String("881"),
                                     Message: boltembeddedgo.String("Happy Anniversary, Smoochy Poo!"),
@@ -562,7 +562,7 @@ func main() {
                         Last4: "1234",
                         PostalCode: "10044",
                         Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
-                        TokenType: shared.CreditCardTokenTypeBolt,
+                        TokenType: shared.TokenTypeBolt,
                     },
                     DivisionID: "4ab56ad7865ada4ad32",
                     MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
@@ -587,7 +587,7 @@ func main() {
                         StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
                         StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
                     },
-                    Source: shared.MerchantCreditCardAuthorizationSourceDirectPayments,
+                    Source: shared.SourceDirectPayments,
                     UserIdentifier: shared.UserIdentifier{
                         Artifact: boltembeddedgo.String("null"),
                         Email: boltembeddedgo.String("alan.watts@example.com"),
@@ -650,7 +650,9 @@ func main() {
     s := boltembeddedgo.New()
 
 
-    operationSecurity := ""
+    operationSecurity := operations.CaptureTransactionSecurity{
+            XAPIKey: "",
+        }
 
     ctx := context.Background()
     res, err := s.Transactions.CaptureTransaction(ctx, operations.CaptureTransactionRequest{
@@ -709,7 +711,9 @@ func main() {
     s := boltembeddedgo.New()
 
 
-    operationSecurity := ""
+    operationSecurity := operations.GetTransactionDetailsSecurity{
+            XAPIKey: "",
+        }
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
@@ -719,7 +723,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetTransactionDetails200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -759,7 +763,9 @@ func main() {
     s := boltembeddedgo.New()
 
 
-    operationSecurity := ""
+    operationSecurity := operations.RefundTransactionSecurity{
+            XAPIKey: "",
+        }
 
     ctx := context.Background()
     res, err := s.Transactions.RefundTransaction(ctx, operations.RefundTransactionRequest{
@@ -815,7 +821,9 @@ func main() {
     s := boltembeddedgo.New()
 
 
-    operationSecurity := ""
+    operationSecurity := operations.UpdateTransactionSecurity{
+            XAPIKey: "",
+        }
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
@@ -832,7 +840,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.UpdateTransaction200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -876,7 +884,9 @@ func main() {
     s := boltembeddedgo.New()
 
 
-    operationSecurity := ""
+    operationSecurity := operations.VoidTransactionSecurity{
+            XAPIKey: "",
+        }
 
     ctx := context.Background()
     res, err := s.Transactions.VoidTransaction(ctx, operations.VoidTransactionRequest{

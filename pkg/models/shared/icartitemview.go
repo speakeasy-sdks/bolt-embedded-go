@@ -7,35 +7,35 @@ import (
 	"fmt"
 )
 
-type ICartItemViewProperties struct {
+type Properties struct {
 	Color   *string `json:"color,omitempty"`
 	Display *bool   `json:"display,omitempty"`
 	Name    *string `json:"name,omitempty"`
 	Value   *string `json:"value,omitempty"`
 }
 
-func (o *ICartItemViewProperties) GetColor() *string {
+func (o *Properties) GetColor() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Color
 }
 
-func (o *ICartItemViewProperties) GetDisplay() *bool {
+func (o *Properties) GetDisplay() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Display
 }
 
-func (o *ICartItemViewProperties) GetName() *string {
+func (o *Properties) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *ICartItemViewProperties) GetValue() *string {
+func (o *Properties) GetValue() *string {
 	if o == nil {
 		return nil
 	}
@@ -138,7 +138,7 @@ type ICartItemView struct {
 	Msrp                           *AmountView                `json:"msrp,omitempty"`
 	Name                           *string                    `json:"name,omitempty"`
 	Options                        *string                    `json:"options,omitempty"`
-	Properties                     []ICartItemViewProperties  `json:"properties,omitempty"`
+	Properties                     []Properties               `json:"properties,omitempty"`
 	Quantity                       *float64                   `json:"quantity,omitempty"`
 	Reference                      *string                    `json:"reference,omitempty"`
 	ShipmentID                     *string                    `json:"shipment_id,omitempty"`
@@ -299,7 +299,7 @@ func (o *ICartItemView) GetOptions() *string {
 	return o.Options
 }
 
-func (o *ICartItemView) GetProperties() []ICartItemViewProperties {
+func (o *ICartItemView) GetProperties() []Properties {
 	if o == nil {
 		return nil
 	}

@@ -15,20 +15,20 @@ import (
 	"strings"
 )
 
-// account - Create Embedded Accounts user flows for logged-in and guest experiences by interacting with and updating shopper data.
-type account struct {
+// Account - Create Embedded Accounts user flows for logged-in and guest experiences by interacting with and updating shopper data.
+type Account struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccount(sdkConfig sdkConfiguration) *account {
-	return &account{
+func newAccount(sdkConfig sdkConfiguration) *Account {
+	return &Account{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // AddAddress - Add Address
 // Add an address to a shopper's account address book.
-func (s *account) AddAddress(ctx context.Context, request operations.AddAddressRequest, security operations.AddAddressSecurity) (*operations.AddAddressResponse, error) {
+func (s *Account) AddAddress(ctx context.Context, request operations.AddAddressRequest, security operations.AddAddressSecurity) (*operations.AddAddressResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/account/addresses"
 
@@ -76,15 +76,19 @@ func (s *account) AddAddress(ctx context.Context, request operations.AddAddressR
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.AddAddress200ApplicationJSON
+			var out operations.AddAddressResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.AddAddress200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -94,7 +98,7 @@ func (s *account) AddAddress(ctx context.Context, request operations.AddAddressR
 // Add a payment method to a shopper's Bolt account Wallet. For security purposes, this request must come from your backend because authentication requires the use of your private key.
 //
 // **Note**: Before using this API, the credit card details must be tokenized using Bolt's JavaScript library function, which is documented in [Install the Bolt Tokenizer](https://help.bolt.com/developers/references/bolt-tokenizer).
-func (s *account) AddPaymentMethod(ctx context.Context, request operations.AddPaymentMethodRequest, security operations.AddPaymentMethodSecurity) (*operations.AddPaymentMethodResponse, error) {
+func (s *Account) AddPaymentMethod(ctx context.Context, request operations.AddPaymentMethodRequest, security operations.AddPaymentMethodSecurity) (*operations.AddPaymentMethodResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/account/payment_methods"
 
@@ -151,6 +155,10 @@ func (s *account) AddPaymentMethod(ctx context.Context, request operations.AddPa
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -158,7 +166,7 @@ func (s *account) AddPaymentMethod(ctx context.Context, request operations.AddPa
 
 // CreateAccount - Create Bolt Account
 // Create a Bolt shopping account.
-func (s *account) CreateAccount(ctx context.Context, request operations.CreateAccountRequest, security operations.CreateAccountSecurity) (*operations.CreateAccountResponse, error) {
+func (s *Account) CreateAccount(ctx context.Context, request operations.CreateAccountRequest, security operations.CreateAccountSecurity) (*operations.CreateAccountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/account"
 
@@ -215,6 +223,10 @@ func (s *account) CreateAccount(ctx context.Context, request operations.CreateAc
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -222,7 +234,7 @@ func (s *account) CreateAccount(ctx context.Context, request operations.CreateAc
 
 // DeleteAddress - Delete Address
 // Deletes an existing address in a shopper's address book.
-func (s *account) DeleteAddress(ctx context.Context, request operations.DeleteAddressRequest, security operations.DeleteAddressSecurity) (*operations.DeleteAddressResponse, error) {
+func (s *Account) DeleteAddress(ctx context.Context, request operations.DeleteAddressRequest, security operations.DeleteAddressSecurity) (*operations.DeleteAddressResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/account/addresses/{id}", request, nil)
 	if err != nil {
@@ -264,6 +276,10 @@ func (s *account) DeleteAddress(ctx context.Context, request operations.DeleteAd
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -271,7 +287,7 @@ func (s *account) DeleteAddress(ctx context.Context, request operations.DeleteAd
 
 // DeletePaymentMethod - Delete Payment Method
 // Delete a saved payment method from a shopper's Bolt account Wallet.
-func (s *account) DeletePaymentMethod(ctx context.Context, request operations.DeletePaymentMethodRequest, security operations.DeletePaymentMethodSecurity) (*operations.DeletePaymentMethodResponse, error) {
+func (s *Account) DeletePaymentMethod(ctx context.Context, request operations.DeletePaymentMethodRequest, security operations.DeletePaymentMethodSecurity) (*operations.DeletePaymentMethodResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/account/payment_methods/{payment_method_id}", request, nil)
 	if err != nil {
@@ -318,15 +334,18 @@ func (s *account) DeletePaymentMethod(ctx context.Context, request operations.De
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsBoltAPIResponse
+			var out sdkerrors.ErrorsBoltAPIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsBoltAPIResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -334,7 +353,7 @@ func (s *account) DeletePaymentMethod(ctx context.Context, request operations.De
 
 // DetectAccount - Detect Account
 // Check whether an account exists using one of `email`, `phone`, or `sha256_email` as the unique identifier.
-func (s *account) DetectAccount(ctx context.Context, request operations.DetectAccountRequest) (*operations.DetectAccountResponse, error) {
+func (s *Account) DetectAccount(ctx context.Context, request operations.DetectAccountRequest) (*operations.DetectAccountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/account/exists"
 
@@ -391,15 +410,18 @@ func (s *account) DetectAccount(ctx context.Context, request operations.DetectAc
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsBoltAPIResponse
+			var out sdkerrors.ErrorsBoltAPIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsBoltAPIResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -408,7 +430,7 @@ func (s *account) DetectAccount(ctx context.Context, request operations.DetectAc
 // EditAddress - Edit Address
 // Edit an existing address in a shopper's address book.
 // This endpoint fully replaces the information for an existing address while retaining the same address ID.
-func (s *account) EditAddress(ctx context.Context, request operations.EditAddressRequest, security operations.EditAddressSecurity) (*operations.EditAddressResponse, error) {
+func (s *Account) EditAddress(ctx context.Context, request operations.EditAddressRequest, security operations.EditAddressSecurity) (*operations.EditAddressResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/account/addresses/{id}", request, nil)
 	if err != nil {
@@ -459,15 +481,19 @@ func (s *account) EditAddress(ctx context.Context, request operations.EditAddres
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.EditAddress200ApplicationJSON
+			var out operations.EditAddressResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EditAddress200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -475,7 +501,7 @@ func (s *account) EditAddress(ctx context.Context, request operations.EditAddres
 
 // GetAccount - Get Account Details
 // Fetch a shopper's account details to pre-fill checkout fields. This request must come from your backend for security purposes, as it requires the use of your private key to authenticate. For PCI compliance, only limited information is returned for each credit card available in the shopper’s wallet.
-func (s *account) GetAccount(ctx context.Context, request operations.GetAccountRequest, security operations.GetAccountSecurity) (*operations.GetAccountResponse, error) {
+func (s *Account) GetAccount(ctx context.Context, request operations.GetAccountRequest, security operations.GetAccountSecurity) (*operations.GetAccountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/account"
 
@@ -525,6 +551,10 @@ func (s *account) GetAccount(ctx context.Context, request operations.GetAccountR
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -533,7 +563,7 @@ func (s *account) GetAccount(ctx context.Context, request operations.GetAccountR
 // ReplaceAddress - Replace Address
 // Replace an existing address in a shopper's address book.
 // These changes delete the existing address and create a new one.
-func (s *account) ReplaceAddress(ctx context.Context, request operations.ReplaceAddressRequest, security operations.ReplaceAddressSecurity) (*operations.ReplaceAddressResponse, error) {
+func (s *Account) ReplaceAddress(ctx context.Context, request operations.ReplaceAddressRequest, security operations.ReplaceAddressSecurity) (*operations.ReplaceAddressResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/account/addresses/{id}", request, nil)
 	if err != nil {
@@ -584,15 +614,19 @@ func (s *account) ReplaceAddress(ctx context.Context, request operations.Replace
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.ReplaceAddress200ApplicationJSON
+			var out operations.ReplaceAddressResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ReplaceAddress200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -600,7 +634,7 @@ func (s *account) ReplaceAddress(ctx context.Context, request operations.Replace
 
 // UpdateAccountProfile - Update Profile
 // Update the identifiers for a shopper's profile (first name or last name).
-func (s *account) UpdateAccountProfile(ctx context.Context, request operations.UpdateAccountProfileRequest, security operations.UpdateAccountProfileSecurity) (*operations.UpdateAccountProfileResponse, error) {
+func (s *Account) UpdateAccountProfile(ctx context.Context, request operations.UpdateAccountProfileRequest, security operations.UpdateAccountProfileSecurity) (*operations.UpdateAccountProfileResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/account/profile"
 
@@ -657,6 +691,10 @@ func (s *account) UpdateAccountProfile(ctx context.Context, request operations.U
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

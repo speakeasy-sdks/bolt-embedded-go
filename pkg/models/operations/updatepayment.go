@@ -28,8 +28,8 @@ func (o *UpdatePaymentSecurity) GetXAPIKey() *string {
 	return o.XAPIKey
 }
 
-// UpdatePaymentRequestBodyShopperIdentity - Identification information for the Shopper. This is only required when creating a new Bolt account.
-type UpdatePaymentRequestBodyShopperIdentity struct {
+// UpdatePaymentShopperIdentity - Identification information for the Shopper. This is only required when creating a new Bolt account.
+type UpdatePaymentShopperIdentity struct {
 	// determines whether to create a bolt account for this shopper
 	CreateBoltAccount *bool `json:"create_bolt_account,omitempty"`
 	// Email address of the shopper
@@ -42,35 +42,35 @@ type UpdatePaymentRequestBodyShopperIdentity struct {
 	Phone string `json:"phone"`
 }
 
-func (o *UpdatePaymentRequestBodyShopperIdentity) GetCreateBoltAccount() *bool {
+func (o *UpdatePaymentShopperIdentity) GetCreateBoltAccount() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.CreateBoltAccount
 }
 
-func (o *UpdatePaymentRequestBodyShopperIdentity) GetEmail() string {
+func (o *UpdatePaymentShopperIdentity) GetEmail() string {
 	if o == nil {
 		return ""
 	}
 	return o.Email
 }
 
-func (o *UpdatePaymentRequestBodyShopperIdentity) GetFirstName() string {
+func (o *UpdatePaymentShopperIdentity) GetFirstName() string {
 	if o == nil {
 		return ""
 	}
 	return o.FirstName
 }
 
-func (o *UpdatePaymentRequestBodyShopperIdentity) GetLastName() string {
+func (o *UpdatePaymentShopperIdentity) GetLastName() string {
 	if o == nil {
 		return ""
 	}
 	return o.LastName
 }
 
-func (o *UpdatePaymentRequestBodyShopperIdentity) GetPhone() string {
+func (o *UpdatePaymentShopperIdentity) GetPhone() string {
 	if o == nil {
 		return ""
 	}
@@ -81,7 +81,7 @@ type UpdatePaymentRequestBody struct {
 	// The details of the cart being purchased with this payment.
 	Cart *shared.CartCreate `json:"cart,omitempty"`
 	// Identification information for the Shopper. This is only required when creating a new Bolt account.
-	ShopperIdentity *UpdatePaymentRequestBodyShopperIdentity `json:"shopper_identity,omitempty"`
+	ShopperIdentity *UpdatePaymentShopperIdentity `json:"shopper_identity,omitempty"`
 }
 
 func (o *UpdatePaymentRequestBody) GetCart() *shared.CartCreate {
@@ -91,7 +91,7 @@ func (o *UpdatePaymentRequestBody) GetCart() *shared.CartCreate {
 	return o.Cart
 }
 
-func (o *UpdatePaymentRequestBody) GetShopperIdentity() *UpdatePaymentRequestBodyShopperIdentity {
+func (o *UpdatePaymentRequestBody) GetShopperIdentity() *UpdatePaymentShopperIdentity {
 	if o == nil {
 		return nil
 	}
@@ -136,20 +136,20 @@ func (o *UpdatePaymentRequest) GetID() string {
 	return o.ID
 }
 
-// UpdatePayment200ApplicationJSONStatus - The current payment status.
-type UpdatePayment200ApplicationJSONStatus string
+// UpdatePaymentStatus - The current payment status.
+type UpdatePaymentStatus string
 
 const (
-	UpdatePayment200ApplicationJSONStatusAwaitingUserConfirmation UpdatePayment200ApplicationJSONStatus = "awaiting_user_confirmation"
-	UpdatePayment200ApplicationJSONStatusPaymentReady             UpdatePayment200ApplicationJSONStatus = "payment_ready"
-	UpdatePayment200ApplicationJSONStatusSuccess                  UpdatePayment200ApplicationJSONStatus = "success"
+	UpdatePaymentStatusAwaitingUserConfirmation UpdatePaymentStatus = "awaiting_user_confirmation"
+	UpdatePaymentStatusPaymentReady             UpdatePaymentStatus = "payment_ready"
+	UpdatePaymentStatusSuccess                  UpdatePaymentStatus = "success"
 )
 
-func (e UpdatePayment200ApplicationJSONStatus) ToPointer() *UpdatePayment200ApplicationJSONStatus {
+func (e UpdatePaymentStatus) ToPointer() *UpdatePaymentStatus {
 	return &e
 }
 
-func (e *UpdatePayment200ApplicationJSONStatus) UnmarshalJSON(data []byte) error {
+func (e *UpdatePaymentStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -160,29 +160,29 @@ func (e *UpdatePayment200ApplicationJSONStatus) UnmarshalJSON(data []byte) error
 	case "payment_ready":
 		fallthrough
 	case "success":
-		*e = UpdatePayment200ApplicationJSONStatus(v)
+		*e = UpdatePaymentStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdatePayment200ApplicationJSONStatus: %v", v)
+		return fmt.Errorf("invalid value for UpdatePaymentStatus: %v", v)
 	}
 }
 
-// UpdatePayment200ApplicationJSON - Payment updated.
-type UpdatePayment200ApplicationJSON struct {
+// UpdatePaymentResponseBody - Payment updated.
+type UpdatePaymentResponseBody struct {
 	// The ID for a Payment Attempt
 	ID *string `json:"id,omitempty"`
 	// The current payment status.
-	Status *UpdatePayment200ApplicationJSONStatus `json:"status,omitempty"`
+	Status *UpdatePaymentStatus `json:"status,omitempty"`
 }
 
-func (o *UpdatePayment200ApplicationJSON) GetID() *string {
+func (o *UpdatePaymentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdatePayment200ApplicationJSON) GetStatus() *UpdatePayment200ApplicationJSONStatus {
+func (o *UpdatePaymentResponseBody) GetStatus() *UpdatePaymentStatus {
 	if o == nil {
 		return nil
 	}
@@ -197,7 +197,7 @@ type UpdatePaymentResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Payment updated.
-	UpdatePayment200ApplicationJSONObject *UpdatePayment200ApplicationJSON
+	Object *UpdatePaymentResponseBody
 }
 
 func (o *UpdatePaymentResponse) GetContentType() string {
@@ -221,9 +221,9 @@ func (o *UpdatePaymentResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdatePaymentResponse) GetUpdatePayment200ApplicationJSONObject() *UpdatePayment200ApplicationJSON {
+func (o *UpdatePaymentResponse) GetObject() *UpdatePaymentResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.UpdatePayment200ApplicationJSONObject
+	return o.Object
 }

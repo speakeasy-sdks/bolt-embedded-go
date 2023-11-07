@@ -7,8 +7,8 @@ import (
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/utils"
 )
 
-// AccountDetailsAddresses - The address object returned in the response.
-type AccountDetailsAddresses struct {
+// Addresses - The address object returned in the response.
+type Addresses struct {
 	// The company name associated with this address.
 	Company *string `json:"company,omitempty"`
 	// The name of the country associated with this address.
@@ -52,198 +52,198 @@ type AccountDetailsAddresses struct {
 	StreetAddress4 *string `json:"street_address4,omitempty"`
 }
 
-func (o *AccountDetailsAddresses) GetCompany() *string {
+func (o *Addresses) GetCompany() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Company
 }
 
-func (o *AccountDetailsAddresses) GetCountry() *string {
+func (o *Addresses) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *AccountDetailsAddresses) GetCountryCode() *string {
+func (o *Addresses) GetCountryCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CountryCode
 }
 
-func (o *AccountDetailsAddresses) GetDefault() *bool {
+func (o *Addresses) GetDefault() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Default
 }
 
-func (o *AccountDetailsAddresses) GetDoorCode() *string {
+func (o *Addresses) GetDoorCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DoorCode
 }
 
-func (o *AccountDetailsAddresses) GetEmailAddress() *string {
+func (o *Addresses) GetEmailAddress() *string {
 	if o == nil {
 		return nil
 	}
 	return o.EmailAddress
 }
 
-func (o *AccountDetailsAddresses) GetFirstName() *string {
+func (o *Addresses) GetFirstName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *AccountDetailsAddresses) GetID() *string {
+func (o *Addresses) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *AccountDetailsAddresses) GetLastName() *string {
+func (o *Addresses) GetLastName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *AccountDetailsAddresses) GetLocality() *string {
+func (o *Addresses) GetLocality() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Locality
 }
 
-func (o *AccountDetailsAddresses) GetMetadata() *Metadata {
+func (o *Addresses) GetMetadata() *Metadata {
 	if o == nil {
 		return nil
 	}
 	return o.Metadata
 }
 
-func (o *AccountDetailsAddresses) GetName() *string {
+func (o *Addresses) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *AccountDetailsAddresses) GetPhoneNumber() *string {
+func (o *Addresses) GetPhoneNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PhoneNumber
 }
 
-func (o *AccountDetailsAddresses) GetPostalCode() *string {
+func (o *Addresses) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *AccountDetailsAddresses) GetRegion() *string {
+func (o *Addresses) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *AccountDetailsAddresses) GetRegionCode() *string {
+func (o *Addresses) GetRegionCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RegionCode
 }
 
-func (o *AccountDetailsAddresses) GetStreetAddress1() *string {
+func (o *Addresses) GetStreetAddress1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreetAddress1
 }
 
-func (o *AccountDetailsAddresses) GetStreetAddress2() *string {
+func (o *Addresses) GetStreetAddress2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreetAddress2
 }
 
-func (o *AccountDetailsAddresses) GetStreetAddress3() *string {
+func (o *Addresses) GetStreetAddress3() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreetAddress3
 }
 
-func (o *AccountDetailsAddresses) GetStreetAddress4() *string {
+func (o *Addresses) GetStreetAddress4() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StreetAddress4
 }
 
-type AccountDetailsPaymentMethodsType string
+type PaymentMethodsType string
 
 const (
-	AccountDetailsPaymentMethodsTypeSavedCreditCardView    AccountDetailsPaymentMethodsType = "saved_credit_card_view"
-	AccountDetailsPaymentMethodsTypeSavedPaypalAccountView AccountDetailsPaymentMethodsType = "saved_paypal_account_view"
+	PaymentMethodsTypeSavedCreditCardView    PaymentMethodsType = "saved_credit_card_view"
+	PaymentMethodsTypeSavedPaypalAccountView PaymentMethodsType = "saved_paypal_account_view"
 )
 
-type AccountDetailsPaymentMethods struct {
+type PaymentMethods struct {
 	SavedCreditCardView    *SavedCreditCardView
 	SavedPaypalAccountView *SavedPaypalAccountView
 
-	Type AccountDetailsPaymentMethodsType
+	Type PaymentMethodsType
 }
 
-func CreateAccountDetailsPaymentMethodsSavedCreditCardView(savedCreditCardView SavedCreditCardView) AccountDetailsPaymentMethods {
-	typ := AccountDetailsPaymentMethodsTypeSavedCreditCardView
+func CreatePaymentMethodsSavedCreditCardView(savedCreditCardView SavedCreditCardView) PaymentMethods {
+	typ := PaymentMethodsTypeSavedCreditCardView
 
-	return AccountDetailsPaymentMethods{
+	return PaymentMethods{
 		SavedCreditCardView: &savedCreditCardView,
 		Type:                typ,
 	}
 }
 
-func CreateAccountDetailsPaymentMethodsSavedPaypalAccountView(savedPaypalAccountView SavedPaypalAccountView) AccountDetailsPaymentMethods {
-	typ := AccountDetailsPaymentMethodsTypeSavedPaypalAccountView
+func CreatePaymentMethodsSavedPaypalAccountView(savedPaypalAccountView SavedPaypalAccountView) PaymentMethods {
+	typ := PaymentMethodsTypeSavedPaypalAccountView
 
-	return AccountDetailsPaymentMethods{
+	return PaymentMethods{
 		SavedPaypalAccountView: &savedPaypalAccountView,
 		Type:                   typ,
 	}
 }
 
-func (u *AccountDetailsPaymentMethods) UnmarshalJSON(data []byte) error {
+func (u *PaymentMethods) UnmarshalJSON(data []byte) error {
 
 	savedPaypalAccountView := SavedPaypalAccountView{}
 	if err := utils.UnmarshalJSON(data, &savedPaypalAccountView, "", true, true); err == nil {
 		u.SavedPaypalAccountView = &savedPaypalAccountView
-		u.Type = AccountDetailsPaymentMethodsTypeSavedPaypalAccountView
+		u.Type = PaymentMethodsTypeSavedPaypalAccountView
 		return nil
 	}
 
 	savedCreditCardView := SavedCreditCardView{}
 	if err := utils.UnmarshalJSON(data, &savedCreditCardView, "", true, true); err == nil {
 		u.SavedCreditCardView = &savedCreditCardView
-		u.Type = AccountDetailsPaymentMethodsTypeSavedCreditCardView
+		u.Type = PaymentMethodsTypeSavedCreditCardView
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u AccountDetailsPaymentMethods) MarshalJSON() ([]byte, error) {
+func (u PaymentMethods) MarshalJSON() ([]byte, error) {
 	if u.SavedCreditCardView != nil {
 		return utils.MarshalJSON(u.SavedCreditCardView, "", true)
 	}
@@ -257,16 +257,16 @@ func (u AccountDetailsPaymentMethods) MarshalJSON() ([]byte, error) {
 
 type AccountDetails struct {
 	// A list of all addresses associated to the shopper's account.
-	Addresses []AccountDetailsAddresses `json:"addresses,omitempty"`
+	Addresses []Addresses `json:"addresses,omitempty"`
 	// Used to determine whether a Bolt Account exists with this shopper's account details.
 	HasBoltAccount *bool `json:"has_bolt_account,omitempty"`
 	// A list of all payment methods associated to the shopper's account.
-	PaymentMethods []AccountDetailsPaymentMethods `json:"payment_methods,omitempty"`
+	PaymentMethods []PaymentMethods `json:"payment_methods,omitempty"`
 	// The shopper's account profile.
 	Profile *ProfileView `json:"profile,omitempty"`
 }
 
-func (o *AccountDetails) GetAddresses() []AccountDetailsAddresses {
+func (o *AccountDetails) GetAddresses() []Addresses {
 	if o == nil {
 		return nil
 	}
@@ -280,7 +280,7 @@ func (o *AccountDetails) GetHasBoltAccount() *bool {
 	return o.HasBoltAccount
 }
 
-func (o *AccountDetails) GetPaymentMethods() []AccountDetailsPaymentMethods {
+func (o *AccountDetails) GetPaymentMethods() []PaymentMethods {
 	if o == nil {
 		return nil
 	}

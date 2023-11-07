@@ -7,21 +7,21 @@ import (
 	"fmt"
 )
 
-// SubscriptionFrequencyUnit - The unit for this subscription's frequency.
-type SubscriptionFrequencyUnit string
+// Unit - The unit for this subscription's frequency.
+type Unit string
 
 const (
-	SubscriptionFrequencyUnitDay   SubscriptionFrequencyUnit = "day"
-	SubscriptionFrequencyUnitWeek  SubscriptionFrequencyUnit = "week"
-	SubscriptionFrequencyUnitMonth SubscriptionFrequencyUnit = "month"
-	SubscriptionFrequencyUnitYear  SubscriptionFrequencyUnit = "year"
+	UnitDay   Unit = "day"
+	UnitWeek  Unit = "week"
+	UnitMonth Unit = "month"
+	UnitYear  Unit = "year"
 )
 
-func (e SubscriptionFrequencyUnit) ToPointer() *SubscriptionFrequencyUnit {
+func (e Unit) ToPointer() *Unit {
 	return &e
 }
 
-func (e *SubscriptionFrequencyUnit) UnmarshalJSON(data []byte) error {
+func (e *Unit) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -34,29 +34,29 @@ func (e *SubscriptionFrequencyUnit) UnmarshalJSON(data []byte) error {
 	case "month":
 		fallthrough
 	case "year":
-		*e = SubscriptionFrequencyUnit(v)
+		*e = Unit(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SubscriptionFrequencyUnit: %v", v)
+		return fmt.Errorf("invalid value for Unit: %v", v)
 	}
 }
 
-// SubscriptionFrequency - Describes how often the subscription recurs.
-type SubscriptionFrequency struct {
+// Frequency - Describes how often the subscription recurs.
+type Frequency struct {
 	// The unit for this subscription's frequency.
-	Unit *SubscriptionFrequencyUnit `json:"unit,omitempty"`
+	Unit *Unit `json:"unit,omitempty"`
 	// The value applied to the unit frequency.
 	Value *int64 `json:"value,omitempty"`
 }
 
-func (o *SubscriptionFrequency) GetUnit() *SubscriptionFrequencyUnit {
+func (o *Frequency) GetUnit() *Unit {
 	if o == nil {
 		return nil
 	}
 	return o.Unit
 }
 
-func (o *SubscriptionFrequency) GetValue() *int64 {
+func (o *Frequency) GetValue() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -66,10 +66,10 @@ func (o *SubscriptionFrequency) GetValue() *int64 {
 // Subscription - Describes a product added as a recurring subscription.
 type Subscription struct {
 	// Describes how often the subscription recurs.
-	Frequency *SubscriptionFrequency `json:"frequency,omitempty"`
+	Frequency *Frequency `json:"frequency,omitempty"`
 }
 
-func (o *Subscription) GetFrequency() *SubscriptionFrequency {
+func (o *Subscription) GetFrequency() *Frequency {
 	if o == nil {
 		return nil
 	}

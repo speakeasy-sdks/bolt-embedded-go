@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-type CustomFieldsCheckoutSetup string
+type CheckoutSetup string
 
 const (
-	CustomFieldsCheckoutSetupShippingStep           CustomFieldsCheckoutSetup = "shipping_step"
-	CustomFieldsCheckoutSetupDeliveryStep           CustomFieldsCheckoutSetup = "delivery_step"
-	CustomFieldsCheckoutSetupPaymentStep            CustomFieldsCheckoutSetup = "payment_step"
-	CustomFieldsCheckoutSetupAccountRegistrationSso CustomFieldsCheckoutSetup = "account_registration_sso"
+	CheckoutSetupShippingStep           CheckoutSetup = "shipping_step"
+	CheckoutSetupDeliveryStep           CheckoutSetup = "delivery_step"
+	CheckoutSetupPaymentStep            CheckoutSetup = "payment_step"
+	CheckoutSetupAccountRegistrationSso CheckoutSetup = "account_registration_sso"
 )
 
-func (e CustomFieldsCheckoutSetup) ToPointer() *CustomFieldsCheckoutSetup {
+func (e CheckoutSetup) ToPointer() *CheckoutSetup {
 	return &e
 }
 
-func (e *CustomFieldsCheckoutSetup) UnmarshalJSON(data []byte) error {
+func (e *CheckoutSetup) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,15 +33,15 @@ func (e *CustomFieldsCheckoutSetup) UnmarshalJSON(data []byte) error {
 	case "payment_step":
 		fallthrough
 	case "account_registration_sso":
-		*e = CustomFieldsCheckoutSetup(v)
+		*e = CheckoutSetup(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CustomFieldsCheckoutSetup: %v", v)
+		return fmt.Errorf("invalid value for CheckoutSetup: %v", v)
 	}
 }
 
 type CustomFields struct {
-	CheckoutSetup *CustomFieldsCheckoutSetup `json:"checkout_setup,omitempty"`
+	CheckoutSetup *CheckoutSetup `json:"checkout_setup,omitempty"`
 	// Defines whether the field is dynamic.
 	Dynamic *bool `json:"dynamic,omitempty"`
 	// The external ID for the custom field.
@@ -58,7 +58,7 @@ type CustomFields struct {
 	SubscribeToNewsletter *bool `json:"subscribe_to_newsletter,omitempty"`
 }
 
-func (o *CustomFields) GetCheckoutSetup() *CustomFieldsCheckoutSetup {
+func (o *CustomFields) GetCheckoutSetup() *CheckoutSetup {
 	if o == nil {
 		return nil
 	}

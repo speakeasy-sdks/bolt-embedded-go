@@ -39,56 +39,6 @@ func (o *CaptureTransactionRequest) GetCaptureTransactionWithReference() *shared
 	return o.CaptureTransactionWithReference
 }
 
-type CaptureTransaction422ApplicationJSONErrors struct {
-	Code    *float64 `json:"code,omitempty"`
-	Field   *string  `json:"field,omitempty"`
-	Message *string  `json:"message,omitempty"`
-}
-
-func (o *CaptureTransaction422ApplicationJSONErrors) GetCode() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Code
-}
-
-func (o *CaptureTransaction422ApplicationJSONErrors) GetField() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Field
-}
-
-func (o *CaptureTransaction422ApplicationJSONErrors) GetMessage() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Message
-}
-
-type CaptureTransaction422ApplicationJSONResult struct {
-}
-
-// CaptureTransaction422ApplicationJSON - Unprocessable Entity
-type CaptureTransaction422ApplicationJSON struct {
-	Errors []CaptureTransaction422ApplicationJSONErrors `json:"errors,omitempty"`
-	Result *CaptureTransaction422ApplicationJSONResult  `json:"result,omitempty"`
-}
-
-func (o *CaptureTransaction422ApplicationJSON) GetErrors() []CaptureTransaction422ApplicationJSONErrors {
-	if o == nil {
-		return nil
-	}
-	return o.Errors
-}
-
-func (o *CaptureTransaction422ApplicationJSON) GetResult() *CaptureTransaction422ApplicationJSONResult {
-	if o == nil {
-		return nil
-	}
-	return o.Result
-}
-
 type CaptureTransactionResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -96,10 +46,6 @@ type CaptureTransactionResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Unprocessable Entity
-	CaptureTransaction422ApplicationJSONObject *CaptureTransaction422ApplicationJSON
-	// Generic Error Schema
-	ErrorsBoltAPIResponse *shared.ErrorsBoltAPIResponse
 	// Capture Successful
 	TransactionView *shared.TransactionView
 }
@@ -123,20 +69,6 @@ func (o *CaptureTransactionResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *CaptureTransactionResponse) GetCaptureTransaction422ApplicationJSONObject() *CaptureTransaction422ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.CaptureTransaction422ApplicationJSONObject
-}
-
-func (o *CaptureTransactionResponse) GetErrorsBoltAPIResponse() *shared.ErrorsBoltAPIResponse {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorsBoltAPIResponse
 }
 
 func (o *CaptureTransactionResponse) GetTransactionView() *shared.TransactionView {

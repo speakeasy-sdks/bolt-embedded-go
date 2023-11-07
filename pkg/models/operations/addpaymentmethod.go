@@ -28,26 +28,26 @@ func (o *AddPaymentMethodSecurity) GetXAPIKey() string {
 	return o.XAPIKey
 }
 
-type AddPaymentMethodRequestBodyNetwork string
+type Network string
 
 const (
-	AddPaymentMethodRequestBodyNetworkUnknown        AddPaymentMethodRequestBodyNetwork = "unknown"
-	AddPaymentMethodRequestBodyNetworkVisa           AddPaymentMethodRequestBodyNetwork = "visa"
-	AddPaymentMethodRequestBodyNetworkMastercard     AddPaymentMethodRequestBodyNetwork = "mastercard"
-	AddPaymentMethodRequestBodyNetworkAmex           AddPaymentMethodRequestBodyNetwork = "amex"
-	AddPaymentMethodRequestBodyNetworkDiscover       AddPaymentMethodRequestBodyNetwork = "discover"
-	AddPaymentMethodRequestBodyNetworkDinersClubUsCa AddPaymentMethodRequestBodyNetwork = "diners_club_us_ca"
-	AddPaymentMethodRequestBodyNetworkJcb            AddPaymentMethodRequestBodyNetwork = "jcb"
-	AddPaymentMethodRequestBodyNetworkUnionpay       AddPaymentMethodRequestBodyNetwork = "unionpay"
-	AddPaymentMethodRequestBodyNetworkAlliancedata   AddPaymentMethodRequestBodyNetwork = "alliancedata"
-	AddPaymentMethodRequestBodyNetworkCitiplcc       AddPaymentMethodRequestBodyNetwork = "citiplcc"
+	NetworkUnknown        Network = "unknown"
+	NetworkVisa           Network = "visa"
+	NetworkMastercard     Network = "mastercard"
+	NetworkAmex           Network = "amex"
+	NetworkDiscover       Network = "discover"
+	NetworkDinersClubUsCa Network = "diners_club_us_ca"
+	NetworkJcb            Network = "jcb"
+	NetworkUnionpay       Network = "unionpay"
+	NetworkAlliancedata   Network = "alliancedata"
+	NetworkCitiplcc       Network = "citiplcc"
 )
 
-func (e AddPaymentMethodRequestBodyNetwork) ToPointer() *AddPaymentMethodRequestBodyNetwork {
+func (e Network) ToPointer() *Network {
 	return &e
 }
 
-func (e *AddPaymentMethodRequestBodyNetwork) UnmarshalJSON(data []byte) error {
+func (e *Network) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -72,26 +72,26 @@ func (e *AddPaymentMethodRequestBodyNetwork) UnmarshalJSON(data []byte) error {
 	case "alliancedata":
 		fallthrough
 	case "citiplcc":
-		*e = AddPaymentMethodRequestBodyNetwork(v)
+		*e = Network(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddPaymentMethodRequestBodyNetwork: %v", v)
+		return fmt.Errorf("invalid value for Network: %v", v)
 	}
 }
 
-// AddPaymentMethodRequestBodyPriority - Used to indicate the card's priority. '1' indicates primary, while '2' indicates a secondary card.
-type AddPaymentMethodRequestBodyPriority int64
+// Priority - Used to indicate the card's priority. '1' indicates primary, while '2' indicates a secondary card.
+type Priority int64
 
 const (
-	AddPaymentMethodRequestBodyPriorityOne AddPaymentMethodRequestBodyPriority = 1
-	AddPaymentMethodRequestBodyPriorityTwo AddPaymentMethodRequestBodyPriority = 2
+	PriorityOne Priority = 1
+	PriorityTwo Priority = 2
 )
 
-func (e AddPaymentMethodRequestBodyPriority) ToPointer() *AddPaymentMethodRequestBodyPriority {
+func (e Priority) ToPointer() *Priority {
 	return &e
 }
 
-func (e *AddPaymentMethodRequestBodyPriority) UnmarshalJSON(data []byte) error {
+func (e *Priority) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -100,29 +100,29 @@ func (e *AddPaymentMethodRequestBodyPriority) UnmarshalJSON(data []byte) error {
 	case 1:
 		fallthrough
 	case 2:
-		*e = AddPaymentMethodRequestBodyPriority(v)
+		*e = Priority(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddPaymentMethodRequestBodyPriority: %v", v)
+		return fmt.Errorf("invalid value for Priority: %v", v)
 	}
 }
 
-// AddPaymentMethodRequestBodyTokenType - Used to define which payment processor generated the token for this credit card.  For those using Bolt's tokenizer, the value must be `bolt`.
-type AddPaymentMethodRequestBodyTokenType string
+// TokenType - Used to define which payment processor generated the token for this credit card.  For those using Bolt's tokenizer, the value must be `bolt`.
+type TokenType string
 
 const (
-	AddPaymentMethodRequestBodyTokenTypeVantiv   AddPaymentMethodRequestBodyTokenType = "vantiv"
-	AddPaymentMethodRequestBodyTokenTypeApplepay AddPaymentMethodRequestBodyTokenType = "applepay"
-	AddPaymentMethodRequestBodyTokenTypeBolt     AddPaymentMethodRequestBodyTokenType = "bolt"
-	AddPaymentMethodRequestBodyTokenTypeStripe   AddPaymentMethodRequestBodyTokenType = "stripe"
-	AddPaymentMethodRequestBodyTokenTypePlcc     AddPaymentMethodRequestBodyTokenType = "plcc"
+	TokenTypeVantiv   TokenType = "vantiv"
+	TokenTypeApplepay TokenType = "applepay"
+	TokenTypeBolt     TokenType = "bolt"
+	TokenTypeStripe   TokenType = "stripe"
+	TokenTypePlcc     TokenType = "plcc"
 )
 
-func (e AddPaymentMethodRequestBodyTokenType) ToPointer() *AddPaymentMethodRequestBodyTokenType {
+func (e TokenType) ToPointer() *TokenType {
 	return &e
 }
 
-func (e *AddPaymentMethodRequestBodyTokenType) UnmarshalJSON(data []byte) error {
+func (e *TokenType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -137,10 +137,10 @@ func (e *AddPaymentMethodRequestBodyTokenType) UnmarshalJSON(data []byte) error 
 	case "stripe":
 		fallthrough
 	case "plcc":
-		*e = AddPaymentMethodRequestBodyTokenType(v)
+		*e = TokenType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AddPaymentMethodRequestBodyTokenType: %v", v)
+		return fmt.Errorf("invalid value for TokenType: %v", v)
 	}
 }
 
@@ -163,15 +163,15 @@ type AddPaymentMethodRequestBody struct {
 	Last4 *string `json:"last4,omitempty"`
 	// A key-value pair object that allows users to store arbitrary information associated with an object.  For any individual account object, we allow up to 50 keys. Keys can be up to 40 characters long and values can be up to 500 characters long.  Metadata should not contain any sensitive customer information, like PII (Personally Identifiable Information). For more information about metadata, see our [documentation](https://help.bolt.com/developers/references/embedded-metadata/).
 	//
-	Metadata *shared.Metadata                    `json:"metadata,omitempty"`
-	Network  *AddPaymentMethodRequestBodyNetwork `json:"network,omitempty"`
+	Metadata *shared.Metadata `json:"metadata,omitempty"`
+	Network  *Network         `json:"network,omitempty"`
 	// Used to provide ApplePay DPAN or private label credit card PAN when applicable. Required when charging a private label credit card.
 	Number *string `json:"number,omitempty"`
 	// Used for the postal or zip code associated with the credit card.
 	PostalCode *string `json:"postal_code,omitempty"`
 	// Used to indicate the card's priority. '1' indicates primary, while '2' indicates a secondary card.
 	//
-	Priority *AddPaymentMethodRequestBodyPriority `json:"priority,omitempty"`
+	Priority *Priority `json:"priority,omitempty"`
 	// Determines whether or not the credit card will be saved to the shopper's account. Defaults to `true`.
 	//
 	Save *bool `json:"save,omitempty"`
@@ -179,7 +179,7 @@ type AddPaymentMethodRequestBody struct {
 	Token string `json:"token"`
 	// Used to define which payment processor generated the token for this credit card.  For those using Bolt's tokenizer, the value must be `bolt`.
 	//
-	TokenType *AddPaymentMethodRequestBodyTokenType `json:"token_type,omitempty"`
+	TokenType *TokenType `json:"token_type,omitempty"`
 }
 
 func (o *AddPaymentMethodRequestBody) GetBillingAddress() shared.Address {
@@ -245,7 +245,7 @@ func (o *AddPaymentMethodRequestBody) GetMetadata() *shared.Metadata {
 	return o.Metadata
 }
 
-func (o *AddPaymentMethodRequestBody) GetNetwork() *AddPaymentMethodRequestBodyNetwork {
+func (o *AddPaymentMethodRequestBody) GetNetwork() *Network {
 	if o == nil {
 		return nil
 	}
@@ -266,7 +266,7 @@ func (o *AddPaymentMethodRequestBody) GetPostalCode() *string {
 	return o.PostalCode
 }
 
-func (o *AddPaymentMethodRequestBody) GetPriority() *AddPaymentMethodRequestBodyPriority {
+func (o *AddPaymentMethodRequestBody) GetPriority() *Priority {
 	if o == nil {
 		return nil
 	}
@@ -287,7 +287,7 @@ func (o *AddPaymentMethodRequestBody) GetToken() string {
 	return o.Token
 }
 
-func (o *AddPaymentMethodRequestBody) GetTokenType() *AddPaymentMethodRequestBodyTokenType {
+func (o *AddPaymentMethodRequestBody) GetTokenType() *TokenType {
 	if o == nil {
 		return nil
 	}

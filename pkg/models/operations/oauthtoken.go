@@ -99,8 +99,6 @@ type OAuthTokenResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Invalid request to OAuth Token.
-	ErrorsOauthServerResponse *shared.ErrorsOauthServerResponse
 	// OAuth token response.
 	OAuthTokenResponse *shared.OAuthTokenResponse
 }
@@ -124,13 +122,6 @@ func (o *OAuthTokenResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *OAuthTokenResponse) GetErrorsOauthServerResponse() *shared.ErrorsOauthServerResponse {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorsOauthServerResponse
 }
 
 func (o *OAuthTokenResponse) GetOAuthTokenResponse() *shared.OAuthTokenResponse {

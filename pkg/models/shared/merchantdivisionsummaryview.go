@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-type MerchantDivisionSummaryViewHookType string
+type HookType string
 
 const (
-	MerchantDivisionSummaryViewHookTypeOne   MerchantDivisionSummaryViewHookType = "1"
-	MerchantDivisionSummaryViewHookTypeTwo   MerchantDivisionSummaryViewHookType = "2"
-	MerchantDivisionSummaryViewHookTypeThree MerchantDivisionSummaryViewHookType = "3"
-	MerchantDivisionSummaryViewHookTypeFour  MerchantDivisionSummaryViewHookType = "4"
-	MerchantDivisionSummaryViewHookTypeFive  MerchantDivisionSummaryViewHookType = "5"
-	MerchantDivisionSummaryViewHookTypeSix   MerchantDivisionSummaryViewHookType = "6"
+	HookTypeOne   HookType = "1"
+	HookTypeTwo   HookType = "2"
+	HookTypeThree HookType = "3"
+	HookTypeFour  HookType = "4"
+	HookTypeFive  HookType = "5"
+	HookTypeSix   HookType = "6"
 )
 
-func (e MerchantDivisionSummaryViewHookType) ToPointer() *MerchantDivisionSummaryViewHookType {
+func (e HookType) ToPointer() *HookType {
 	return &e
 }
 
-func (e *MerchantDivisionSummaryViewHookType) UnmarshalJSON(data []byte) error {
+func (e *HookType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -39,50 +39,50 @@ func (e *MerchantDivisionSummaryViewHookType) UnmarshalJSON(data []byte) error {
 	case "5":
 		fallthrough
 	case "6":
-		*e = MerchantDivisionSummaryViewHookType(v)
+		*e = HookType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MerchantDivisionSummaryViewHookType: %v", v)
+		return fmt.Errorf("invalid value for HookType: %v", v)
 	}
 }
 
 type MerchantDivisionSummaryView struct {
-	AccountPageURL                   *string                              `json:"account_page_url,omitempty"`
-	APIBaseDomainURL                 *string                              `json:"api_base_domain_url,omitempty"`
-	BaseDomainURL                    *string                              `json:"base_domain_url,omitempty"`
-	ConfirmationRedirectURL          *string                              `json:"confirmation_redirect_url,omitempty"`
-	CreateOrderURL                   *string                              `json:"create_order_url,omitempty"`
-	DebugURL                         *string                              `json:"debug_url,omitempty"`
-	Description                      *string                              `json:"description,omitempty"`
-	DisplayName                      *string                              `json:"display_name,omitempty"`
-	GetAccountURL                    *string                              `json:"get_account_url,omitempty"`
-	HookType                         *MerchantDivisionSummaryViewHookType `json:"hook_type,omitempty"`
-	HookURL                          *string                              `json:"hook_url,omitempty"`
-	ID                               *string                              `json:"id,omitempty"`
-	IsUniversalMerchantAPI           *bool                                `json:"is_universal_merchant_api,omitempty"`
-	IsWebhooksV2                     *bool                                `json:"is_webhooks_v2,omitempty"`
-	Logo                             *MerchantDivisionLogoView            `json:"logo,omitempty"`
-	LogoDashboard                    *MerchantDivisionLogoView            `json:"logo_dashboard,omitempty"`
-	MerchantID                       *string                              `json:"merchant_id,omitempty"`
-	MobileAppDomainURL               *string                              `json:"mobile_app_domain_url,omitempty"`
-	OauthLogoutURL                   *string                              `json:"oauth_logout_url,omitempty"`
-	OauthRedirectURL                 *string                              `json:"oauth_redirect_url,omitempty"`
-	Platform                         *string                              `json:"platform,omitempty"`
-	PluginConfigURL                  *string                              `json:"plugin_config_url,omitempty"`
-	PrivacyPolicyURL                 *string                              `json:"privacy_policy_url,omitempty"`
-	ProductInfoURL                   *string                              `json:"product_info_url,omitempty"`
-	PublicID                         *string                              `json:"public_id,omitempty"`
-	RemoteApiurl                     *string                              `json:"remote_apiurl,omitempty"`
-	ShippingAndTaxURL                *string                              `json:"shipping_and_tax_url,omitempty"`
-	ShippingURL                      *string                              `json:"shipping_url,omitempty"`
-	Status                           *string                              `json:"status,omitempty"`
-	TaxURL                           *string                              `json:"tax_url,omitempty"`
-	TermsOfServiceURL                *string                              `json:"terms_of_service_url,omitempty"`
-	UniversalMerchantAPIURL          *string                              `json:"universal_merchant_api_url,omitempty"`
-	UpdateCartURL                    *string                              `json:"update_cart_url,omitempty"`
-	UseAsyncRefundsAmazonPay         *bool                                `json:"use_async_refunds_amazon_pay,omitempty"`
-	UseAsyncRefundsPaypal            *bool                                `json:"use_async_refunds_paypal,omitempty"`
-	ValidateAdditionalAccountDataURL *string                              `json:"validate_additional_account_data_url,omitempty"`
+	AccountPageURL                   *string                   `json:"account_page_url,omitempty"`
+	APIBaseDomainURL                 *string                   `json:"api_base_domain_url,omitempty"`
+	BaseDomainURL                    *string                   `json:"base_domain_url,omitempty"`
+	ConfirmationRedirectURL          *string                   `json:"confirmation_redirect_url,omitempty"`
+	CreateOrderURL                   *string                   `json:"create_order_url,omitempty"`
+	DebugURL                         *string                   `json:"debug_url,omitempty"`
+	Description                      *string                   `json:"description,omitempty"`
+	DisplayName                      *string                   `json:"display_name,omitempty"`
+	GetAccountURL                    *string                   `json:"get_account_url,omitempty"`
+	HookType                         *HookType                 `json:"hook_type,omitempty"`
+	HookURL                          *string                   `json:"hook_url,omitempty"`
+	ID                               *string                   `json:"id,omitempty"`
+	IsUniversalMerchantAPI           *bool                     `json:"is_universal_merchant_api,omitempty"`
+	IsWebhooksV2                     *bool                     `json:"is_webhooks_v2,omitempty"`
+	Logo                             *MerchantDivisionLogoView `json:"logo,omitempty"`
+	LogoDashboard                    *MerchantDivisionLogoView `json:"logo_dashboard,omitempty"`
+	MerchantID                       *string                   `json:"merchant_id,omitempty"`
+	MobileAppDomainURL               *string                   `json:"mobile_app_domain_url,omitempty"`
+	OauthLogoutURL                   *string                   `json:"oauth_logout_url,omitempty"`
+	OauthRedirectURL                 *string                   `json:"oauth_redirect_url,omitempty"`
+	Platform                         *string                   `json:"platform,omitempty"`
+	PluginConfigURL                  *string                   `json:"plugin_config_url,omitempty"`
+	PrivacyPolicyURL                 *string                   `json:"privacy_policy_url,omitempty"`
+	ProductInfoURL                   *string                   `json:"product_info_url,omitempty"`
+	PublicID                         *string                   `json:"public_id,omitempty"`
+	RemoteApiurl                     *string                   `json:"remote_apiurl,omitempty"`
+	ShippingAndTaxURL                *string                   `json:"shipping_and_tax_url,omitempty"`
+	ShippingURL                      *string                   `json:"shipping_url,omitempty"`
+	Status                           *string                   `json:"status,omitempty"`
+	TaxURL                           *string                   `json:"tax_url,omitempty"`
+	TermsOfServiceURL                *string                   `json:"terms_of_service_url,omitempty"`
+	UniversalMerchantAPIURL          *string                   `json:"universal_merchant_api_url,omitempty"`
+	UpdateCartURL                    *string                   `json:"update_cart_url,omitempty"`
+	UseAsyncRefundsAmazonPay         *bool                     `json:"use_async_refunds_amazon_pay,omitempty"`
+	UseAsyncRefundsPaypal            *bool                     `json:"use_async_refunds_paypal,omitempty"`
+	ValidateAdditionalAccountDataURL *string                   `json:"validate_additional_account_data_url,omitempty"`
 }
 
 func (o *MerchantDivisionSummaryView) GetAccountPageURL() *string {
@@ -148,7 +148,7 @@ func (o *MerchantDivisionSummaryView) GetGetAccountURL() *string {
 	return o.GetAccountURL
 }
 
-func (o *MerchantDivisionSummaryView) GetHookType() *MerchantDivisionSummaryViewHookType {
+func (o *MerchantDivisionSummaryView) GetHookType() *HookType {
 	if o == nil {
 		return nil
 	}

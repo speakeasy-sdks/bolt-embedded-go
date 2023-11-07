@@ -75,19 +75,19 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 type BoltEmbeddedAPI struct {
 	// Create Embedded Accounts user flows for logged-in and guest experiences by interacting with and updating shopper data.
 	//
-	Account *account
-	// Interact with Shopper data by completing the Bolt OAuth process.
-	//
-	OAuth *oAuth
-	// Create and manage transactions for non credit card payments such as Paypal in your Embedded Accounts experience.
-	//
-	Payments *payments
-	// A collection of endpoints that provide useful functionality to assist in testing your Bolt integration.
-	//
-	Testing *testing
+	Account *Account
 	// Authorize credit card transactions and perform operations on those transactions with Bolt's transaction API.
 	//
-	Transactions *transactions
+	Transactions *Transactions
+	// Interact with Shopper data by completing the Bolt OAuth process.
+	//
+	OAuth *OAuth
+	// Create and manage transactions for non credit card payments such as Paypal in your Embedded Accounts experience.
+	//
+	Payments *Payments
+	// A collection of endpoints that provide useful functionality to assist in testing your Bolt integration.
+	//
+	Testing *Testing
 
 	sdkConfiguration sdkConfiguration
 }
@@ -165,9 +165,9 @@ func New(opts ...SDKOption) *BoltEmbeddedAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.1",
-			SDKVersion:        "0.7.1",
-			GenVersion:        "2.173.0",
-			UserAgent:         "speakeasy-sdk/go 0.7.1 2.173.0 1.0.1 github.com/speakeasy-sdks/bolt-embedded-go",
+			SDKVersion:        "0.8.0",
+			GenVersion:        "2.181.1",
+			UserAgent:         "speakeasy-sdk/go 0.8.0 2.181.1 1.0.1 github.com/speakeasy-sdks/bolt-embedded-go",
 		},
 	}
 	for _, opt := range opts {
@@ -188,13 +188,13 @@ func New(opts ...SDKOption) *BoltEmbeddedAPI {
 
 	sdk.Account = newAccount(sdk.sdkConfiguration)
 
+	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
+
 	sdk.OAuth = newOAuth(sdk.sdkConfiguration)
 
 	sdk.Payments = newPayments(sdk.sdkConfiguration)
 
 	sdk.Testing = newTesting(sdk.sdkConfiguration)
-
-	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
 
 	return sdk
 }

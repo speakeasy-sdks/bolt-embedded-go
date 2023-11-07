@@ -17,8 +17,8 @@ func (o *GetTestCreditCardTokenSecurity) GetXAPIKey() string {
 	return o.XAPIKey
 }
 
-// GetTestCreditCardToken200ApplicationJSON - Successfully Fetched Credit Card Token
-type GetTestCreditCardToken200ApplicationJSON struct {
+// GetTestCreditCardTokenResponseBody - Successfully Fetched Credit Card Token
+type GetTestCreditCardTokenResponseBody struct {
 	// The credit card bin.
 	Bin *string `json:"bin,omitempty"`
 	// The date at which the token expires. A token must be used within 15 minutes of creation.
@@ -31,35 +31,35 @@ type GetTestCreditCardToken200ApplicationJSON struct {
 	Token *string `json:"token,omitempty"`
 }
 
-func (o *GetTestCreditCardToken200ApplicationJSON) GetBin() *string {
+func (o *GetTestCreditCardTokenResponseBody) GetBin() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Bin
 }
 
-func (o *GetTestCreditCardToken200ApplicationJSON) GetExpiry() *int64 {
+func (o *GetTestCreditCardTokenResponseBody) GetExpiry() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Expiry
 }
 
-func (o *GetTestCreditCardToken200ApplicationJSON) GetLast4() *string {
+func (o *GetTestCreditCardTokenResponseBody) GetLast4() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Last4
 }
 
-func (o *GetTestCreditCardToken200ApplicationJSON) GetNetwork() *string {
+func (o *GetTestCreditCardTokenResponseBody) GetNetwork() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Network
 }
 
-func (o *GetTestCreditCardToken200ApplicationJSON) GetToken() *string {
+func (o *GetTestCreditCardTokenResponseBody) GetToken() *string {
 	if o == nil {
 		return nil
 	}
@@ -74,7 +74,7 @@ type GetTestCreditCardTokenResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Successfully Fetched Credit Card Token
-	GetTestCreditCardToken200ApplicationJSONObject *GetTestCreditCardToken200ApplicationJSON
+	Object *GetTestCreditCardTokenResponseBody
 }
 
 func (o *GetTestCreditCardTokenResponse) GetContentType() string {
@@ -98,9 +98,9 @@ func (o *GetTestCreditCardTokenResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetTestCreditCardTokenResponse) GetGetTestCreditCardToken200ApplicationJSONObject() *GetTestCreditCardToken200ApplicationJSON {
+func (o *GetTestCreditCardTokenResponse) GetObject() *GetTestCreditCardTokenResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.GetTestCreditCardToken200ApplicationJSONObject
+	return o.Object
 }

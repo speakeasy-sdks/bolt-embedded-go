@@ -71,23 +71,23 @@ func (o *UpdateTransactionRequest) GetRequestBody() *UpdateTransactionRequestBod
 	return o.RequestBody
 }
 
-// UpdateTransaction200ApplicationJSONSplitsType - **Nullable** for Transactions Details.
-type UpdateTransaction200ApplicationJSONSplitsType string
+// UpdateTransactionType - **Nullable** for Transactions Details.
+type UpdateTransactionType string
 
 const (
-	UpdateTransaction200ApplicationJSONSplitsTypeNet           UpdateTransaction200ApplicationJSONSplitsType = "net"
-	UpdateTransaction200ApplicationJSONSplitsTypeProcessingFee UpdateTransaction200ApplicationJSONSplitsType = "processing_fee"
-	UpdateTransaction200ApplicationJSONSplitsTypeBoltFee       UpdateTransaction200ApplicationJSONSplitsType = "bolt_fee"
-	UpdateTransaction200ApplicationJSONSplitsTypeAdjustment    UpdateTransaction200ApplicationJSONSplitsType = "adjustment"
-	UpdateTransaction200ApplicationJSONSplitsTypeFloat         UpdateTransaction200ApplicationJSONSplitsType = "float"
-	UpdateTransaction200ApplicationJSONSplitsTypeReserve       UpdateTransaction200ApplicationJSONSplitsType = "reserve"
+	UpdateTransactionTypeNet           UpdateTransactionType = "net"
+	UpdateTransactionTypeProcessingFee UpdateTransactionType = "processing_fee"
+	UpdateTransactionTypeBoltFee       UpdateTransactionType = "bolt_fee"
+	UpdateTransactionTypeAdjustment    UpdateTransactionType = "adjustment"
+	UpdateTransactionTypeFloat         UpdateTransactionType = "float"
+	UpdateTransactionTypeReserve       UpdateTransactionType = "reserve"
 )
 
-func (e UpdateTransaction200ApplicationJSONSplitsType) ToPointer() *UpdateTransaction200ApplicationJSONSplitsType {
+func (e UpdateTransactionType) ToPointer() *UpdateTransactionType {
 	return &e
 }
 
-func (e *UpdateTransaction200ApplicationJSONSplitsType) UnmarshalJSON(data []byte) error {
+func (e *UpdateTransactionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -104,67 +104,67 @@ func (e *UpdateTransaction200ApplicationJSONSplitsType) UnmarshalJSON(data []byt
 	case "float":
 		fallthrough
 	case "reserve":
-		*e = UpdateTransaction200ApplicationJSONSplitsType(v)
+		*e = UpdateTransactionType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdateTransaction200ApplicationJSONSplitsType: %v", v)
+		return fmt.Errorf("invalid value for UpdateTransactionType: %v", v)
 	}
 }
 
-// UpdateTransaction200ApplicationJSONSplits - A split of fees by type and amount.
-type UpdateTransaction200ApplicationJSONSplits struct {
+// UpdateTransactionSplits - A split of fees by type and amount.
+type UpdateTransactionSplits struct {
 	Amount *shared.AmountView `json:"amount,omitempty"`
 	// **Nullable** for Transactions Details.
 	//
-	Type *UpdateTransaction200ApplicationJSONSplitsType `json:"type,omitempty"`
+	Type *UpdateTransactionType `json:"type,omitempty"`
 }
 
-func (o *UpdateTransaction200ApplicationJSONSplits) GetAmount() *shared.AmountView {
+func (o *UpdateTransactionSplits) GetAmount() *shared.AmountView {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *UpdateTransaction200ApplicationJSONSplits) GetType() *UpdateTransaction200ApplicationJSONSplitsType {
+func (o *UpdateTransactionSplits) GetType() *UpdateTransactionType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-type UpdateTransaction200ApplicationJSONTransactionRejectionDetailsAuthRejectionDetails struct {
+type UpdateTransactionAuthRejectionDetails struct {
 	ReasonCode        *string `json:"reason_code,omitempty"`
 	ReasonDescription *string `json:"reason_description,omitempty"`
 }
 
-func (o *UpdateTransaction200ApplicationJSONTransactionRejectionDetailsAuthRejectionDetails) GetReasonCode() *string {
+func (o *UpdateTransactionAuthRejectionDetails) GetReasonCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ReasonCode
 }
 
-func (o *UpdateTransaction200ApplicationJSONTransactionRejectionDetailsAuthRejectionDetails) GetReasonDescription() *string {
+func (o *UpdateTransactionAuthRejectionDetails) GetReasonDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ReasonDescription
 }
 
-type UpdateTransaction200ApplicationJSONTransactionRejectionDetails struct {
-	AuthRejectionDetails *UpdateTransaction200ApplicationJSONTransactionRejectionDetailsAuthRejectionDetails `json:"auth_rejection_details,omitempty"`
+type UpdateTransactionTransactionRejectionDetails struct {
+	AuthRejectionDetails *UpdateTransactionAuthRejectionDetails `json:"auth_rejection_details,omitempty"`
 }
 
-func (o *UpdateTransaction200ApplicationJSONTransactionRejectionDetails) GetAuthRejectionDetails() *UpdateTransaction200ApplicationJSONTransactionRejectionDetailsAuthRejectionDetails {
+func (o *UpdateTransactionTransactionRejectionDetails) GetAuthRejectionDetails() *UpdateTransactionAuthRejectionDetails {
 	if o == nil {
 		return nil
 	}
 	return o.AuthRejectionDetails
 }
 
-// UpdateTransaction200ApplicationJSON - Transaction Details Retrieved
-type UpdateTransaction200ApplicationJSON struct {
+// UpdateTransactionResponseBody - Transaction Details Retrieved
+type UpdateTransactionResponseBody struct {
 	AddressChangeRequestMetadata *shared.AddressChangeRequestMetadataView `json:"address_change_request_metadata,omitempty"`
 	// **Nullable** for Transactions Details.
 	//
@@ -234,15 +234,15 @@ type UpdateTransaction200ApplicationJSON struct {
 	RiskScore         *int64                   `json:"risk_score,omitempty"`
 	SourceTransaction *shared.TransactionView  `json:"source_transaction,omitempty"`
 	// A list of splits. **Nullable** for Transactions Details.
-	Splits []UpdateTransaction200ApplicationJSONSplits `json:"splits,omitempty"`
+	Splits []UpdateTransactionSplits `json:"splits,omitempty"`
 	// The transaction's status.
 	Status     *shared.TransactionStatus       `json:"status,omitempty"`
 	Timeline   *shared.TransactionTimelineView `json:"timeline,omitempty"`
 	ToConsumer *shared.ConsumerSelfView        `json:"to_consumer,omitempty"`
 	// Contains details about the credit card transaction.
-	ToCreditCard                *shared.CreditCardView                                          `json:"to_credit_card,omitempty"`
-	TransactionProperties       map[string]string                                               `json:"transaction_properties,omitempty"`
-	TransactionRejectionDetails *UpdateTransaction200ApplicationJSONTransactionRejectionDetails `json:"transaction_rejection_details,omitempty"`
+	ToCreditCard                *shared.CreditCardView                        `json:"to_credit_card,omitempty"`
+	TransactionProperties       map[string]string                             `json:"transaction_properties,omitempty"`
+	TransactionRejectionDetails *UpdateTransactionTransactionRejectionDetails `json:"transaction_rejection_details,omitempty"`
 	// The type of transaction.
 	Type       *shared.TransactionType `json:"type,omitempty"`
 	ViewStatus *string                 `json:"view_status,omitempty"`
@@ -250,343 +250,343 @@ type UpdateTransaction200ApplicationJSON struct {
 	VoidCause  *string                 `json:"void_cause,omitempty"`
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetAddressChangeRequestMetadata() *shared.AddressChangeRequestMetadataView {
+func (o *UpdateTransactionResponseBody) GetAddressChangeRequestMetadata() *shared.AddressChangeRequestMetadataView {
 	if o == nil {
 		return nil
 	}
 	return o.AddressChangeRequestMetadata
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetAdjustTransactions() []shared.TransactionView {
+func (o *UpdateTransactionResponseBody) GetAdjustTransactions() []shared.TransactionView {
 	if o == nil {
 		return nil
 	}
 	return o.AdjustTransactions
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetAmount() *shared.AmountView {
+func (o *UpdateTransactionResponseBody) GetAmount() *shared.AmountView {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetAuthVerificationStatus() *shared.AuthorizationVerificationStatus {
+func (o *UpdateTransactionResponseBody) GetAuthVerificationStatus() *shared.AuthorizationVerificationStatus {
 	if o == nil {
 		return nil
 	}
 	return o.AuthVerificationStatus
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetAuthorization() *shared.CreditCardAuthorizationView {
+func (o *UpdateTransactionResponseBody) GetAuthorization() *shared.CreditCardAuthorizationView {
 	if o == nil {
 		return nil
 	}
 	return o.Authorization
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetAuthorizationID() *string {
+func (o *UpdateTransactionResponseBody) GetAuthorizationID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AuthorizationID
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetCapture() *shared.Capture {
+func (o *UpdateTransactionResponseBody) GetCapture() *shared.Capture {
 	if o == nil {
 		return nil
 	}
 	return o.Capture
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetCaptures() []shared.Capture {
+func (o *UpdateTransactionResponseBody) GetCaptures() []shared.Capture {
 	if o == nil {
 		return nil
 	}
 	return o.Captures
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetChargebackDetails() *shared.ChargebackDetails {
+func (o *UpdateTransactionResponseBody) GetChargebackDetails() *shared.ChargebackDetails {
 	if o == nil {
 		return nil
 	}
 	return o.ChargebackDetails
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetCredit() *shared.Credit {
+func (o *UpdateTransactionResponseBody) GetCredit() *shared.Credit {
 	if o == nil {
 		return nil
 	}
 	return o.Credit
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetCustomFields() *shared.CustomFields {
+func (o *UpdateTransactionResponseBody) GetCustomFields() *shared.CustomFields {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetCustomerListStatus() *shared.CustomerListStatus {
+func (o *UpdateTransactionResponseBody) GetCustomerListStatus() *shared.CustomerListStatus {
 	if o == nil {
 		return nil
 	}
 	return o.CustomerListStatus
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetDate() *int64 {
+func (o *UpdateTransactionResponseBody) GetDate() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Date
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetFromConsumer() *shared.CreditCardUser {
+func (o *UpdateTransactionResponseBody) GetFromConsumer() *shared.CreditCardUser {
 	if o == nil {
 		return nil
 	}
 	return o.FromConsumer
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetFromConsumerMembershipUsers() *shared.ConsumerUserMembership {
+func (o *UpdateTransactionResponseBody) GetFromConsumerMembershipUsers() *shared.ConsumerUserMembership {
 	if o == nil {
 		return nil
 	}
 	return o.FromConsumerMembershipUsers
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetFromCreditCard() *shared.CreditCardView {
+func (o *UpdateTransactionResponseBody) GetFromCreditCard() *shared.CreditCardView {
 	if o == nil {
 		return nil
 	}
 	return o.FromCreditCard
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetID() *string {
+func (o *UpdateTransactionResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetIndemnificationDecision() *shared.TransactionIndemnificationDecision {
+func (o *UpdateTransactionResponseBody) GetIndemnificationDecision() *shared.TransactionIndemnificationDecision {
 	if o == nil {
 		return nil
 	}
 	return o.IndemnificationDecision
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetIndemnificationReason() *shared.TransactionIndemnificationReason {
+func (o *UpdateTransactionResponseBody) GetIndemnificationReason() *shared.TransactionIndemnificationReason {
 	if o == nil {
 		return nil
 	}
 	return o.IndemnificationReason
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetLast4() *string {
+func (o *UpdateTransactionResponseBody) GetLast4() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Last4
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetLastViewedUtc() *int64 {
+func (o *UpdateTransactionResponseBody) GetLastViewedUtc() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.LastViewedUtc
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetManualDisputes() *shared.ManualDisputes {
+func (o *UpdateTransactionResponseBody) GetManualDisputes() *shared.ManualDisputes {
 	if o == nil {
 		return nil
 	}
 	return o.ManualDisputes
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetMerchant() *shared.Merchant {
+func (o *UpdateTransactionResponseBody) GetMerchant() *shared.Merchant {
 	if o == nil {
 		return nil
 	}
 	return o.Merchant
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetMerchantDivision() *shared.MerchantDivision {
+func (o *UpdateTransactionResponseBody) GetMerchantDivision() *shared.MerchantDivision {
 	if o == nil {
 		return nil
 	}
 	return o.MerchantDivision
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetMerchantOrderNumber() *string {
+func (o *UpdateTransactionResponseBody) GetMerchantOrderNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.MerchantOrderNumber
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetOrder() *shared.OrderView {
+func (o *UpdateTransactionResponseBody) GetOrder() *shared.OrderView {
 	if o == nil {
 		return nil
 	}
 	return o.Order
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetOrderDecision() *shared.OrderDecision {
+func (o *UpdateTransactionResponseBody) GetOrderDecision() *shared.OrderDecision {
 	if o == nil {
 		return nil
 	}
 	return o.OrderDecision
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetPlatformMetadata() map[string]string {
+func (o *UpdateTransactionResponseBody) GetPlatformMetadata() map[string]string {
 	if o == nil {
 		return nil
 	}
 	return o.PlatformMetadata
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetProcessor() *shared.TransactionProcessor {
+func (o *UpdateTransactionResponseBody) GetProcessor() *shared.TransactionProcessor {
 	if o == nil {
 		return nil
 	}
 	return o.Processor
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetReference() *string {
+func (o *UpdateTransactionResponseBody) GetReference() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetRefundTransactionIds() []string {
+func (o *UpdateTransactionResponseBody) GetRefundTransactionIds() []string {
 	if o == nil {
 		return nil
 	}
 	return o.RefundTransactionIds
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetRefundTransactions() []shared.TransactionView {
+func (o *UpdateTransactionResponseBody) GetRefundTransactions() []shared.TransactionView {
 	if o == nil {
 		return nil
 	}
 	return o.RefundTransactions
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetRefundedAmount() *shared.AmountView {
+func (o *UpdateTransactionResponseBody) GetRefundedAmount() *shared.AmountView {
 	if o == nil {
 		return nil
 	}
 	return o.RefundedAmount
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetReviewTicket() *shared.ReviewTicket {
+func (o *UpdateTransactionResponseBody) GetReviewTicket() *shared.ReviewTicket {
 	if o == nil {
 		return nil
 	}
 	return o.ReviewTicket
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetRiskInsights() *shared.RiskInsightsYml {
+func (o *UpdateTransactionResponseBody) GetRiskInsights() *shared.RiskInsightsYml {
 	if o == nil {
 		return nil
 	}
 	return o.RiskInsights
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetRiskReviewStatus() *shared.RiskReviewStatus {
+func (o *UpdateTransactionResponseBody) GetRiskReviewStatus() *shared.RiskReviewStatus {
 	if o == nil {
 		return nil
 	}
 	return o.RiskReviewStatus
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetRiskScore() *int64 {
+func (o *UpdateTransactionResponseBody) GetRiskScore() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.RiskScore
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetSourceTransaction() *shared.TransactionView {
+func (o *UpdateTransactionResponseBody) GetSourceTransaction() *shared.TransactionView {
 	if o == nil {
 		return nil
 	}
 	return o.SourceTransaction
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetSplits() []UpdateTransaction200ApplicationJSONSplits {
+func (o *UpdateTransactionResponseBody) GetSplits() []UpdateTransactionSplits {
 	if o == nil {
 		return nil
 	}
 	return o.Splits
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetStatus() *shared.TransactionStatus {
+func (o *UpdateTransactionResponseBody) GetStatus() *shared.TransactionStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetTimeline() *shared.TransactionTimelineView {
+func (o *UpdateTransactionResponseBody) GetTimeline() *shared.TransactionTimelineView {
 	if o == nil {
 		return nil
 	}
 	return o.Timeline
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetToConsumer() *shared.ConsumerSelfView {
+func (o *UpdateTransactionResponseBody) GetToConsumer() *shared.ConsumerSelfView {
 	if o == nil {
 		return nil
 	}
 	return o.ToConsumer
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetToCreditCard() *shared.CreditCardView {
+func (o *UpdateTransactionResponseBody) GetToCreditCard() *shared.CreditCardView {
 	if o == nil {
 		return nil
 	}
 	return o.ToCreditCard
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetTransactionProperties() map[string]string {
+func (o *UpdateTransactionResponseBody) GetTransactionProperties() map[string]string {
 	if o == nil {
 		return nil
 	}
 	return o.TransactionProperties
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetTransactionRejectionDetails() *UpdateTransaction200ApplicationJSONTransactionRejectionDetails {
+func (o *UpdateTransactionResponseBody) GetTransactionRejectionDetails() *UpdateTransactionTransactionRejectionDetails {
 	if o == nil {
 		return nil
 	}
 	return o.TransactionRejectionDetails
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetType() *shared.TransactionType {
+func (o *UpdateTransactionResponseBody) GetType() *shared.TransactionType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetViewStatus() *string {
+func (o *UpdateTransactionResponseBody) GetViewStatus() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ViewStatus
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetVoid() *shared.Void {
+func (o *UpdateTransactionResponseBody) GetVoid() *shared.Void {
 	if o == nil {
 		return nil
 	}
 	return o.Void
 }
 
-func (o *UpdateTransaction200ApplicationJSON) GetVoidCause() *string {
+func (o *UpdateTransactionResponseBody) GetVoidCause() *string {
 	if o == nil {
 		return nil
 	}
@@ -600,11 +600,9 @@ type UpdateTransactionResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Generic Error Schema
-	ErrorsBoltAPIResponse *shared.ErrorsBoltAPIResponse
 	// Transaction Details Retrieved
 	//
-	UpdateTransaction200ApplicationJSONObject *UpdateTransaction200ApplicationJSON
+	Object *UpdateTransactionResponseBody
 }
 
 func (o *UpdateTransactionResponse) GetContentType() string {
@@ -628,16 +626,9 @@ func (o *UpdateTransactionResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdateTransactionResponse) GetErrorsBoltAPIResponse() *shared.ErrorsBoltAPIResponse {
+func (o *UpdateTransactionResponse) GetObject() *UpdateTransactionResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ErrorsBoltAPIResponse
-}
-
-func (o *UpdateTransactionResponse) GetUpdateTransaction200ApplicationJSONObject() *UpdateTransaction200ApplicationJSON {
-	if o == nil {
-		return nil
-	}
-	return o.UpdateTransaction200ApplicationJSONObject
+	return o.Object
 }

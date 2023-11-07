@@ -95,8 +95,6 @@ type RefundTransactionResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Generic Error Schema
-	ErrorsBoltAPIResponse *shared.ErrorsBoltAPIResponse
 	// Refund Successful
 	TransactionView *shared.TransactionView
 }
@@ -120,13 +118,6 @@ func (o *RefundTransactionResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *RefundTransactionResponse) GetErrorsBoltAPIResponse() *shared.ErrorsBoltAPIResponse {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorsBoltAPIResponse
 }
 
 func (o *RefundTransactionResponse) GetTransactionView() *shared.TransactionView {

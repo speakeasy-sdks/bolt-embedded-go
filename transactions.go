@@ -15,13 +15,13 @@ import (
 	"strings"
 )
 
-// transactions - Authorize credit card transactions and perform operations on those transactions with Bolt's transaction API.
-type transactions struct {
+// Transactions - Authorize credit card transactions and perform operations on those transactions with Bolt's transaction API.
+type Transactions struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTransactions(sdkConfig sdkConfiguration) *transactions {
-	return &transactions{
+func newTransactions(sdkConfig sdkConfiguration) *Transactions {
+	return &Transactions{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -31,7 +31,7 @@ func newTransactions(sdkConfig sdkConfiguration) *transactions {
 // * • Authorize a payment using an unsaved payment method for a guest or logged-in shopper.
 // * • Authorize a payment using a saved payment method for a logged-in shopper.
 // *  • Re-charge a previous transaction using the `credit_card_id` of the transaction.
-func (s *transactions) AuthorizeTransaction(ctx context.Context, request operations.AuthorizeTransactionRequest, security operations.AuthorizeTransactionSecurity) (*operations.AuthorizeTransactionResponse, error) {
+func (s *Transactions) AuthorizeTransaction(ctx context.Context, request operations.AuthorizeTransactionRequest, security operations.AuthorizeTransactionSecurity) (*operations.AuthorizeTransactionResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/merchant/transactions/authorize"
 
@@ -88,6 +88,10 @@ func (s *transactions) AuthorizeTransaction(ctx context.Context, request operati
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -97,7 +101,7 @@ func (s *transactions) AuthorizeTransaction(ctx context.Context, request operati
 // This captures funds for the designated transaction. A capture can be done for any partial amount or for the total authorized amount.
 //
 // Although the response returns the standard `transaction_view` object, only `captures` and either `id` or `reference` are needed.
-func (s *transactions) CaptureTransaction(ctx context.Context, request operations.CaptureTransactionRequest, security operations.CaptureTransactionSecurity) (*operations.CaptureTransactionResponse, error) {
+func (s *Transactions) CaptureTransaction(ctx context.Context, request operations.CaptureTransactionRequest, security operations.CaptureTransactionSecurity) (*operations.CaptureTransactionResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/merchant/transactions/capture"
 
@@ -159,27 +163,31 @@ func (s *transactions) CaptureTransaction(ctx context.Context, request operation
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsBoltAPIResponse
+			var out sdkerrors.ErrorsBoltAPIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsBoltAPIResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CaptureTransaction422ApplicationJSON
+			var out sdkerrors.CaptureTransactionResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
+			out.RawResponse = httpRes
 
-			res.CaptureTransaction422ApplicationJSONObject = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -189,7 +197,7 @@ func (s *transactions) CaptureTransaction(ctx context.Context, request operation
 // This allows you to pull the full transaction details for a given transaction.
 //
 //	**Note**: All objects and fields marked `required` in the Transaction Details response are also **nullable**. This includes any sub-components (objects or fields) also marked `required`.
-func (s *transactions) GetTransactionDetails(ctx context.Context, request operations.GetTransactionDetailsRequest, security operations.GetTransactionDetailsSecurity) (*operations.GetTransactionDetailsResponse, error) {
+func (s *Transactions) GetTransactionDetails(ctx context.Context, request operations.GetTransactionDetailsRequest, security operations.GetTransactionDetailsSecurity) (*operations.GetTransactionDetailsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/merchant/transactions/{REFERENCE}", request, nil)
 	if err != nil {
@@ -231,12 +239,12 @@ func (s *transactions) GetTransactionDetails(ctx context.Context, request operat
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTransactionDetails200ApplicationJSON
+			var out operations.GetTransactionDetailsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTransactionDetails200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -245,15 +253,18 @@ func (s *transactions) GetTransactionDetails(ctx context.Context, request operat
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsBoltAPIResponse
+			var out sdkerrors.ErrorsBoltAPIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsBoltAPIResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -261,7 +272,7 @@ func (s *transactions) GetTransactionDetails(ctx context.Context, request operat
 
 // RefundTransaction - Refund a Transaction
 // This refunds a captured transaction. Refunds can be done for any partial amount or for the total authorized amount. These refunds are processed synchronously and return information about the refunded transaction in the standard `transaction_view` object.
-func (s *transactions) RefundTransaction(ctx context.Context, request operations.RefundTransactionRequest, security operations.RefundTransactionSecurity) (*operations.RefundTransactionResponse, error) {
+func (s *Transactions) RefundTransaction(ctx context.Context, request operations.RefundTransactionRequest, security operations.RefundTransactionSecurity) (*operations.RefundTransactionResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/merchant/transactions/credit"
 
@@ -321,15 +332,18 @@ func (s *transactions) RefundTransaction(ctx context.Context, request operations
 	case httpRes.StatusCode == 422:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsBoltAPIResponse
+			var out sdkerrors.ErrorsBoltAPIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsBoltAPIResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -337,7 +351,7 @@ func (s *transactions) RefundTransaction(ctx context.Context, request operations
 
 // UpdateTransaction - Update a Transaction
 // This allows you to update certain transaction properties post-authorization.
-func (s *transactions) UpdateTransaction(ctx context.Context, request operations.UpdateTransactionRequest, security operations.UpdateTransactionSecurity) (*operations.UpdateTransactionResponse, error) {
+func (s *Transactions) UpdateTransaction(ctx context.Context, request operations.UpdateTransactionRequest, security operations.UpdateTransactionSecurity) (*operations.UpdateTransactionResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/v1/merchant/transactions/{REFERENCE}", request, nil)
 	if err != nil {
@@ -388,12 +402,12 @@ func (s *transactions) UpdateTransaction(ctx context.Context, request operations
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.UpdateTransaction200ApplicationJSON
+			var out operations.UpdateTransactionResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateTransaction200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -402,15 +416,18 @@ func (s *transactions) UpdateTransaction(ctx context.Context, request operations
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsBoltAPIResponse
+			var out sdkerrors.ErrorsBoltAPIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsBoltAPIResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -420,7 +437,7 @@ func (s *transactions) UpdateTransaction(ctx context.Context, request operations
 // This voids the authorization for a given transaction. Voids must be completed before the authorization is captured.
 // In the request, either `transaction_id` or `transaction_reference` is required.
 // Although the response returns the standard `transaction_view` object, only `status` and either `id` or `reference` are needed.
-func (s *transactions) VoidTransaction(ctx context.Context, request operations.VoidTransactionRequest, security operations.VoidTransactionSecurity) (*operations.VoidTransactionResponse, error) {
+func (s *Transactions) VoidTransaction(ctx context.Context, request operations.VoidTransactionRequest, security operations.VoidTransactionSecurity) (*operations.VoidTransactionResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/merchant/transactions/void"
 
@@ -482,15 +499,18 @@ func (s *transactions) VoidTransaction(ctx context.Context, request operations.V
 	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out shared.ErrorsBoltAPIResponse
+			var out sdkerrors.ErrorsBoltAPIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
-
-			res.ErrorsBoltAPIResponse = &out
+			return nil, &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

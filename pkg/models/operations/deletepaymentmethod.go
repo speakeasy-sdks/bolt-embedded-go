@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"net/http"
 )
 
@@ -54,8 +53,6 @@ type DeletePaymentMethodResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Forbidden
-	ErrorsBoltAPIResponse *shared.ErrorsBoltAPIResponse
 }
 
 func (o *DeletePaymentMethodResponse) GetContentType() string {
@@ -77,11 +74,4 @@ func (o *DeletePaymentMethodResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DeletePaymentMethodResponse) GetErrorsBoltAPIResponse() *shared.ErrorsBoltAPIResponse {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorsBoltAPIResponse
 }

@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-type ICustomFieldViewCheckoutStep string
+type CheckoutStep string
 
 const (
-	ICustomFieldViewCheckoutStepShippingStep           ICustomFieldViewCheckoutStep = "SHIPPING_STEP"
-	ICustomFieldViewCheckoutStepDeliveryStep           ICustomFieldViewCheckoutStep = "DELIVERY_STEP"
-	ICustomFieldViewCheckoutStepPaymentStep            ICustomFieldViewCheckoutStep = "PAYMENT_STEP"
-	ICustomFieldViewCheckoutStepAccountRegistrationSso ICustomFieldViewCheckoutStep = "ACCOUNT_REGISTRATION_SSO"
+	CheckoutStepShippingStep           CheckoutStep = "SHIPPING_STEP"
+	CheckoutStepDeliveryStep           CheckoutStep = "DELIVERY_STEP"
+	CheckoutStepPaymentStep            CheckoutStep = "PAYMENT_STEP"
+	CheckoutStepAccountRegistrationSso CheckoutStep = "ACCOUNT_REGISTRATION_SSO"
 )
 
-func (e ICustomFieldViewCheckoutStep) ToPointer() *ICustomFieldViewCheckoutStep {
+func (e CheckoutStep) ToPointer() *CheckoutStep {
 	return &e
 }
 
-func (e *ICustomFieldViewCheckoutStep) UnmarshalJSON(data []byte) error {
+func (e *CheckoutStep) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,27 +33,27 @@ func (e *ICustomFieldViewCheckoutStep) UnmarshalJSON(data []byte) error {
 	case "PAYMENT_STEP":
 		fallthrough
 	case "ACCOUNT_REGISTRATION_SSO":
-		*e = ICustomFieldViewCheckoutStep(v)
+		*e = CheckoutStep(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ICustomFieldViewCheckoutStep: %v", v)
+		return fmt.Errorf("invalid value for CheckoutStep: %v", v)
 	}
 }
 
 type ICustomFieldView struct {
-	CheckoutStep          *ICustomFieldViewCheckoutStep `json:"checkout_step,omitempty"`
-	Dynamic               *bool                         `json:"dynamic,omitempty"`
-	ExternalID            *string                       `json:"external_id,omitempty"`
-	FieldSetup            *string                       `json:"field_setup,omitempty"`
-	HelperText            *string                       `json:"helper_text,omitempty"`
-	Label                 *string                       `json:"label,omitempty"`
-	Position              *float64                      `json:"position,omitempty"`
-	PublicID              *string                       `json:"public_id,omitempty"`
-	Required              *bool                         `json:"required,omitempty"`
-	SubscribeToNewsletter *bool                         `json:"subscribeToNewsletter,omitempty"`
+	CheckoutStep          *CheckoutStep `json:"checkout_step,omitempty"`
+	Dynamic               *bool         `json:"dynamic,omitempty"`
+	ExternalID            *string       `json:"external_id,omitempty"`
+	FieldSetup            *string       `json:"field_setup,omitempty"`
+	HelperText            *string       `json:"helper_text,omitempty"`
+	Label                 *string       `json:"label,omitempty"`
+	Position              *float64      `json:"position,omitempty"`
+	PublicID              *string       `json:"public_id,omitempty"`
+	Required              *bool         `json:"required,omitempty"`
+	SubscribeToNewsletter *bool         `json:"subscribeToNewsletter,omitempty"`
 }
 
-func (o *ICustomFieldView) GetCheckoutStep() *ICustomFieldViewCheckoutStep {
+func (o *ICustomFieldView) GetCheckoutStep() *CheckoutStep {
 	if o == nil {
 		return nil
 	}

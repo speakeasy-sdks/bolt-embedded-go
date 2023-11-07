@@ -46,8 +46,6 @@ type VoidTransactionResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Generic Error Schema
-	ErrorsBoltAPIResponse *shared.ErrorsBoltAPIResponse
 	// Void Successful
 	TransactionView *shared.TransactionView
 }
@@ -71,13 +69,6 @@ func (o *VoidTransactionResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *VoidTransactionResponse) GetErrorsBoltAPIResponse() *shared.ErrorsBoltAPIResponse {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorsBoltAPIResponse
 }
 
 func (o *VoidTransactionResponse) GetTransactionView() *shared.TransactionView {

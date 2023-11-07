@@ -14,20 +14,20 @@ import (
 	"strings"
 )
 
-// testing - A collection of endpoints that provide useful functionality to assist in testing your Bolt integration.
-type testing struct {
+// Testing - A collection of endpoints that provide useful functionality to assist in testing your Bolt integration.
+type Testing struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTesting(sdkConfig sdkConfiguration) *testing {
-	return &testing{
+func newTesting(sdkConfig sdkConfiguration) *Testing {
+	return &Testing{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateTestingShopperAccount - Create Testing Shopper Account
 // Create a Bolt shopper account for testing purposes. Available for sandbox use only and the created  account will be recycled after a certain time.
-func (s *testing) CreateTestingShopperAccount(ctx context.Context, request operations.CreateTestingShopperAccountRequest, security operations.CreateTestingShopperAccountSecurity) (*operations.CreateTestingShopperAccountResponse, error) {
+func (s *Testing) CreateTestingShopperAccount(ctx context.Context, request operations.CreateTestingShopperAccountRequest, security operations.CreateTestingShopperAccountSecurity) (*operations.CreateTestingShopperAccountResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/testing/shopper/create"
 
@@ -75,15 +75,19 @@ func (s *testing) CreateTestingShopperAccount(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.CreateTestingShopperAccount200ApplicationJSON
+			var out operations.CreateTestingShopperAccountResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTestingShopperAccount200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -91,7 +95,7 @@ func (s *testing) CreateTestingShopperAccount(ctx context.Context, request opera
 
 // GetTestCreditCardToken - Fetch a Test Credit Card Token
 // This endpoint fetches a new credit card token for Bolt's universal test credit card number `4111 1111 1111 1004`. This is for testing and is available only in sandbox.
-func (s *testing) GetTestCreditCardToken(ctx context.Context, security operations.GetTestCreditCardTokenSecurity) (*operations.GetTestCreditCardTokenResponse, error) {
+func (s *Testing) GetTestCreditCardToken(ctx context.Context, security operations.GetTestCreditCardTokenSecurity) (*operations.GetTestCreditCardTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/v1/testing/card_token"
 
@@ -130,15 +134,19 @@ func (s *testing) GetTestCreditCardToken(ctx context.Context, security operation
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTestCreditCardToken200ApplicationJSON
+			var out operations.GetTestCreditCardTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetTestCreditCardToken200ApplicationJSONObject = &out
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

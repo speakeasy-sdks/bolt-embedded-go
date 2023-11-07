@@ -7,24 +7,24 @@ import (
 	"fmt"
 )
 
-// CaptureSplitsType - Fee type options. **Nullable** for Transactions Details.
-type CaptureSplitsType string
+// CaptureType - Fee type options. **Nullable** for Transactions Details.
+type CaptureType string
 
 const (
-	CaptureSplitsTypeNet            CaptureSplitsType = "net"
-	CaptureSplitsTypeProcessingFee  CaptureSplitsType = "processing_fee"
-	CaptureSplitsTypeRiskFee        CaptureSplitsType = "risk_fee"
-	CaptureSplitsTypeApmFee         CaptureSplitsType = "apm_fee"
-	CaptureSplitsTypeNetworkFee     CaptureSplitsType = "network_fee"
-	CaptureSplitsTypePlatformFee    CaptureSplitsType = "platform_fee"
-	CaptureSplitsTypeBoltAccountFee CaptureSplitsType = "bolt_account_fee"
+	CaptureTypeNet            CaptureType = "net"
+	CaptureTypeProcessingFee  CaptureType = "processing_fee"
+	CaptureTypeRiskFee        CaptureType = "risk_fee"
+	CaptureTypeApmFee         CaptureType = "apm_fee"
+	CaptureTypeNetworkFee     CaptureType = "network_fee"
+	CaptureTypePlatformFee    CaptureType = "platform_fee"
+	CaptureTypeBoltAccountFee CaptureType = "bolt_account_fee"
 )
 
-func (e CaptureSplitsType) ToPointer() *CaptureSplitsType {
+func (e CaptureType) ToPointer() *CaptureType {
 	return &e
 }
 
-func (e *CaptureSplitsType) UnmarshalJSON(data []byte) error {
+func (e *CaptureType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,29 +43,29 @@ func (e *CaptureSplitsType) UnmarshalJSON(data []byte) error {
 	case "platform_fee":
 		fallthrough
 	case "bolt_account_fee":
-		*e = CaptureSplitsType(v)
+		*e = CaptureType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CaptureSplitsType: %v", v)
+		return fmt.Errorf("invalid value for CaptureType: %v", v)
 	}
 }
 
-// CaptureSplits - A split of fees by type and amount.
-type CaptureSplits struct {
+// Splits - A split of fees by type and amount.
+type Splits struct {
 	Amount *AmountView `json:"amount,omitempty"`
 	// Fee type options. **Nullable** for Transactions Details.
 	//
-	Type *CaptureSplitsType `json:"type,omitempty"`
+	Type *CaptureType `json:"type,omitempty"`
 }
 
-func (o *CaptureSplits) GetAmount() *AmountView {
+func (o *Splits) GetAmount() *AmountView {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *CaptureSplits) GetType() *CaptureSplitsType {
+func (o *Splits) GetType() *CaptureType {
 	if o == nil {
 		return nil
 	}
@@ -82,7 +82,7 @@ type Capture struct {
 	// Additional information about the capture. For example, the processor capture ID. **Nullable** for Transactions Details.
 	Metadata map[string]string `json:"metadata,omitempty"`
 	// A split of fees by type and amount. **Nullable** for Transactions Details.
-	Splits []CaptureSplits `json:"splits,omitempty"`
+	Splits []Splits `json:"splits,omitempty"`
 	// The status of the capture. **Nullable** for Transactions Details.
 	Status *CaptureStatus `json:"status,omitempty"`
 }
@@ -115,7 +115,7 @@ func (o *Capture) GetMetadata() map[string]string {
 	return o.Metadata
 }
 
-func (o *Capture) GetSplits() []CaptureSplits {
+func (o *Capture) GetSplits() []Splits {
 	if o == nil {
 		return nil
 	}

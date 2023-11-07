@@ -53,8 +53,6 @@ type DetectAccountResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Missing Query Parameter
-	ErrorsBoltAPIResponse *shared.ErrorsBoltAPIResponse
 	// Has Bolt Account
 	V1AccountsView *shared.V1AccountsView
 }
@@ -78,13 +76,6 @@ func (o *DetectAccountResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
-}
-
-func (o *DetectAccountResponse) GetErrorsBoltAPIResponse() *shared.ErrorsBoltAPIResponse {
-	if o == nil {
-		return nil
-	}
-	return o.ErrorsBoltAPIResponse
 }
 
 func (o *DetectAccountResponse) GetV1AccountsView() *shared.V1AccountsView {

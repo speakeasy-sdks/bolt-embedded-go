@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-type ConsumerSelfViewPlatformAccountStatus string
+type PlatformAccountStatus string
 
 const (
-	ConsumerSelfViewPlatformAccountStatusNone     ConsumerSelfViewPlatformAccountStatus = "none"
-	ConsumerSelfViewPlatformAccountStatusLinked   ConsumerSelfViewPlatformAccountStatus = "linked"
-	ConsumerSelfViewPlatformAccountStatusUnlinked ConsumerSelfViewPlatformAccountStatus = "unlinked"
+	PlatformAccountStatusNone     PlatformAccountStatus = "none"
+	PlatformAccountStatusLinked   PlatformAccountStatus = "linked"
+	PlatformAccountStatusUnlinked PlatformAccountStatus = "unlinked"
 )
 
-func (e ConsumerSelfViewPlatformAccountStatus) ToPointer() *ConsumerSelfViewPlatformAccountStatus {
+func (e PlatformAccountStatus) ToPointer() *PlatformAccountStatus {
 	return &e
 }
 
-func (e *ConsumerSelfViewPlatformAccountStatus) UnmarshalJSON(data []byte) error {
+func (e *PlatformAccountStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,22 +30,22 @@ func (e *ConsumerSelfViewPlatformAccountStatus) UnmarshalJSON(data []byte) error
 	case "linked":
 		fallthrough
 	case "unlinked":
-		*e = ConsumerSelfViewPlatformAccountStatus(v)
+		*e = PlatformAccountStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ConsumerSelfViewPlatformAccountStatus: %v", v)
+		return fmt.Errorf("invalid value for PlatformAccountStatus: %v", v)
 	}
 }
 
 type ConsumerSelfView struct {
-	Authentication        *LoginView                             `json:"authentication,omitempty"`
-	EmailVerified         *bool                                  `json:"email_verified,omitempty"`
-	Emails                []EmailView                            `json:"emails,omitempty"`
-	FirstName             *string                                `json:"first_name,omitempty"`
-	ID                    *string                                `json:"id,omitempty"`
-	LastName              *string                                `json:"last_name,omitempty"`
-	Phones                []PhoneView                            `json:"phones,omitempty"`
-	PlatformAccountStatus *ConsumerSelfViewPlatformAccountStatus `json:"platform_account_status,omitempty"`
+	Authentication        *LoginView             `json:"authentication,omitempty"`
+	EmailVerified         *bool                  `json:"email_verified,omitempty"`
+	Emails                []EmailView            `json:"emails,omitempty"`
+	FirstName             *string                `json:"first_name,omitempty"`
+	ID                    *string                `json:"id,omitempty"`
+	LastName              *string                `json:"last_name,omitempty"`
+	Phones                []PhoneView            `json:"phones,omitempty"`
+	PlatformAccountStatus *PlatformAccountStatus `json:"platform_account_status,omitempty"`
 }
 
 func (o *ConsumerSelfView) GetAuthentication() *LoginView {
@@ -97,7 +97,7 @@ func (o *ConsumerSelfView) GetPhones() []PhoneView {
 	return o.Phones
 }
 
-func (o *ConsumerSelfView) GetPlatformAccountStatus() *ConsumerSelfViewPlatformAccountStatus {
+func (o *ConsumerSelfView) GetPlatformAccountStatus() *PlatformAccountStatus {
 	if o == nil {
 		return nil
 	}

@@ -7,18 +7,18 @@ import (
 	"fmt"
 )
 
-type InStoreCartShipmentDistanceUnit string
+type DistanceUnit string
 
 const (
-	InStoreCartShipmentDistanceUnitKm   InStoreCartShipmentDistanceUnit = "km"
-	InStoreCartShipmentDistanceUnitMile InStoreCartShipmentDistanceUnit = "mile"
+	DistanceUnitKm   DistanceUnit = "km"
+	DistanceUnitMile DistanceUnit = "mile"
 )
 
-func (e InStoreCartShipmentDistanceUnit) ToPointer() *InStoreCartShipmentDistanceUnit {
+func (e DistanceUnit) ToPointer() *DistanceUnit {
 	return &e
 }
 
-func (e *InStoreCartShipmentDistanceUnit) UnmarshalJSON(data []byte) error {
+func (e *DistanceUnit) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -27,10 +27,10 @@ func (e *InStoreCartShipmentDistanceUnit) UnmarshalJSON(data []byte) error {
 	case "km":
 		fallthrough
 	case "mile":
-		*e = InStoreCartShipmentDistanceUnit(v)
+		*e = DistanceUnit(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InStoreCartShipmentDistanceUnit: %v", v)
+		return fmt.Errorf("invalid value for DistanceUnit: %v", v)
 	}
 }
 
@@ -38,9 +38,9 @@ type InStoreCartShipment struct {
 	// A cart that is being prepared for shipment
 	CartShipment *CartShipment `json:"cart_shipment,omitempty"`
 	// Shipment option description.
-	Description  *string                          `json:"description,omitempty"`
-	Distance     *float64                         `json:"distance,omitempty"`
-	DistanceUnit *InStoreCartShipmentDistanceUnit `json:"distance_unit,omitempty"`
+	Description  *string       `json:"description,omitempty"`
+	Distance     *float64      `json:"distance,omitempty"`
+	DistanceUnit *DistanceUnit `json:"distance_unit,omitempty"`
 	// The Address object is used for billing, shipping, and physical store address use cases.
 	InStorePickupAddress *Address `json:"in_store_pickup_address,omitempty"`
 	PickupWindowClose    *int64   `json:"pickup_window_close,omitempty"`
@@ -70,7 +70,7 @@ func (o *InStoreCartShipment) GetDistance() *float64 {
 	return o.Distance
 }
 
-func (o *InStoreCartShipment) GetDistanceUnit() *InStoreCartShipmentDistanceUnit {
+func (o *InStoreCartShipment) GetDistanceUnit() *DistanceUnit {
 	if o == nil {
 		return nil
 	}

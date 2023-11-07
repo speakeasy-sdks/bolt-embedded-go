@@ -35,28 +35,28 @@ func (e *CreditCardPriority) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// CreditCardTokenType - Used to define which payment processor generated the token for this credit card; for those using Bolt's tokenizer, the value must be `bolt`.
-type CreditCardTokenType string
+// TokenType - Used to define which payment processor generated the token for this credit card; for those using Bolt's tokenizer, the value must be `bolt`.
+type TokenType string
 
 const (
-	CreditCardTokenTypeBolt CreditCardTokenType = "bolt"
+	TokenTypeBolt TokenType = "bolt"
 )
 
-func (e CreditCardTokenType) ToPointer() *CreditCardTokenType {
+func (e TokenType) ToPointer() *TokenType {
 	return &e
 }
 
-func (e *CreditCardTokenType) UnmarshalJSON(data []byte) error {
+func (e *TokenType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "bolt":
-		*e = CreditCardTokenType(v)
+		*e = TokenType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditCardTokenType: %v", v)
+		return fmt.Errorf("invalid value for TokenType: %v", v)
 	}
 }
 
@@ -79,7 +79,7 @@ type CreditCard struct {
 	// The Bolt token associated to the credit card.
 	Token string `json:"token"`
 	// Used to define which payment processor generated the token for this credit card; for those using Bolt's tokenizer, the value must be `bolt`.
-	TokenType CreditCardTokenType `json:"token_type"`
+	TokenType TokenType `json:"token_type"`
 }
 
 func (o *CreditCard) GetBillingAddress() *Address {
@@ -138,9 +138,9 @@ func (o *CreditCard) GetToken() string {
 	return o.Token
 }
 
-func (o *CreditCard) GetTokenType() CreditCardTokenType {
+func (o *CreditCard) GetTokenType() TokenType {
 	if o == nil {
-		return CreditCardTokenType("")
+		return TokenType("")
 	}
 	return o.TokenType
 }

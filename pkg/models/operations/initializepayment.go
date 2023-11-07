@@ -28,8 +28,8 @@ func (o *InitializePaymentSecurity) GetXAPIKey() *string {
 	return o.XAPIKey
 }
 
-// InitializePaymentRequestBodyShopperIdentity - Identification information for the Shopper. This is only required when creating a new Bolt account.
-type InitializePaymentRequestBodyShopperIdentity struct {
+// InitializePaymentShopperIdentity - Identification information for the Shopper. This is only required when creating a new Bolt account.
+type InitializePaymentShopperIdentity struct {
 	// determines whether to create a bolt account for this shopper
 	CreateBoltAccount *bool `json:"create_bolt_account,omitempty"`
 	// Email address of the shopper
@@ -42,35 +42,35 @@ type InitializePaymentRequestBodyShopperIdentity struct {
 	Phone string `json:"phone"`
 }
 
-func (o *InitializePaymentRequestBodyShopperIdentity) GetCreateBoltAccount() *bool {
+func (o *InitializePaymentShopperIdentity) GetCreateBoltAccount() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.CreateBoltAccount
 }
 
-func (o *InitializePaymentRequestBodyShopperIdentity) GetEmail() string {
+func (o *InitializePaymentShopperIdentity) GetEmail() string {
 	if o == nil {
 		return ""
 	}
 	return o.Email
 }
 
-func (o *InitializePaymentRequestBodyShopperIdentity) GetFirstName() string {
+func (o *InitializePaymentShopperIdentity) GetFirstName() string {
 	if o == nil {
 		return ""
 	}
 	return o.FirstName
 }
 
-func (o *InitializePaymentRequestBodyShopperIdentity) GetLastName() string {
+func (o *InitializePaymentShopperIdentity) GetLastName() string {
 	if o == nil {
 		return ""
 	}
 	return o.LastName
 }
 
-func (o *InitializePaymentRequestBodyShopperIdentity) GetPhone() string {
+func (o *InitializePaymentShopperIdentity) GetPhone() string {
 	if o == nil {
 		return ""
 	}
@@ -81,7 +81,7 @@ type InitializePaymentRequestBody struct {
 	// The details of the cart being purchased with this payment.
 	Cart shared.CartCreate `json:"cart"`
 	// Identification information for the Shopper. This is only required when creating a new Bolt account.
-	ShopperIdentity *InitializePaymentRequestBodyShopperIdentity `json:"shopper_identity,omitempty"`
+	ShopperIdentity *InitializePaymentShopperIdentity `json:"shopper_identity,omitempty"`
 }
 
 func (o *InitializePaymentRequestBody) GetCart() shared.CartCreate {
@@ -91,7 +91,7 @@ func (o *InitializePaymentRequestBody) GetCart() shared.CartCreate {
 	return o.Cart
 }
 
-func (o *InitializePaymentRequestBody) GetShopperIdentity() *InitializePaymentRequestBodyShopperIdentity {
+func (o *InitializePaymentRequestBody) GetShopperIdentity() *InitializePaymentShopperIdentity {
 	if o == nil {
 		return nil
 	}
@@ -127,20 +127,20 @@ func (o *InitializePaymentRequest) GetXPublishableKey() *string {
 	return o.XPublishableKey
 }
 
-// InitializePayment200ApplicationJSONStatus - The current payment status.
-type InitializePayment200ApplicationJSONStatus string
+// InitializePaymentStatus - The current payment status.
+type InitializePaymentStatus string
 
 const (
-	InitializePayment200ApplicationJSONStatusAwaitingUserConfirmation InitializePayment200ApplicationJSONStatus = "awaiting_user_confirmation"
-	InitializePayment200ApplicationJSONStatusPaymentReady             InitializePayment200ApplicationJSONStatus = "payment_ready"
-	InitializePayment200ApplicationJSONStatusSuccess                  InitializePayment200ApplicationJSONStatus = "success"
+	InitializePaymentStatusAwaitingUserConfirmation InitializePaymentStatus = "awaiting_user_confirmation"
+	InitializePaymentStatusPaymentReady             InitializePaymentStatus = "payment_ready"
+	InitializePaymentStatusSuccess                  InitializePaymentStatus = "success"
 )
 
-func (e InitializePayment200ApplicationJSONStatus) ToPointer() *InitializePayment200ApplicationJSONStatus {
+func (e InitializePaymentStatus) ToPointer() *InitializePaymentStatus {
 	return &e
 }
 
-func (e *InitializePayment200ApplicationJSONStatus) UnmarshalJSON(data []byte) error {
+func (e *InitializePaymentStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -151,29 +151,29 @@ func (e *InitializePayment200ApplicationJSONStatus) UnmarshalJSON(data []byte) e
 	case "payment_ready":
 		fallthrough
 	case "success":
-		*e = InitializePayment200ApplicationJSONStatus(v)
+		*e = InitializePaymentStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InitializePayment200ApplicationJSONStatus: %v", v)
+		return fmt.Errorf("invalid value for InitializePaymentStatus: %v", v)
 	}
 }
 
-// InitializePayment200ApplicationJSON - Payment token retrieved.
-type InitializePayment200ApplicationJSON struct {
+// InitializePaymentResponseBody - Payment token retrieved.
+type InitializePaymentResponseBody struct {
 	// The ID for a Payment Attempt
 	ID *string `json:"id,omitempty"`
 	// The current payment status.
-	Status *InitializePayment200ApplicationJSONStatus `json:"status,omitempty"`
+	Status *InitializePaymentStatus `json:"status,omitempty"`
 }
 
-func (o *InitializePayment200ApplicationJSON) GetID() *string {
+func (o *InitializePaymentResponseBody) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *InitializePayment200ApplicationJSON) GetStatus() *InitializePayment200ApplicationJSONStatus {
+func (o *InitializePaymentResponseBody) GetStatus() *InitializePaymentStatus {
 	if o == nil {
 		return nil
 	}
@@ -188,7 +188,7 @@ type InitializePaymentResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Payment token retrieved.
-	InitializePayment200ApplicationJSONObject *InitializePayment200ApplicationJSON
+	Object *InitializePaymentResponseBody
 }
 
 func (o *InitializePaymentResponse) GetContentType() string {
@@ -212,9 +212,9 @@ func (o *InitializePaymentResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *InitializePaymentResponse) GetInitializePayment200ApplicationJSONObject() *InitializePayment200ApplicationJSON {
+func (o *InitializePaymentResponse) GetObject() *InitializePaymentResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.InitializePayment200ApplicationJSONObject
+	return o.Object
 }

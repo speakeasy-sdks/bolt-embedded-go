@@ -7,25 +7,25 @@ import (
 	"fmt"
 )
 
-// VoidCause - Specifies why this particular transaction is voided.
-type VoidCause string
+// Cause - Specifies why this particular transaction is voided.
+type Cause string
 
 const (
-	VoidCauseMerchantAction          VoidCause = "merchant_action"
-	VoidCausePaypalSync              VoidCause = "paypal_sync"
-	VoidCauseAmazonPaySync           VoidCause = "amazon_pay_sync"
-	VoidCauseIrreversibleReject      VoidCause = "irreversible_reject"
-	VoidCauseAuthExpire              VoidCause = "auth_expire"
-	VoidCauseAuthVerificationExpired VoidCause = "auth_verification_expired"
-	VoidCausePaymentMethodUpdater    VoidCause = "payment_method_updater"
-	VoidCauseLessThanNilGreaterThan  VoidCause = "<nil>"
+	CauseMerchantAction          Cause = "merchant_action"
+	CausePaypalSync              Cause = "paypal_sync"
+	CauseAmazonPaySync           Cause = "amazon_pay_sync"
+	CauseIrreversibleReject      Cause = "irreversible_reject"
+	CauseAuthExpire              Cause = "auth_expire"
+	CauseAuthVerificationExpired Cause = "auth_verification_expired"
+	CausePaymentMethodUpdater    Cause = "payment_method_updater"
+	CauseLessThanNilGreaterThan  Cause = "<nil>"
 )
 
-func (e VoidCause) ToPointer() *VoidCause {
+func (e Cause) ToPointer() *Cause {
 	return &e
 }
 
-func (e *VoidCause) UnmarshalJSON(data []byte) error {
+func (e *Cause) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -46,27 +46,27 @@ func (e *VoidCause) UnmarshalJSON(data []byte) error {
 	case "payment_method_updater":
 		fallthrough
 	case "<nil>":
-		*e = VoidCause(v)
+		*e = Cause(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for VoidCause: %v", v)
+		return fmt.Errorf("invalid value for Cause: %v", v)
 	}
 }
 
-// VoidStatus - The status of the void request.
-type VoidStatus string
+// Status - The status of the void request.
+type Status string
 
 const (
-	VoidStatusSucceeded VoidStatus = "succeeded"
-	VoidStatusDeclined  VoidStatus = "declined"
-	VoidStatusError     VoidStatus = "error"
+	StatusSucceeded Status = "succeeded"
+	StatusDeclined  Status = "declined"
+	StatusError     Status = "error"
 )
 
-func (e VoidStatus) ToPointer() *VoidStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *VoidStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -77,25 +77,25 @@ func (e *VoidStatus) UnmarshalJSON(data []byte) error {
 	case "declined":
 		fallthrough
 	case "error":
-		*e = VoidStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for VoidStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
 type Void struct {
 	// Specifies why this particular transaction is voided.
-	Cause *VoidCause `json:"cause,omitempty"`
+	Cause *Cause `json:"cause,omitempty"`
 	// The reference ID associated with a transaction event (auth, capture, refund, void). This is an arbitrary identifier created by the merchant. Bolt does not enforce any uniqueness constraints on this ID. It is up to the merchant to generate identifiers that properly fulfill its needs.
 	MerchantEventID *string `json:"merchant_event_id,omitempty"`
 	// The status of the void request.
-	Status *VoidStatus `json:"status,omitempty"`
+	Status *Status `json:"status,omitempty"`
 	// The void ID returned from the payment processor.
 	Void *string `json:"void,omitempty"`
 }
 
-func (o *Void) GetCause() *VoidCause {
+func (o *Void) GetCause() *Cause {
 	if o == nil {
 		return nil
 	}
@@ -109,7 +109,7 @@ func (o *Void) GetMerchantEventID() *string {
 	return o.MerchantEventID
 }
 
-func (o *Void) GetStatus() *VoidStatus {
+func (o *Void) GetStatus() *Status {
 	if o == nil {
 		return nil
 	}

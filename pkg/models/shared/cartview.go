@@ -46,7 +46,7 @@ func (o *CartViewFulfillments) GetItems() []ICartItemView {
 	return o.Items
 }
 
-type CartViewLoyaltyRewards struct {
+type LoyaltyRewards struct {
 	Amount      *AmountView `json:"amount,omitempty"`
 	CouponCode  *string     `json:"coupon_code,omitempty"`
 	Description *string     `json:"description,omitempty"`
@@ -56,49 +56,49 @@ type CartViewLoyaltyRewards struct {
 	Type        *string     `json:"type,omitempty"`
 }
 
-func (o *CartViewLoyaltyRewards) GetAmount() *AmountView {
+func (o *LoyaltyRewards) GetAmount() *AmountView {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *CartViewLoyaltyRewards) GetCouponCode() *string {
+func (o *LoyaltyRewards) GetCouponCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CouponCode
 }
 
-func (o *CartViewLoyaltyRewards) GetDescription() *string {
+func (o *LoyaltyRewards) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *CartViewLoyaltyRewards) GetDetails() *string {
+func (o *LoyaltyRewards) GetDetails() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Details
 }
 
-func (o *CartViewLoyaltyRewards) GetPoints() *int64 {
+func (o *LoyaltyRewards) GetPoints() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Points
 }
 
-func (o *CartViewLoyaltyRewards) GetSource() *string {
+func (o *LoyaltyRewards) GetSource() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Source
 }
 
-func (o *CartViewLoyaltyRewards) GetType() *string {
+func (o *LoyaltyRewards) GetType() *string {
 	if o == nil {
 		return nil
 	}
@@ -119,13 +119,13 @@ type CartView struct {
 	Fees           []ICartItemView        `json:"fees,omitempty"`
 	Fulfillments   []CartViewFulfillments `json:"fulfillments,omitempty"`
 	// A cart that is being prepared for shipment
-	InStoreShipments     *InStoreShipment2        `json:"in_store_shipments,omitempty"`
-	Items                []ICartItemView          `json:"items,omitempty"`
-	LoyaltyRewards       []CartViewLoyaltyRewards `json:"loyalty_rewards,omitempty"`
-	LoyaltyRewardsAmount *AmountView              `json:"loyalty_rewards_amount,omitempty"`
-	MerchantOrderURL     *string                  `json:"merchant_order_url,omitempty"`
-	Metadata             map[string]string        `json:"metadata,omitempty"`
-	Msrp                 *AmountView              `json:"msrp,omitempty"`
+	InStoreShipments     *InStoreShipment2 `json:"in_store_shipments,omitempty"`
+	Items                []ICartItemView   `json:"items,omitempty"`
+	LoyaltyRewards       []LoyaltyRewards  `json:"loyalty_rewards,omitempty"`
+	LoyaltyRewardsAmount *AmountView       `json:"loyalty_rewards_amount,omitempty"`
+	MerchantOrderURL     *string           `json:"merchant_order_url,omitempty"`
+	Metadata             map[string]string `json:"metadata,omitempty"`
+	Msrp                 *AmountView       `json:"msrp,omitempty"`
 	// Used optionally to pass additional information like order numbers or other IDs as needed.
 	OrderDescription *string `json:"order_description,omitempty"`
 	// This value is used by Bolt as an external reference to a given order. This reference must be unique per successful transaction.
@@ -216,7 +216,7 @@ func (o *CartView) GetItems() []ICartItemView {
 	return o.Items
 }
 
-func (o *CartView) GetLoyaltyRewards() []CartViewLoyaltyRewards {
+func (o *CartView) GetLoyaltyRewards() []LoyaltyRewards {
 	if o == nil {
 		return nil
 	}

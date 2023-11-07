@@ -7,51 +7,51 @@ import (
 	"fmt"
 )
 
-type CreditCardAuthorizationViewAvsResponse string
+type AvsResponse string
 
 const (
-	CreditCardAuthorizationViewAvsResponseZero        CreditCardAuthorizationViewAvsResponse = "00"
-	CreditCardAuthorizationViewAvsResponseOne         CreditCardAuthorizationViewAvsResponse = "01"
-	CreditCardAuthorizationViewAvsResponseTwo         CreditCardAuthorizationViewAvsResponse = "02"
-	CreditCardAuthorizationViewAvsResponseTen         CreditCardAuthorizationViewAvsResponse = "10"
-	CreditCardAuthorizationViewAvsResponseEleven      CreditCardAuthorizationViewAvsResponse = "11"
-	CreditCardAuthorizationViewAvsResponseTwelve      CreditCardAuthorizationViewAvsResponse = "12"
-	CreditCardAuthorizationViewAvsResponseThirteen    CreditCardAuthorizationViewAvsResponse = "13"
-	CreditCardAuthorizationViewAvsResponseFourteen    CreditCardAuthorizationViewAvsResponse = "14"
-	CreditCardAuthorizationViewAvsResponseTwenty      CreditCardAuthorizationViewAvsResponse = "20"
-	CreditCardAuthorizationViewAvsResponseThirty      CreditCardAuthorizationViewAvsResponse = "30"
-	CreditCardAuthorizationViewAvsResponseThirtyOne   CreditCardAuthorizationViewAvsResponse = "31"
-	CreditCardAuthorizationViewAvsResponseThirtyTwo   CreditCardAuthorizationViewAvsResponse = "32"
-	CreditCardAuthorizationViewAvsResponseThirtyThree CreditCardAuthorizationViewAvsResponse = "33"
-	CreditCardAuthorizationViewAvsResponseThirtyFour  CreditCardAuthorizationViewAvsResponse = "34"
-	CreditCardAuthorizationViewAvsResponseForty       CreditCardAuthorizationViewAvsResponse = "40"
-	CreditCardAuthorizationViewAvsResponseAdyen       CreditCardAuthorizationViewAvsResponse = "adyen_"
-	CreditCardAuthorizationViewAvsResponseAdyenA      CreditCardAuthorizationViewAvsResponse = "adyen_A"
-	CreditCardAuthorizationViewAvsResponseAdyenN      CreditCardAuthorizationViewAvsResponse = "adyen_N"
-	CreditCardAuthorizationViewAvsResponseAdyenU      CreditCardAuthorizationViewAvsResponse = "adyen_U"
-	CreditCardAuthorizationViewAvsResponseAdyenS      CreditCardAuthorizationViewAvsResponse = "adyen_S"
-	CreditCardAuthorizationViewAvsResponseAdyenR      CreditCardAuthorizationViewAvsResponse = "adyen_R"
-	CreditCardAuthorizationViewAvsResponseAdyenW      CreditCardAuthorizationViewAvsResponse = "adyen_W"
-	CreditCardAuthorizationViewAvsResponseAdyenT      CreditCardAuthorizationViewAvsResponse = "adyen_T"
-	CreditCardAuthorizationViewAvsResponseAdyenZ      CreditCardAuthorizationViewAvsResponse = "adyen_Z"
-	CreditCardAuthorizationViewAvsResponseAdyenD      CreditCardAuthorizationViewAvsResponse = "adyen_D"
-	CreditCardAuthorizationViewAvsResponseAdyenF      CreditCardAuthorizationViewAvsResponse = "adyen_F"
-	CreditCardAuthorizationViewAvsResponseAdyenM      CreditCardAuthorizationViewAvsResponse = "adyen_M"
-	CreditCardAuthorizationViewAvsResponseAdyenX      CreditCardAuthorizationViewAvsResponse = "adyen_X"
-	CreditCardAuthorizationViewAvsResponseAdyenY      CreditCardAuthorizationViewAvsResponse = "adyen_Y"
-	CreditCardAuthorizationViewAvsResponseAdyenB      CreditCardAuthorizationViewAvsResponse = "adyen_B"
-	CreditCardAuthorizationViewAvsResponseAdyenP      CreditCardAuthorizationViewAvsResponse = "adyen_P"
-	CreditCardAuthorizationViewAvsResponseAdyenC      CreditCardAuthorizationViewAvsResponse = "adyen_C"
-	CreditCardAuthorizationViewAvsResponseAdyenG      CreditCardAuthorizationViewAvsResponse = "adyen_G"
-	CreditCardAuthorizationViewAvsResponseAdyenI      CreditCardAuthorizationViewAvsResponse = "adyen_I"
-	CreditCardAuthorizationViewAvsResponseAdyenK      CreditCardAuthorizationViewAvsResponse = "adyen_K"
+	AvsResponseZero        AvsResponse = "00"
+	AvsResponseOne         AvsResponse = "01"
+	AvsResponseTwo         AvsResponse = "02"
+	AvsResponseTen         AvsResponse = "10"
+	AvsResponseEleven      AvsResponse = "11"
+	AvsResponseTwelve      AvsResponse = "12"
+	AvsResponseThirteen    AvsResponse = "13"
+	AvsResponseFourteen    AvsResponse = "14"
+	AvsResponseTwenty      AvsResponse = "20"
+	AvsResponseThirty      AvsResponse = "30"
+	AvsResponseThirtyOne   AvsResponse = "31"
+	AvsResponseThirtyTwo   AvsResponse = "32"
+	AvsResponseThirtyThree AvsResponse = "33"
+	AvsResponseThirtyFour  AvsResponse = "34"
+	AvsResponseForty       AvsResponse = "40"
+	AvsResponseAdyen       AvsResponse = "adyen_"
+	AvsResponseAdyenA      AvsResponse = "adyen_A"
+	AvsResponseAdyenN      AvsResponse = "adyen_N"
+	AvsResponseAdyenU      AvsResponse = "adyen_U"
+	AvsResponseAdyenS      AvsResponse = "adyen_S"
+	AvsResponseAdyenR      AvsResponse = "adyen_R"
+	AvsResponseAdyenW      AvsResponse = "adyen_W"
+	AvsResponseAdyenT      AvsResponse = "adyen_T"
+	AvsResponseAdyenZ      AvsResponse = "adyen_Z"
+	AvsResponseAdyenD      AvsResponse = "adyen_D"
+	AvsResponseAdyenF      AvsResponse = "adyen_F"
+	AvsResponseAdyenM      AvsResponse = "adyen_M"
+	AvsResponseAdyenX      AvsResponse = "adyen_X"
+	AvsResponseAdyenY      AvsResponse = "adyen_Y"
+	AvsResponseAdyenB      AvsResponse = "adyen_B"
+	AvsResponseAdyenP      AvsResponse = "adyen_P"
+	AvsResponseAdyenC      AvsResponse = "adyen_C"
+	AvsResponseAdyenG      AvsResponse = "adyen_G"
+	AvsResponseAdyenI      AvsResponse = "adyen_I"
+	AvsResponseAdyenK      AvsResponse = "adyen_K"
 )
 
-func (e CreditCardAuthorizationViewAvsResponse) ToPointer() *CreditCardAuthorizationViewAvsResponse {
+func (e AvsResponse) ToPointer() *AvsResponse {
 	return &e
 }
 
-func (e *CreditCardAuthorizationViewAvsResponse) UnmarshalJSON(data []byte) error {
+func (e *AvsResponse) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -126,46 +126,46 @@ func (e *CreditCardAuthorizationViewAvsResponse) UnmarshalJSON(data []byte) erro
 	case "adyen_I":
 		fallthrough
 	case "adyen_K":
-		*e = CreditCardAuthorizationViewAvsResponse(v)
+		*e = AvsResponse(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditCardAuthorizationViewAvsResponse: %v", v)
+		return fmt.Errorf("invalid value for AvsResponse: %v", v)
 	}
 }
 
-type CreditCardAuthorizationViewCvvResponse string
+type CvvResponse string
 
 const (
-	CreditCardAuthorizationViewCvvResponseM           CreditCardAuthorizationViewCvvResponse = "M"
-	CreditCardAuthorizationViewCvvResponseN           CreditCardAuthorizationViewCvvResponse = "N"
-	CreditCardAuthorizationViewCvvResponseP           CreditCardAuthorizationViewCvvResponse = "P"
-	CreditCardAuthorizationViewCvvResponseS           CreditCardAuthorizationViewCvvResponse = "S"
-	CreditCardAuthorizationViewCvvResponseU           CreditCardAuthorizationViewCvvResponse = "U"
-	CreditCardAuthorizationViewCvvResponseD           CreditCardAuthorizationViewCvvResponse = "D"
-	CreditCardAuthorizationViewCvvResponseX           CreditCardAuthorizationViewCvvResponse = "X"
-	CreditCardAuthorizationViewCvvResponseY           CreditCardAuthorizationViewCvvResponse = "Y"
-	CreditCardAuthorizationViewCvvResponseOne         CreditCardAuthorizationViewCvvResponse = "1"
-	CreditCardAuthorizationViewCvvResponseTwo         CreditCardAuthorizationViewCvvResponse = "2"
-	CreditCardAuthorizationViewCvvResponseThree       CreditCardAuthorizationViewCvvResponse = "3"
-	CreditCardAuthorizationViewCvvResponsePass        CreditCardAuthorizationViewCvvResponse = "pass"
-	CreditCardAuthorizationViewCvvResponseFail        CreditCardAuthorizationViewCvvResponse = "fail"
-	CreditCardAuthorizationViewCvvResponseUnavailable CreditCardAuthorizationViewCvvResponse = "unavailable"
-	CreditCardAuthorizationViewCvvResponseUnchecked   CreditCardAuthorizationViewCvvResponse = "unchecked"
-	CreditCardAuthorizationViewCvvResponseBraintreeM  CreditCardAuthorizationViewCvvResponse = "braintree_M"
-	CreditCardAuthorizationViewCvvResponseBraintreeN  CreditCardAuthorizationViewCvvResponse = "braintree_N"
-	CreditCardAuthorizationViewCvvResponseBraintreeU  CreditCardAuthorizationViewCvvResponse = "braintree_U"
-	CreditCardAuthorizationViewCvvResponseBraintreeB  CreditCardAuthorizationViewCvvResponse = "braintree_B"
-	CreditCardAuthorizationViewCvvResponseBraintreeA  CreditCardAuthorizationViewCvvResponse = "braintree_A"
-	CreditCardAuthorizationViewCvvResponseBraintreeI  CreditCardAuthorizationViewCvvResponse = "braintree_I"
-	CreditCardAuthorizationViewCvvResponseBraintreeS  CreditCardAuthorizationViewCvvResponse = "braintree_S"
-	CreditCardAuthorizationViewCvvResponseCvv2        CreditCardAuthorizationViewCvvResponse = "CVV2"
+	CvvResponseM           CvvResponse = "M"
+	CvvResponseN           CvvResponse = "N"
+	CvvResponseP           CvvResponse = "P"
+	CvvResponseS           CvvResponse = "S"
+	CvvResponseU           CvvResponse = "U"
+	CvvResponseD           CvvResponse = "D"
+	CvvResponseX           CvvResponse = "X"
+	CvvResponseY           CvvResponse = "Y"
+	CvvResponseOne         CvvResponse = "1"
+	CvvResponseTwo         CvvResponse = "2"
+	CvvResponseThree       CvvResponse = "3"
+	CvvResponsePass        CvvResponse = "pass"
+	CvvResponseFail        CvvResponse = "fail"
+	CvvResponseUnavailable CvvResponse = "unavailable"
+	CvvResponseUnchecked   CvvResponse = "unchecked"
+	CvvResponseBraintreeM  CvvResponse = "braintree_M"
+	CvvResponseBraintreeN  CvvResponse = "braintree_N"
+	CvvResponseBraintreeU  CvvResponse = "braintree_U"
+	CvvResponseBraintreeB  CvvResponse = "braintree_B"
+	CvvResponseBraintreeA  CvvResponse = "braintree_A"
+	CvvResponseBraintreeI  CvvResponse = "braintree_I"
+	CvvResponseBraintreeS  CvvResponse = "braintree_S"
+	CvvResponseCvv2        CvvResponse = "CVV2"
 )
 
-func (e CreditCardAuthorizationViewCvvResponse) ToPointer() *CreditCardAuthorizationViewCvvResponse {
+func (e CvvResponse) ToPointer() *CvvResponse {
 	return &e
 }
 
-func (e *CreditCardAuthorizationViewCvvResponse) UnmarshalJSON(data []byte) error {
+func (e *CvvResponse) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -216,34 +216,34 @@ func (e *CreditCardAuthorizationViewCvvResponse) UnmarshalJSON(data []byte) erro
 	case "braintree_S":
 		fallthrough
 	case "CVV2":
-		*e = CreditCardAuthorizationViewCvvResponse(v)
+		*e = CvvResponse(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditCardAuthorizationViewCvvResponse: %v", v)
+		return fmt.Errorf("invalid value for CvvResponse: %v", v)
 	}
 }
 
-type CreditCardAuthorizationViewProcessor string
+type Processor string
 
 const (
-	CreditCardAuthorizationViewProcessorVantiv          CreditCardAuthorizationViewProcessor = "vantiv"
-	CreditCardAuthorizationViewProcessorAdyenPayfac     CreditCardAuthorizationViewProcessor = "adyen_payfac"
-	CreditCardAuthorizationViewProcessorAdyenGateway    CreditCardAuthorizationViewProcessor = "adyen_gateway"
-	CreditCardAuthorizationViewProcessorStripe          CreditCardAuthorizationViewProcessor = "stripe"
-	CreditCardAuthorizationViewProcessorBraintree       CreditCardAuthorizationViewProcessor = "braintree"
-	CreditCardAuthorizationViewProcessorCybersource     CreditCardAuthorizationViewProcessor = "cybersource"
-	CreditCardAuthorizationViewProcessorNmi             CreditCardAuthorizationViewProcessor = "nmi"
-	CreditCardAuthorizationViewProcessorAuthorizeNet    CreditCardAuthorizationViewProcessor = "authorize_net"
-	CreditCardAuthorizationViewProcessorRadial          CreditCardAuthorizationViewProcessor = "radial"
-	CreditCardAuthorizationViewProcessorShopifyPayments CreditCardAuthorizationViewProcessor = "shopify_payments"
-	CreditCardAuthorizationViewProcessorRocketgate      CreditCardAuthorizationViewProcessor = "rocketgate"
+	ProcessorVantiv          Processor = "vantiv"
+	ProcessorAdyenPayfac     Processor = "adyen_payfac"
+	ProcessorAdyenGateway    Processor = "adyen_gateway"
+	ProcessorStripe          Processor = "stripe"
+	ProcessorBraintree       Processor = "braintree"
+	ProcessorCybersource     Processor = "cybersource"
+	ProcessorNmi             Processor = "nmi"
+	ProcessorAuthorizeNet    Processor = "authorize_net"
+	ProcessorRadial          Processor = "radial"
+	ProcessorShopifyPayments Processor = "shopify_payments"
+	ProcessorRocketgate      Processor = "rocketgate"
 )
 
-func (e CreditCardAuthorizationViewProcessor) ToPointer() *CreditCardAuthorizationViewProcessor {
+func (e Processor) ToPointer() *Processor {
 	return &e
 }
 
-func (e *CreditCardAuthorizationViewProcessor) UnmarshalJSON(data []byte) error {
+func (e *Processor) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -270,21 +270,21 @@ func (e *CreditCardAuthorizationViewProcessor) UnmarshalJSON(data []byte) error 
 	case "shopify_payments":
 		fallthrough
 	case "rocketgate":
-		*e = CreditCardAuthorizationViewProcessor(v)
+		*e = Processor(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditCardAuthorizationViewProcessor: %v", v)
+		return fmt.Errorf("invalid value for Processor: %v", v)
 	}
 }
 
 type CreditCardAuthorizationView struct {
-	Auth        *string                                 `json:"auth,omitempty"`
-	AvsResponse *CreditCardAuthorizationViewAvsResponse `json:"avs_response,omitempty"`
-	CvvResponse *CreditCardAuthorizationViewCvvResponse `json:"cvv_response,omitempty"`
+	Auth        *string      `json:"auth,omitempty"`
+	AvsResponse *AvsResponse `json:"avs_response,omitempty"`
+	CvvResponse *CvvResponse `json:"cvv_response,omitempty"`
 	// The reference ID associated with a transaction event (auth, capture, refund, void). This is an arbitrary identifier created by the merchant. Bolt does not enforce any uniqueness constraints on this ID. It is up to the merchant to generate identifiers that properly fulfill its needs.
-	MerchantEventID *string                               `json:"merchant_event_id,omitempty"`
-	Metadata        map[string]string                     `json:"metadata,omitempty"`
-	Processor       *CreditCardAuthorizationViewProcessor `json:"processor,omitempty"`
+	MerchantEventID *string           `json:"merchant_event_id,omitempty"`
+	Metadata        map[string]string `json:"metadata,omitempty"`
+	Processor       *Processor        `json:"processor,omitempty"`
 	// The reason code explaining the authorization status.
 	//   * `1` - none
 	//   * `2` - invalid_amount
@@ -313,14 +313,14 @@ func (o *CreditCardAuthorizationView) GetAuth() *string {
 	return o.Auth
 }
 
-func (o *CreditCardAuthorizationView) GetAvsResponse() *CreditCardAuthorizationViewAvsResponse {
+func (o *CreditCardAuthorizationView) GetAvsResponse() *AvsResponse {
 	if o == nil {
 		return nil
 	}
 	return o.AvsResponse
 }
 
-func (o *CreditCardAuthorizationView) GetCvvResponse() *CreditCardAuthorizationViewCvvResponse {
+func (o *CreditCardAuthorizationView) GetCvvResponse() *CvvResponse {
 	if o == nil {
 		return nil
 	}
@@ -341,7 +341,7 @@ func (o *CreditCardAuthorizationView) GetMetadata() map[string]string {
 	return o.Metadata
 }
 
-func (o *CreditCardAuthorizationView) GetProcessor() *CreditCardAuthorizationViewProcessor {
+func (o *CreditCardAuthorizationView) GetProcessor() *Processor {
 	if o == nil {
 		return nil
 	}

@@ -1,5 +1,5 @@
 # Testing
-(*Testing*)
+(*.Testing*)
 
 ## Overview
 
@@ -32,12 +32,14 @@ func main() {
     s := boltembeddedgo.New()
 
 
-    operationSecurity := ""
+    operationSecurity := operations.CreateTestingShopperAccountSecurity{
+            XAPIKey: "",
+        }
 
     ctx := context.Background()
     res, err := s.Testing.CreateTestingShopperAccount(ctx, operations.CreateTestingShopperAccountRequest{
         RequestBody: &operations.CreateTestingShopperAccountRequestBody{
-            EmailState: operations.CreateTestingShopperAccountRequestBodyEmailStateVerified.ToPointer(),
+            EmailState: operations.EmailStateVerified.ToPointer(),
             PhoneState: shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailStateVerified.ToPointer(),
         },
     }, operationSecurity)
@@ -45,7 +47,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.CreateTestingShopperAccount200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -85,7 +87,9 @@ func main() {
     s := boltembeddedgo.New()
 
 
-    operationSecurity := ""
+    operationSecurity := operations.GetTestCreditCardTokenSecurity{
+            XAPIKey: "",
+        }
 
     ctx := context.Background()
     res, err := s.Testing.GetTestCreditCardToken(ctx, operationSecurity)
@@ -93,7 +97,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.GetTestCreditCardToken200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }

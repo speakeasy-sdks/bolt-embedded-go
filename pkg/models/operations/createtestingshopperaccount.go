@@ -20,20 +20,20 @@ func (o *CreateTestingShopperAccountSecurity) GetXAPIKey() string {
 	return o.XAPIKey
 }
 
-// CreateTestingShopperAccountRequestBodyEmailState - The status of the shopper account identifier (email or phone). If the account does not have this identifier, the status is "missing"; If the identifier has been used to receive an OTP code, the status is "verified"; If the identifier has not been used to receive an OTP code, the status is "unverified".
-type CreateTestingShopperAccountRequestBodyEmailState string
+// EmailState - The status of the shopper account identifier (email or phone). If the account does not have this identifier, the status is "missing"; If the identifier has been used to receive an OTP code, the status is "verified"; If the identifier has not been used to receive an OTP code, the status is "unverified".
+type EmailState string
 
 const (
-	CreateTestingShopperAccountRequestBodyEmailStateMissing    CreateTestingShopperAccountRequestBodyEmailState = "missing"
-	CreateTestingShopperAccountRequestBodyEmailStateVerified   CreateTestingShopperAccountRequestBodyEmailState = "verified"
-	CreateTestingShopperAccountRequestBodyEmailStateUnverified CreateTestingShopperAccountRequestBodyEmailState = "unverified"
+	EmailStateMissing    EmailState = "missing"
+	EmailStateVerified   EmailState = "verified"
+	EmailStateUnverified EmailState = "unverified"
 )
 
-func (e CreateTestingShopperAccountRequestBodyEmailState) ToPointer() *CreateTestingShopperAccountRequestBodyEmailState {
+func (e EmailState) ToPointer() *EmailState {
 	return &e
 }
 
-func (e *CreateTestingShopperAccountRequestBodyEmailState) UnmarshalJSON(data []byte) error {
+func (e *EmailState) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -44,10 +44,10 @@ func (e *CreateTestingShopperAccountRequestBodyEmailState) UnmarshalJSON(data []
 	case "verified":
 		fallthrough
 	case "unverified":
-		*e = CreateTestingShopperAccountRequestBodyEmailState(v)
+		*e = EmailState(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateTestingShopperAccountRequestBodyEmailState: %v", v)
+		return fmt.Errorf("invalid value for EmailState: %v", v)
 	}
 }
 
@@ -57,7 +57,7 @@ type CreateTestingShopperAccountRequestBody struct {
 	// Deprecated. Please leave this field absent and let the API automatically generate a random email.
 	Email *string `json:"email,omitempty"`
 	// The status of the shopper account identifier (email or phone). If the account does not have this identifier, the status is "missing"; If the identifier has been used to receive an OTP code, the status is "verified"; If the identifier has not been used to receive an OTP code, the status is "unverified".
-	EmailState *CreateTestingShopperAccountRequestBodyEmailState `json:"email_state,omitempty"`
+	EmailState *EmailState `json:"email_state,omitempty"`
 	// Add a random U.S. address to the created account if set to `true`
 	HasAddress *bool `json:"has_address,omitempty"`
 	// Set this account as migrated by the merchant in the request
@@ -82,7 +82,7 @@ func (o *CreateTestingShopperAccountRequestBody) GetEmail() *string {
 	return o.Email
 }
 
-func (o *CreateTestingShopperAccountRequestBody) GetEmailState() *CreateTestingShopperAccountRequestBodyEmailState {
+func (o *CreateTestingShopperAccountRequestBody) GetEmailState() *EmailState {
 	if o == nil {
 		return nil
 	}
@@ -137,8 +137,8 @@ func (o *CreateTestingShopperAccountRequest) GetXPublishableKey() *string {
 	return o.XPublishableKey
 }
 
-// CreateTestingShopperAccount200ApplicationJSON - Testing Account Created
-type CreateTestingShopperAccount200ApplicationJSON struct {
+// CreateTestingShopperAccountResponseBody - Testing Account Created
+type CreateTestingShopperAccountResponseBody struct {
 	// An email address.
 	Email *string `json:"email,omitempty"`
 	// The status of the shopper account identifier (email or phone). If the account does not have this identifier, the status is "missing"; If the identifier has been used to receive an OTP code, the status is "verified"; If the identifier has not been used to receive an OTP code, the status is "unverified".
@@ -157,56 +157,56 @@ type CreateTestingShopperAccount200ApplicationJSON struct {
 	WillDeactivateAt *string `json:"will_deactivate_at,omitempty"`
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetEmail() *string {
+func (o *CreateTestingShopperAccountResponseBody) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetEmailState() *shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailState {
+func (o *CreateTestingShopperAccountResponseBody) GetEmailState() *shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailState {
 	if o == nil {
 		return nil
 	}
 	return o.EmailState
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetMigratedMerchantOwnerID() *string {
+func (o *CreateTestingShopperAccountResponseBody) GetMigratedMerchantOwnerID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.MigratedMerchantOwnerID
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetOauthCode() *string {
+func (o *CreateTestingShopperAccountResponseBody) GetOauthCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.OauthCode
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetOtpCode() *string {
+func (o *CreateTestingShopperAccountResponseBody) GetOtpCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.OtpCode
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetPhone() *string {
+func (o *CreateTestingShopperAccountResponseBody) GetPhone() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Phone
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetPhoneState() *shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailState {
+func (o *CreateTestingShopperAccountResponseBody) GetPhoneState() *shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailState {
 	if o == nil {
 		return nil
 	}
 	return o.PhoneState
 }
 
-func (o *CreateTestingShopperAccount200ApplicationJSON) GetWillDeactivateAt() *string {
+func (o *CreateTestingShopperAccountResponseBody) GetWillDeactivateAt() *string {
 	if o == nil {
 		return nil
 	}
@@ -221,7 +221,7 @@ type CreateTestingShopperAccountResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Testing Account Created
-	CreateTestingShopperAccount200ApplicationJSONObject *CreateTestingShopperAccount200ApplicationJSON
+	Object *CreateTestingShopperAccountResponseBody
 }
 
 func (o *CreateTestingShopperAccountResponse) GetContentType() string {
@@ -245,9 +245,9 @@ func (o *CreateTestingShopperAccountResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *CreateTestingShopperAccountResponse) GetCreateTestingShopperAccount200ApplicationJSONObject() *CreateTestingShopperAccount200ApplicationJSON {
+func (o *CreateTestingShopperAccountResponse) GetObject() *CreateTestingShopperAccountResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.CreateTestingShopperAccount200ApplicationJSONObject
+	return o.Object
 }

@@ -7,18 +7,18 @@ import (
 	"fmt"
 )
 
-type LoginViewActions string
+type Actions string
 
 const (
-	LoginViewActionsSetPassword    LoginViewActions = "set_password"
-	LoginViewActionsRotatePassword LoginViewActions = "rotate_password"
+	ActionsSetPassword    Actions = "set_password"
+	ActionsRotatePassword Actions = "rotate_password"
 )
 
-func (e LoginViewActions) ToPointer() *LoginViewActions {
+func (e Actions) ToPointer() *Actions {
 	return &e
 }
 
-func (e *LoginViewActions) UnmarshalJSON(data []byte) error {
+func (e *Actions) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -27,27 +27,27 @@ func (e *LoginViewActions) UnmarshalJSON(data []byte) error {
 	case "set_password":
 		fallthrough
 	case "rotate_password":
-		*e = LoginViewActions(v)
+		*e = Actions(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for LoginViewActions: %v", v)
+		return fmt.Errorf("invalid value for Actions: %v", v)
 	}
 }
 
-type LoginViewMethods string
+type Methods string
 
 const (
-	LoginViewMethodsCode           LoginViewMethods = "code"
-	LoginViewMethodsCodePassword   LoginViewMethods = "code_password"
-	LoginViewMethodsPassword       LoginViewMethods = "password"
-	LoginViewMethodsRotatePassword LoginViewMethods = "rotate_password"
+	MethodsCode           Methods = "code"
+	MethodsCodePassword   Methods = "code_password"
+	MethodsPassword       Methods = "password"
+	MethodsRotatePassword Methods = "rotate_password"
 )
 
-func (e LoginViewMethods) ToPointer() *LoginViewMethods {
+func (e Methods) ToPointer() *Methods {
 	return &e
 }
 
-func (e *LoginViewMethods) UnmarshalJSON(data []byte) error {
+func (e *Methods) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -60,27 +60,27 @@ func (e *LoginViewMethods) UnmarshalJSON(data []byte) error {
 	case "password":
 		fallthrough
 	case "rotate_password":
-		*e = LoginViewMethods(v)
+		*e = Methods(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for LoginViewMethods: %v", v)
+		return fmt.Errorf("invalid value for Methods: %v", v)
 	}
 }
 
 type LoginView struct {
-	Actions             []LoginViewActions `json:"actions,omitempty"`
-	Methods             []LoginViewMethods `json:"methods,omitempty"`
-	SsoAuthorizationURL *string            `json:"sso_authorization_url,omitempty"`
+	Actions             []Actions `json:"actions,omitempty"`
+	Methods             []Methods `json:"methods,omitempty"`
+	SsoAuthorizationURL *string   `json:"sso_authorization_url,omitempty"`
 }
 
-func (o *LoginView) GetActions() []LoginViewActions {
+func (o *LoginView) GetActions() []Actions {
 	if o == nil {
 		return nil
 	}
 	return o.Actions
 }
 
-func (o *LoginView) GetMethods() []LoginViewMethods {
+func (o *LoginView) GetMethods() []Methods {
 	if o == nil {
 		return nil
 	}
