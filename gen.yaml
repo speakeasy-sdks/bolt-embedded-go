@@ -2,21 +2,21 @@ configVersion: 1.0.0
 management:
   docChecksum: b58aa22b520fd02d35640f920003ff1d
   docVersion: 1.0.1
-  speakeasyVersion: 1.114.1
-  generationVersion: 2.181.1
+  speakeasyVersion: 1.116.0
+  generationVersion: 2.185.0
 generation:
   comments: {}
   sdkClassName: bolt-embedded-api
   repoURL: https://github.com/speakeasy-sdks/bolt-embedded-go.git
 features:
   go:
-    core: 3.1.0
+    core: 3.1.2
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.0
     methodSecurity: 2.82.1
     unions: 2.85.0
 go:
-  version: 0.8.0
+  version: 0.8.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:
@@ -27,8 +27,10 @@ go:
       operations: pkg/models/operations
       shared: pkg/models/shared
       webhooks: pkg/models/webhooks
+  inputModelSuffix: input
   installationURL: https://github.com/speakeasy-sdks/bolt-embedded-go
   maxMethodParams: 0
+  outputModelSuffix: output
   packageName: github.com/speakeasy-sdks/bolt-embedded-go
   published: true
   repoSubDirectory: .

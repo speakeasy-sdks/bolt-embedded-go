@@ -68,7 +68,7 @@ func main() {
 ## Available Resources and Operations
 
 
-### [.Account](docs/sdks/account/README.md)
+### [Account](docs/sdks/account/README.md)
 
 * [AddAddress](docs/sdks/account/README.md#addaddress) - Add Address
 * [AddPaymentMethod](docs/sdks/account/README.md#addpaymentmethod) - Add Payment Method
@@ -81,7 +81,7 @@ func main() {
 * [ReplaceAddress](docs/sdks/account/README.md#replaceaddress) - Replace Address
 * [UpdateAccountProfile](docs/sdks/account/README.md#updateaccountprofile) - Update Profile
 
-### [.Transactions](docs/sdks/transactions/README.md)
+### [Transactions](docs/sdks/transactions/README.md)
 
 * [AuthorizeTransaction](docs/sdks/transactions/README.md#authorizetransaction) - Authorize a Card
 * [CaptureTransaction](docs/sdks/transactions/README.md#capturetransaction) - Capture a Transaction
@@ -90,17 +90,17 @@ func main() {
 * [UpdateTransaction](docs/sdks/transactions/README.md#updatetransaction) - Update a Transaction
 * [VoidTransaction](docs/sdks/transactions/README.md#voidtransaction) - Void a Transaction
 
-### [.OAuth](docs/sdks/oauth/README.md)
+### [OAuth](docs/sdks/oauth/README.md)
 
 * [OAuthToken](docs/sdks/oauth/README.md#oauthtoken) - OAuth Token Endpoint
 
-### [.Payments](docs/sdks/payments/README.md)
+### [Payments](docs/sdks/payments/README.md)
 
 * [FinalizePayment](docs/sdks/payments/README.md#finalizepayment) - Finalize Payment
 * [InitializePayment](docs/sdks/payments/README.md#initializepayment) - Initialize Payment
 * [UpdatePayment](docs/sdks/payments/README.md#updatepayment) - Update Payment
 
-### [.Testing](docs/sdks/testing/README.md)
+### [Testing](docs/sdks/testing/README.md)
 
 * [CreateTestingShopperAccount](docs/sdks/testing/README.md#createtestingshopperaccount) - Create Testing Shopper Account
 * [GetTestCreditCardToken](docs/sdks/testing/README.md#gettestcreditcardtoken) - Fetch a Test Credit Card Token
@@ -135,7 +135,12 @@ Here's an example of one such pagination call:
 <!-- Start Error Handling -->
 # Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorsBoltAPIResponse | 403,404                         | application/json                |
+| sdkerrors.SDKError              | 400-600                         | */*                             |
 
 
 ## Example
@@ -170,6 +175,11 @@ func main() {
 			log.Fatal(e.Error())
 		}
 
+		var e *sdkerrors.SDKError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
 	}
 }
 
@@ -343,12 +353,11 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 
 <!-- Start Authentication -->
-
 # Authentication
 
 ## Per-Client Security Schemes
 
-Your SDK supports the following security schemes globally:
+This SDK supports the following security schemes globally:
 
 | Name         | Type         | Scheme       |
 | ------------ | ------------ | ------------ |
@@ -412,7 +421,7 @@ func main() {
 
 ## Per-Operation Security Schemes
 
-Some operations in your SDK require the security scheme to be specified at the request level. For example:
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
 
 ```go
 package main
