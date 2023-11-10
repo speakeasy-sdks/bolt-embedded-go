@@ -541,8 +541,8 @@ func main() {
                     },
                 },
                 Metadata: map[string]string{
-                    "key1": "value1",
                     "key2": "value2",
+                    "key1": "value1",
                 },
                 OrderDescription: boltembeddedgo.String("Order #1234567890"),
                 OrderReference: "order_100",
