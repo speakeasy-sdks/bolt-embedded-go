@@ -29,11 +29,11 @@ This endpoint authorizes card payments and has three main use cases:
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -392,8 +392,8 @@ func main() {
                                 Customizations: []shared.CartItemCustomization{
                                     shared.CartItemCustomization{
                                         Attributes: map[string]string{
-                                            "key1": "value1",
                                             "key2": "value2",
+                                            "key1": "value1",
                                         },
                                         Price: &shared.AmountView{
                                             Amount: boltembeddedgo.Float64(754),
@@ -641,11 +641,11 @@ Although the response returns the standard `transaction_view` object, only `capt
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -707,10 +707,10 @@ This allows you to pull the full transaction details for a given transaction.
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
 )
 
 func main() {
@@ -762,10 +762,10 @@ This refunds a captured transaction. Refunds can be done for any partial amount 
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
 )
 
 func main() {
@@ -823,10 +823,10 @@ This allows you to update certain transaction properties post-authorization.
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
 )
 
 func main() {
@@ -888,11 +888,11 @@ Although the response returns the standard `transaction_view` object, only `stat
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {

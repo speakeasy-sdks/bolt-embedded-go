@@ -25,11 +25,11 @@ To use this endpoint, first use the Authorization Code Request flow by using the
 package main
 
 import(
-	"context"
-	"log"
-	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"log"
 )
 
 func main() {

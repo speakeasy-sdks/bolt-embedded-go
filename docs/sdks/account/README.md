@@ -29,11 +29,11 @@ Add an address to a shopper's account address book.
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -107,11 +107,11 @@ Add a payment method to a shopper's Bolt account Wallet. For security purposes, 
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -193,11 +193,11 @@ Create a Bolt shopping account.
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -311,10 +311,11 @@ Deletes an existing address in a shopper's address book.
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -366,10 +367,11 @@ Delete a saved payment method from a shopper's Bolt account Wallet.
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
+	"net/http"
 )
 
 func main() {
@@ -422,11 +424,11 @@ Check whether an account exists using one of `email`, `phone`, or `sha256_email`
 package main
 
 import(
-	"context"
-	"log"
-	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -478,11 +480,11 @@ This endpoint fully replaces the information for an existing address while retai
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -554,10 +556,10 @@ Fetch a shopper's account details to pre-fill checkout fields. This request must
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
 )
 
 func main() {
@@ -609,11 +611,11 @@ These changes delete the existing address and create a new one.
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -685,11 +687,11 @@ Update the identifiers for a shopper's profile (first name or last name).
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {

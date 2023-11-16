@@ -21,11 +21,11 @@ Create a Bolt shopper account for testing purposes. Available for sandbox use on
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -79,10 +79,10 @@ This endpoint fetches a new credit card token for Bolt's universal test credit c
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
 )
 
 func main() {

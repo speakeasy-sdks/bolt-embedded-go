@@ -23,10 +23,10 @@ Finalize a Bolt Payment. NOTE: The authorization header is NOT required for paym
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
+	"log"
 )
 
 func main() {
@@ -88,11 +88,11 @@ Initialize a Bolt payment token that will be used to reference this payment to B
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {
@@ -541,8 +541,8 @@ func main() {
                     },
                 },
                 Metadata: map[string]string{
-                    "key2": "value2",
                     "key1": "value1",
+                    "key2": "value2",
                 },
                 OrderDescription: boltembeddedgo.String("Order #1234567890"),
                 OrderReference: "order_100",
@@ -638,11 +638,11 @@ Update a Bolt payment using the token given after initializing a payment.  Updat
 package main
 
 import(
-	"context"
-	"log"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	"log"
 )
 
 func main() {

@@ -151,8 +151,10 @@ package main
 
 import (
 	"context"
+	"errors"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/sdkerrors"
 	"log"
 )
 
