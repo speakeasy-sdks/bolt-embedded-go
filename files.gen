@@ -57,6 +57,8 @@ pkg/utils/utils.go
 /pkg/models/shared/createaccountinput.go
 /pkg/models/shared/profile.go
 /pkg/models/shared/paymentmethodaccount.go
+/pkg/models/shared/requestresult.go
+/pkg/models/shared/errorboltapi.go
 /pkg/models/shared/v1accountsview.go
 /pkg/models/shared/iauthorizeresultview.go
 /pkg/models/shared/transactionview.go
@@ -178,8 +180,6 @@ pkg/utils/utils.go
 /pkg/models/shared/onev11testing1shopper1createpostrequestbodycontentapplication1jsonschemapropertiesemailstate.go
 /pkg/models/shared/security.go
 /pkg/models/sdkerrors/errorsboltapiresponse.go
-/pkg/models/sdkerrors/requestresult.go
-/pkg/models/sdkerrors/errorboltapi.go
 /pkg/models/sdkerrors/capturetransaction.go
 /pkg/models/sdkerrors/errorsoauthserverresponse.go
 USAGE.md
@@ -306,6 +306,8 @@ docs/pkg/models/shared/network.md
 docs/pkg/models/shared/paymentmethodaccountpriority.md
 docs/pkg/models/shared/paymentmethodaccounttokentype.md
 docs/pkg/models/shared/paymentmethodaccount.md
+docs/pkg/models/shared/requestresult.md
+docs/pkg/models/shared/errorboltapi.md
 docs/pkg/models/shared/v1accountsview.md
 docs/pkg/models/shared/iauthorizeresultview.md
 docs/pkg/models/shared/transactionviewtype.md
@@ -484,8 +486,6 @@ docs/pkg/models/shared/oauthtokeninputrefresh.md
 docs/pkg/models/shared/onev11testing1shopper1createpostrequestbodycontentapplication1jsonschemapropertiesemailstate.md
 docs/pkg/models/shared/security.md
 docs/pkg/models/sdkerrors/errorsboltapiresponse.md
-docs/pkg/models/sdkerrors/requestresult.md
-docs/pkg/models/sdkerrors/errorboltapi.md
 docs/pkg/models/sdkerrors/errors.md
 docs/pkg/models/sdkerrors/result.md
 docs/pkg/models/sdkerrors/capturetransactionresponsebody.md

@@ -1,9 +1,11 @@
 # ErrorsBoltAPIResponse
 
+Forbidden
+
 
 ## Fields
 
-| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `Errors`                                                                   | [][sdkerrors.ErrorBoltAPI](../../../pkg/models/sdkerrors/errorboltapi.md)  | :heavy_minus_sign:                                                         | N/A                                                                        |
-| `Result`                                                                   | [*sdkerrors.RequestResult](../../../pkg/models/sdkerrors/requestresult.md) | :heavy_minus_sign:                                                         | Custom-defined Bolt result object.                                         |
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `Errors`                                                             | [][shared.ErrorBoltAPI](../../../pkg/models/shared/errorboltapi.md)  | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `Result`                                                             | [*shared.RequestResult](../../../pkg/models/shared/requestresult.md) | :heavy_minus_sign:                                                   | Custom-defined Bolt result object.                                   |

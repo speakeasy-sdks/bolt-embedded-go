@@ -392,8 +392,8 @@ func main() {
                                 Customizations: []shared.CartItemCustomization{
                                     shared.CartItemCustomization{
                                         Attributes: map[string]string{
-                                            "key2": "value2",
                                             "key1": "value1",
+                                            "key2": "value2",
                                         },
                                         Price: &shared.AmountView{
                                             Amount: boltembeddedgo.Float64(754),

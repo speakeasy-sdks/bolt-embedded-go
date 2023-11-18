@@ -4,12 +4,14 @@ package sdkerrors
 
 import (
 	"encoding/json"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 )
 
+// ErrorsBoltAPIResponse - Forbidden
 type ErrorsBoltAPIResponse struct {
-	Errors []ErrorBoltAPI `json:"errors,omitempty"`
+	Errors []shared.ErrorBoltAPI `json:"errors,omitempty"`
 	// Custom-defined Bolt result object.
-	Result *RequestResult `json:"result,omitempty"`
+	Result *shared.RequestResult `json:"result,omitempty"`
 }
 
 var _ error = &ErrorsBoltAPIResponse{}
