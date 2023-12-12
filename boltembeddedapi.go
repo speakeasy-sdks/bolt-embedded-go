@@ -137,7 +137,6 @@ func withSecurity(security interface{}) func(context.Context) (interface{}, erro
 }
 
 // WithSecurity configures the SDK to use the provided security details
-
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *BoltEmbeddedAPI) {
 		sdk.sdkConfiguration.Security = withSecurity(security)
@@ -165,9 +164,9 @@ func New(opts ...SDKOption) *BoltEmbeddedAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.1",
-			SDKVersion:        "0.8.4",
-			GenVersion:        "2.194.1",
-			UserAgent:         "speakeasy-sdk/go 0.8.4 2.194.1 1.0.1 github.com/speakeasy-sdks/bolt-embedded-go",
+			SDKVersion:        "0.9.0",
+			GenVersion:        "2.213.3",
+			UserAgent:         "speakeasy-sdk/go 0.9.0 2.213.3 1.0.1 github.com/speakeasy-sdks/bolt-embedded-go",
 		},
 	}
 	for _, opt := range opts {

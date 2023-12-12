@@ -33,7 +33,7 @@ func main() {
 
 
     operationSecurity := operations.CreateTestingShopperAccountSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -90,7 +90,7 @@ func main() {
 
 
     operationSecurity := operations.GetTestCreditCardTokenSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()

@@ -182,7 +182,6 @@ pkg/utils/utils.go
 /pkg/models/sdkerrors/errorsboltapiresponse.go
 /pkg/models/sdkerrors/capturetransaction.go
 /pkg/models/sdkerrors/errorsoauthserverresponse.go
-USAGE.md
 docs/pkg/models/operations/addaddresssecurity.md
 docs/pkg/models/operations/addaddressrequest.md
 docs/pkg/models/operations/addaddressresponsebody.md
@@ -496,4 +495,5 @@ docs/sdks/transactions/README.md
 docs/sdks/oauth/README.md
 docs/sdks/payments/README.md
 docs/sdks/testing/README.md
+USAGE.md
 .gitattributes

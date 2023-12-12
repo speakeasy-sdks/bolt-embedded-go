@@ -41,8 +41,8 @@ func main() {
 
 
     operationSecurity := operations.AddAddressSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -119,8 +119,8 @@ func main() {
 
 
     operationSecurity := operations.AddPaymentMethodSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -146,7 +146,7 @@ func main() {
                 StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
                 StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
             },
-            BillingAddressID: boltembeddedgo.String("null"),
+            BillingAddressID: boltembeddedgo.String("string"),
             Bin: boltembeddedgo.String("411111"),
             Currency: boltembeddedgo.String("USD"),
             Expiration: "2025-11",
@@ -205,7 +205,7 @@ func main() {
 
 
     operationSecurity := operations.CreateAccountSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -255,7 +255,7 @@ func main() {
                         StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
                         StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
                     },
-                    BillingAddressID: boltembeddedgo.String("null"),
+                    BillingAddressID: boltembeddedgo.String("string"),
                     Bin: boltembeddedgo.String("411111"),
                     Expiration: "2025-11",
                     Last4: boltembeddedgo.String("1234"),
@@ -323,8 +323,8 @@ func main() {
 
 
     operationSecurity := operations.DeleteAddressSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -379,8 +379,8 @@ func main() {
 
 
     operationSecurity := operations.DeletePaymentMethodSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -434,7 +434,7 @@ import(
 func main() {
     s := boltembeddedgo.New(
         boltembeddedgo.WithSecurity(shared.Security{
-            OAuth: boltembeddedgo.String(""),
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
         }),
     )
 
@@ -492,8 +492,8 @@ func main() {
 
 
     operationSecurity := operations.EditAddressSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -567,8 +567,8 @@ func main() {
 
 
     operationSecurity := operations.GetAccountSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -623,8 +623,8 @@ func main() {
 
 
     operationSecurity := operations.ReplaceAddressSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -699,8 +699,8 @@ func main() {
 
 
     operationSecurity := operations.UpdateAccountProfileSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()

@@ -41,8 +41,8 @@ func main() {
 
 
     operationSecurity := operations.AuthorizeTransactionSecurity{
-            OAuth: "",
-            XAPIKey: "",
+            OAuth: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -566,7 +566,7 @@ func main() {
                     },
                     DivisionID: "4ab56ad7865ada4ad32",
                     MerchantEventID: boltembeddedgo.String("dbe0cd5d-3261-41d9-ba61-49e5b9d07567"),
-                    PreviousTransactionID: boltembeddedgo.String("null"),
+                    PreviousTransactionID: boltembeddedgo.String("string"),
                     ShippingAddress: &shared.Address{
                         Company: boltembeddedgo.String("Bolt"),
                         Country: boltembeddedgo.String("United States"),
@@ -589,11 +589,11 @@ func main() {
                     },
                     Source: shared.SourceDirectPayments,
                     UserIdentifier: shared.UserIdentifier{
-                        Artifact: boltembeddedgo.String("null"),
+                        Artifact: boltembeddedgo.String("string"),
                         Email: boltembeddedgo.String("alan.watts@example.com"),
-                        EmailID: boltembeddedgo.String("null"),
+                        EmailID: boltembeddedgo.String("string"),
                         Phone: "+12125550199",
-                        PhoneID: boltembeddedgo.String("null"),
+                        PhoneID: boltembeddedgo.String("string"),
                     },
                     UserIdentity: shared.UserIdentity{
                         FirstName: boltembeddedgo.String("Charlotte"),
@@ -653,7 +653,7 @@ func main() {
 
 
     operationSecurity := operations.CaptureTransactionSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -718,7 +718,7 @@ func main() {
 
 
     operationSecurity := operations.GetTransactionDetailsSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -773,7 +773,7 @@ func main() {
 
 
     operationSecurity := operations.RefundTransactionSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -834,7 +834,7 @@ func main() {
 
 
     operationSecurity := operations.UpdateTransactionSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()
@@ -900,7 +900,7 @@ func main() {
 
 
     operationSecurity := operations.VoidTransactionSecurity{
-            XAPIKey: "",
+            XAPIKey: "<YOUR_API_KEY_HERE>",
         }
 
     ctx := context.Background()

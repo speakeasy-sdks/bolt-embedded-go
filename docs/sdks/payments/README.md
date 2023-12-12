@@ -34,7 +34,7 @@ func main() {
 
 
     operationSecurity := operations.FinalizePaymentSecurity{
-            OAuth: boltembeddedgo.String(""),
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
         }
 
     ctx := context.Background()
@@ -100,7 +100,7 @@ func main() {
 
 
     operationSecurity := operations.InitializePaymentSecurity{
-            OAuth: boltembeddedgo.String(""),
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
         }
 
     ctx := context.Background()
@@ -650,7 +650,7 @@ func main() {
 
 
     operationSecurity := operations.UpdatePaymentSecurity{
-            OAuth: boltembeddedgo.String(""),
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
         }
 
     ctx := context.Background()

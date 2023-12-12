@@ -1,15 +1,16 @@
 # github.com/speakeasy-sdks/bolt-embedded-go
 
-<!-- Start SDK Installation -->
+<!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
 ```bash
 go get github.com/speakeasy-sdks/bolt-embedded-go
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
-<!-- Start SDK Example Usage -->
+
 ### Example
 
 ```go
@@ -27,8 +28,8 @@ func main() {
 	s := boltembeddedgo.New()
 
 	operationSecurity := operations.AddAddressSecurity{
-		OAuth:   "",
-		XAPIKey: "",
+		OAuth:   "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+		XAPIKey: "<YOUR_API_KEY_HERE>",
 	}
 
 	ctx := context.Background()
@@ -64,11 +65,10 @@ func main() {
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
+<!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
-
 
 ### [Account](docs/sdks/account/README.md)
 
@@ -106,35 +106,23 @@ func main() {
 
 * [CreateTestingShopperAccount](docs/sdks/testing/README.md#createtestingshopperaccount) - Create Testing Shopper Account
 * [GetTestCreditCardToken](docs/sdks/testing/README.md#gettestcreditcardtoken) - Fetch a Test Credit Card Token
-<!-- End SDK Available Operations -->
+<!-- End Available Resources and Operations [operations] -->
 
 
 
-<!-- Start Dev Containers -->
-
-<!-- End Dev Containers -->
 
 
 
-<!-- Start Pagination -->
-# Pagination
 
-Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
-returned response object will have a `Next` method that can be called to pull down the next group of results. If the
-return value of `Next` is `nil`, then there are no more pages to be fetched.
+<!-- Start Special Types [types] -->
+## Special Types
 
-Here's an example of one such pagination call:
-<!-- End Pagination -->
+
+<!-- End Special Types [types] -->
 
 
 
-<!-- Start Go Types -->
-
-<!-- End Go Types -->
-
-
-
-<!-- Start Error Handling -->
+<!-- Start Error Handling [errors] -->
 ## Error Handling
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
@@ -162,8 +150,8 @@ func main() {
 	s := boltembeddedgo.New()
 
 	operationSecurity := operations.DeletePaymentMethodSecurity{
-		OAuth:   "",
-		XAPIKey: "",
+		OAuth:   "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+		XAPIKey: "<YOUR_API_KEY_HERE>",
 	}
 
 	ctx := context.Background()
@@ -187,11 +175,11 @@ func main() {
 }
 
 ```
-<!-- End Error Handling -->
+<!-- End Error Handling [errors] -->
 
 
 
-<!-- Start Server Selection -->
+<!-- Start Server Selection [server] -->
 ## Server Selection
 
 ### Select Server by Index
@@ -223,8 +211,8 @@ func main() {
 	)
 
 	operationSecurity := operations.AddAddressSecurity{
-		OAuth:   "",
-		XAPIKey: "",
+		OAuth:   "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+		XAPIKey: "<YOUR_API_KEY_HERE>",
 	}
 
 	ctx := context.Background()
@@ -282,8 +270,8 @@ func main() {
 	)
 
 	operationSecurity := operations.AddAddressSecurity{
-		OAuth:   "",
-		XAPIKey: "",
+		OAuth:   "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+		XAPIKey: "<YOUR_API_KEY_HERE>",
 	}
 
 	ctx := context.Background()
@@ -319,11 +307,11 @@ func main() {
 }
 
 ```
-<!-- End Server Selection -->
+<!-- End Server Selection [server] -->
 
 
 
-<!-- Start Custom HTTP Client -->
+<!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
 The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
@@ -350,11 +338,11 @@ var (
 ```
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
-<!-- End Custom HTTP Client -->
+<!-- End Custom HTTP Client [http-client] -->
 
 
 
-<!-- Start Authentication -->
+<!-- Start Authentication [security] -->
 ## Authentication
 
 ### Per-Client Security Schemes
@@ -379,41 +367,21 @@ import (
 )
 
 func main() {
-	s := boltembeddedgo.New()
-
-	operationSecurity := operations.AddAddressSecurity{
-		OAuth:   "",
-		XAPIKey: "",
-	}
+	s := boltembeddedgo.New(
+		boltembeddedgo.WithSecurity(shared.Security{
+			OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+		}),
+	)
 
 	ctx := context.Background()
-	res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
-		AddressAccount: &shared.AddressAccount{
-			Company:        boltembeddedgo.String("Bolt"),
-			Country:        boltembeddedgo.String("United States"),
-			CountryCode:    "US",
-			DoorCode:       boltembeddedgo.String("123456"),
-			Email:          "alan.watts@example.com",
-			FirstName:      "Alan",
-			LastName:       "Watts",
-			Locality:       "Brooklyn",
-			Metadata:       &shared.Metadata{},
-			Name:           boltembeddedgo.String("Alan Watts"),
-			Phone:          boltembeddedgo.String("+12125550199"),
-			PostalCode:     "10044",
-			Region:         "NY",
-			RegionCode:     boltembeddedgo.String("NY"),
-			StreetAddress1: "888 main street",
-			StreetAddress2: boltembeddedgo.String("apt 3021"),
-			StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
-			StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
-		},
-	}, operationSecurity)
+	res, err := s.Account.DetectAccount(ctx, operations.DetectAccountRequest{
+		XPublishableKey: "string",
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if res.Object != nil {
+	if res.V1AccountsView != nil {
 		// handle response
 	}
 }
@@ -438,8 +406,8 @@ func main() {
 	s := boltembeddedgo.New()
 
 	operationSecurity := operations.AddAddressSecurity{
-		OAuth:   "",
-		XAPIKey: "",
+		OAuth:   "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+		XAPIKey: "<YOUR_API_KEY_HERE>",
 	}
 
 	ctx := context.Background()
@@ -475,7 +443,7 @@ func main() {
 }
 
 ```
-<!-- End Authentication -->
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

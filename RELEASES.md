@@ -149,3 +149,13 @@ Based on:
 - [go v0.8.4] .
 ### Releases
 - [Go v0.8.4] https://github.com/speakeasy-sdks/bolt-embedded-go/releases/tag/v0.8.4 - .
+
+## 2023-12-12 01:27:10
+### Changes
+Based on:
+- OpenAPI Doc 1.0.1 
+- Speakeasy CLI 1.126.0 (2.213.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.9.0] .
+### Releases
+- [Go v0.9.0] https://github.com/speakeasy-sdks/bolt-embedded-go/releases/tag/v0.9.0 - .

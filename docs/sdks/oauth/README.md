@@ -35,7 +35,7 @@ import(
 func main() {
     s := boltembeddedgo.New(
         boltembeddedgo.WithSecurity(shared.Security{
-            OAuth: boltembeddedgo.String(""),
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
         }),
     )
 

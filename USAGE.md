@@ -1,4 +1,4 @@
-<!-- Start SDK Example Usage -->
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
@@ -14,8 +14,8 @@ func main() {
 	s := boltembeddedgo.New()
 
 	operationSecurity := operations.AddAddressSecurity{
-		OAuth:   "",
-		XAPIKey: "",
+		OAuth:   "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+		XAPIKey: "<YOUR_API_KEY_HERE>",
 	}
 
 	ctx := context.Background()
@@ -51,4 +51,4 @@ func main() {
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
