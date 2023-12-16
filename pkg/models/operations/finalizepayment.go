@@ -138,20 +138,20 @@ func (o *Paypal) GetEmail() *string {
 	return o.Email
 }
 
-// Status - The current payment status.
-type Status string
+// FinalizePaymentStatus - The current payment status.
+type FinalizePaymentStatus string
 
 const (
-	StatusAwaitingUserConfirmation Status = "awaiting_user_confirmation"
-	StatusPaymentReady             Status = "payment_ready"
-	StatusSuccess                  Status = "success"
+	FinalizePaymentStatusAwaitingUserConfirmation FinalizePaymentStatus = "awaiting_user_confirmation"
+	FinalizePaymentStatusPaymentReady             FinalizePaymentStatus = "payment_ready"
+	FinalizePaymentStatusSuccess                  FinalizePaymentStatus = "success"
 )
 
-func (e Status) ToPointer() *Status {
+func (e FinalizePaymentStatus) ToPointer() *FinalizePaymentStatus {
 	return &e
 }
 
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *FinalizePaymentStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -162,10 +162,10 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "payment_ready":
 		fallthrough
 	case "success":
-		*e = Status(v)
+		*e = FinalizePaymentStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for FinalizePaymentStatus: %v", v)
 	}
 }
 
@@ -189,8 +189,8 @@ type FinalizePaymentResponseBody struct {
 	PaymentMethodID *string `json:"payment_method_id,omitempty"`
 	Paypal          *Paypal `json:"paypal,omitempty"`
 	// The current payment status.
-	Status      *Status      `json:"status,omitempty"`
-	Transaction *Transaction `json:"transaction,omitempty"`
+	Status      *FinalizePaymentStatus `json:"status,omitempty"`
+	Transaction *Transaction           `json:"transaction,omitempty"`
 }
 
 func (o *FinalizePaymentResponseBody) GetID() *string {
@@ -214,7 +214,7 @@ func (o *FinalizePaymentResponseBody) GetPaypal() *Paypal {
 	return o.Paypal
 }
 
-func (o *FinalizePaymentResponseBody) GetStatus() *Status {
+func (o *FinalizePaymentResponseBody) GetStatus() *FinalizePaymentStatus {
 	if o == nil {
 		return nil
 	}

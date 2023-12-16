@@ -153,7 +153,7 @@ func (s *Payments) InitializePayment(ctx context.Context, request operations.Ini
 				return nil, err
 			}
 
-			res.Object = &out
+			res.OneOf = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -226,7 +226,7 @@ func (s *Payments) UpdatePayment(ctx context.Context, request operations.UpdateP
 				return nil, err
 			}
 
-			res.Object = &out
+			res.OneOf = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

@@ -1,4 +1,4 @@
-# InitializePaymentShopperIdentity
+# SavedPaymentInputUpdateShopperIdentity
 
 Identification information for the Shopper. This is only required when creating a new Bolt account.
 

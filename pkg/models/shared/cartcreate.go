@@ -161,7 +161,7 @@ func (o *Fulfillments) GetType() *CartCreateType {
 	return o.Type
 }
 
-// CartCreate - The base_cart object contains the core details typically found in most cart objects, including items, discounts, amount totals, shipments, and in-store pickups.
+// CartCreate - The cart_create object is a composite of the base_cart object and additional order details.
 type CartCreate struct {
 	AddOns []CartAddOn `json:"add_ons,omitempty"`
 	// The Address object is used for billing, shipping, and physical store address use cases.

@@ -1,6 +1,6 @@
 # CartCreate
 
-The base_cart object contains the core details typically found in most cart objects, including items, discounts, amount totals, shipments, and in-store pickups.
+The cart_create object is a composite of the base_cart object and additional order details.
 
 
 ## Fields

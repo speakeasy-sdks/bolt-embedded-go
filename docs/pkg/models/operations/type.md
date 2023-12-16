@@ -1,16 +1,11 @@
 # Type
 
-**Nullable** for Transactions Details.
-
+The type of the payment attempt
 
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `TypeNet`           | net                 |
-| `TypeProcessingFee` | processing_fee      |
-| `TypeBoltFee`       | bolt_fee            |
-| `TypeAdjustment`    | adjustment          |
-| `TypeFloat`         | float               |
-| `TypeReserve`       | reserve             |
+| Name                     | Value                    |
+| ------------------------ | ------------------------ |
+| `TypePaypal`             | paypal                   |
+| `TypeSavedPaymentMethod` | saved_payment_method     |

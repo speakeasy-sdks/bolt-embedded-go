@@ -32,23 +32,23 @@ func (o *GetTransactionDetailsRequest) GetReference() string {
 	return o.Reference
 }
 
-// Type - **Nullable** for Transactions Details.
-type Type string
+// GetTransactionDetailsType - **Nullable** for Transactions Details.
+type GetTransactionDetailsType string
 
 const (
-	TypeNet           Type = "net"
-	TypeProcessingFee Type = "processing_fee"
-	TypeBoltFee       Type = "bolt_fee"
-	TypeAdjustment    Type = "adjustment"
-	TypeFloat         Type = "float"
-	TypeReserve       Type = "reserve"
+	GetTransactionDetailsTypeNet           GetTransactionDetailsType = "net"
+	GetTransactionDetailsTypeProcessingFee GetTransactionDetailsType = "processing_fee"
+	GetTransactionDetailsTypeBoltFee       GetTransactionDetailsType = "bolt_fee"
+	GetTransactionDetailsTypeAdjustment    GetTransactionDetailsType = "adjustment"
+	GetTransactionDetailsTypeFloat         GetTransactionDetailsType = "float"
+	GetTransactionDetailsTypeReserve       GetTransactionDetailsType = "reserve"
 )
 
-func (e Type) ToPointer() *Type {
+func (e GetTransactionDetailsType) ToPointer() *GetTransactionDetailsType {
 	return &e
 }
 
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *GetTransactionDetailsType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -65,10 +65,10 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "float":
 		fallthrough
 	case "reserve":
-		*e = Type(v)
+		*e = GetTransactionDetailsType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for GetTransactionDetailsType: %v", v)
 	}
 }
 
@@ -77,7 +77,7 @@ type Splits struct {
 	Amount *shared.AmountView `json:"amount,omitempty"`
 	// **Nullable** for Transactions Details.
 	//
-	Type *Type `json:"type,omitempty"`
+	Type *GetTransactionDetailsType `json:"type,omitempty"`
 }
 
 func (o *Splits) GetAmount() *shared.AmountView {
@@ -87,7 +87,7 @@ func (o *Splits) GetAmount() *shared.AmountView {
 	return o.Amount
 }
 
-func (o *Splits) GetType() *Type {
+func (o *Splits) GetType() *GetTransactionDetailsType {
 	if o == nil {
 		return nil
 	}

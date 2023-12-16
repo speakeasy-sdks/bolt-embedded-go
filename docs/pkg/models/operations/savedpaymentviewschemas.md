@@ -1,0 +1,10 @@
+# SavedPaymentViewSchemas
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `Action`                                                                                       | [*operations.SavedPaymentViewAction](../../../pkg/models/operations/savedpaymentviewaction.md) | :heavy_minus_sign:                                                                             | Action after initializing payment                                                              |
+| `ID`                                                                                           | **string*                                                                                      | :heavy_minus_sign:                                                                             | The ID for a Payment Attempt                                                                   |
+| `Status`                                                                                       | [*operations.SavedPaymentViewStatus](../../../pkg/models/operations/savedpaymentviewstatus.md) | :heavy_minus_sign:                                                                             | The current payment status.                                                                    |
