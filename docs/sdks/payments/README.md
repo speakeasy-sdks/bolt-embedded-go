@@ -75,7 +75,7 @@ func main() {
 **[*operations.FinalizePaymentResponse](../../pkg/models/operations/finalizepaymentresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## InitializePayment
 
@@ -631,7 +631,7 @@ func main() {
 **[*operations.InitializePaymentResponse](../../pkg/models/operations/initializepaymentresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## UpdatePayment
 
@@ -1188,4 +1188,4 @@ func main() {
 **[*operations.UpdatePaymentResponse](../../pkg/models/operations/updatepaymentresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -165,8 +165,8 @@ func New(opts ...SDKOption) *BoltEmbeddedAPI {
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.1",
 			SDKVersion:        "0.9.1",
-			GenVersion:        "2.214.10",
-			UserAgent:         "speakeasy-sdk/go 0.9.1 2.214.10 1.0.1 github.com/speakeasy-sdks/bolt-embedded-go",
+			GenVersion:        "2.225.2",
+			UserAgent:         "speakeasy-sdk/go 0.9.1 2.225.2 1.0.1 github.com/speakeasy-sdks/bolt-embedded-go",
 		},
 	}
 	for _, opt := range opts {

@@ -92,7 +92,7 @@ func main() {
 **[*operations.AddAddressResponse](../../pkg/models/operations/addaddressresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## AddPaymentMethod
 
@@ -181,7 +181,7 @@ func main() {
 **[*operations.AddPaymentMethodResponse](../../pkg/models/operations/addpaymentmethodresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## CreateAccount
 
@@ -298,7 +298,7 @@ func main() {
 **[*operations.CreateAccountResponse](../../pkg/models/operations/createaccountresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## DeleteAddress
 
@@ -355,7 +355,7 @@ func main() {
 **[*operations.DeleteAddressResponse](../../pkg/models/operations/deleteaddressresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## DeletePaymentMethod
 
@@ -412,7 +412,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorsBoltAPIResponse | 403,404                         | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## DetectAccount
 
@@ -466,7 +466,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorsBoltAPIResponse | 422                             | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## EditAddress
 
@@ -544,7 +544,7 @@ func main() {
 **[*operations.EditAddressResponse](../../pkg/models/operations/editaddressresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetAccount
 
@@ -597,7 +597,7 @@ func main() {
 **[*operations.GetAccountResponse](../../pkg/models/operations/getaccountresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## ReplaceAddress
 
@@ -675,7 +675,7 @@ func main() {
 **[*operations.ReplaceAddressResponse](../../pkg/models/operations/replaceaddressresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## UpdateAccountProfile
 
@@ -735,4 +735,4 @@ func main() {
 **[*operations.UpdateAccountProfileResponse](../../pkg/models/operations/updateaccountprofileresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

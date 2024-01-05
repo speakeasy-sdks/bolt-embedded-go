@@ -626,7 +626,7 @@ func main() {
 **[*operations.AuthorizeTransactionResponse](../../pkg/models/operations/authorizetransactionresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## CaptureTransaction
 
@@ -692,7 +692,7 @@ func main() {
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | sdkerrors.ErrorsBoltAPIResponse          | 403,404                                  | application/json                         |
 | sdkerrors.CaptureTransactionResponseBody | 422                                      | application/json                         |
-| sdkerrors.SDKError                       | 400-600                                  | */*                                      |
+| sdkerrors.SDKError                       | 4xx-5xx                                  | */*                                      |
 
 ## GetTransactionDetails
 
@@ -750,7 +750,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorsBoltAPIResponse | 403,422                         | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## RefundTransaction
 
@@ -811,7 +811,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorsBoltAPIResponse | 422                             | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## UpdateTransaction
 
@@ -873,7 +873,7 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorsBoltAPIResponse | 403,404                         | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ## VoidTransaction
 
@@ -936,4 +936,4 @@ func main() {
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorsBoltAPIResponse | 403,404                         | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
