@@ -32,7 +32,6 @@ import(
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"log"
 )
 
@@ -46,28 +45,7 @@ func main() {
         }
 
     ctx := context.Background()
-    res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{
-        AddressAccount: &shared.AddressAccount{
-            Company: boltembeddedgo.String("Bolt"),
-            Country: boltembeddedgo.String("United States"),
-            CountryCode: "US",
-            DoorCode: boltembeddedgo.String("123456"),
-            Email: "alan.watts@example.com",
-            FirstName: "Alan",
-            LastName: "Watts",
-            Locality: "Brooklyn",
-            Metadata: &shared.Metadata{},
-            Name: boltembeddedgo.String("Alan Watts"),
-            Phone: boltembeddedgo.String("+12125550199"),
-            PostalCode: "10044",
-            Region: "NY",
-            RegionCode: boltembeddedgo.String("NY"),
-            StreetAddress1: "888 main street",
-            StreetAddress2: boltembeddedgo.String("apt 3021"),
-            StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
-            StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
-        },
-    }, operationSecurity)
+    res, err := s.Account.AddAddress(ctx, operations.AddAddressRequest{}, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -110,7 +88,6 @@ import(
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"log"
 )
 
@@ -124,39 +101,7 @@ func main() {
         }
 
     ctx := context.Background()
-    res, err := s.Account.AddPaymentMethod(ctx, operations.AddPaymentMethodRequest{
-        RequestBody: &operations.AddPaymentMethodRequestBody{
-            BillingAddress: shared.Address{
-                Company: boltembeddedgo.String("Bolt"),
-                Country: boltembeddedgo.String("United States"),
-                CountryCode: "US",
-                Default: boltembeddedgo.Bool(true),
-                DoorCode: boltembeddedgo.String("123456"),
-                Email: "alan.watts@example.com",
-                FirstName: "Alan",
-                LastName: "Watts",
-                Locality: "Brooklyn",
-                Name: boltembeddedgo.String("Alan Watts"),
-                Phone: boltembeddedgo.String("+12125550199"),
-                PostalCode: "10044",
-                Region: "NY",
-                RegionCode: boltembeddedgo.String("NY"),
-                StreetAddress1: "888 main street",
-                StreetAddress2: boltembeddedgo.String("apt 3021"),
-                StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
-                StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
-            },
-            BillingAddressID: boltembeddedgo.String("string"),
-            Bin: boltembeddedgo.String("411111"),
-            Currency: boltembeddedgo.String("USD"),
-            Expiration: "2025-11",
-            Last4: boltembeddedgo.String("1234"),
-            Metadata: &shared.Metadata{},
-            PostalCode: boltembeddedgo.String("10044"),
-            Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
-            TokenType: operations.TokenTypeBolt.ToPointer(),
-        },
-    }, operationSecurity)
+    res, err := s.Account.AddPaymentMethod(ctx, operations.AddPaymentMethodRequest{}, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -196,7 +141,6 @@ import(
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"log"
 )
 
@@ -209,71 +153,7 @@ func main() {
         }
 
     ctx := context.Background()
-    res, err := s.Account.CreateAccount(ctx, operations.CreateAccountRequest{
-        CreateAccountInput: &shared.CreateAccountInput{
-            Addresses: []shared.AddressAccount{
-                shared.AddressAccount{
-                    Company: boltembeddedgo.String("Bolt"),
-                    Country: boltembeddedgo.String("United States"),
-                    CountryCode: "US",
-                    DoorCode: boltembeddedgo.String("123456"),
-                    Email: "alan.watts@example.com",
-                    FirstName: "Alan",
-                    LastName: "Watts",
-                    Locality: "Brooklyn",
-                    Metadata: &shared.Metadata{},
-                    Name: boltembeddedgo.String("Alan Watts"),
-                    Phone: boltembeddedgo.String("+12125550199"),
-                    PostalCode: "10044",
-                    Region: "NY",
-                    RegionCode: boltembeddedgo.String("NY"),
-                    StreetAddress1: "888 main street",
-                    StreetAddress2: boltembeddedgo.String("apt 3021"),
-                    StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
-                    StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
-                },
-            },
-            PaymentMethods: []shared.PaymentMethodAccount{
-                shared.PaymentMethodAccount{
-                    BillingAddress: shared.Address{
-                        Company: boltembeddedgo.String("Bolt"),
-                        Country: boltembeddedgo.String("United States"),
-                        CountryCode: "US",
-                        Default: boltembeddedgo.Bool(true),
-                        DoorCode: boltembeddedgo.String("123456"),
-                        Email: "alan.watts@example.com",
-                        FirstName: "Alan",
-                        LastName: "Watts",
-                        Locality: "Brooklyn",
-                        Name: boltembeddedgo.String("Alan Watts"),
-                        Phone: boltembeddedgo.String("+12125550199"),
-                        PostalCode: "10044",
-                        Region: "NY",
-                        RegionCode: boltembeddedgo.String("NY"),
-                        StreetAddress1: "888 main street",
-                        StreetAddress2: boltembeddedgo.String("apt 3021"),
-                        StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
-                        StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
-                    },
-                    BillingAddressID: boltembeddedgo.String("string"),
-                    Bin: boltembeddedgo.String("411111"),
-                    Expiration: "2025-11",
-                    Last4: boltembeddedgo.String("1234"),
-                    Metadata: &shared.Metadata{},
-                    PostalCode: boltembeddedgo.String("10044"),
-                    Token: "a1B2c3D4e5F6G7H8i9J0k1L2m3N4o5P6Q7r8S9t0",
-                    TokenType: shared.PaymentMethodAccountTokenTypeBolt.ToPointer(),
-                },
-            },
-            Profile: shared.Profile{
-                Email: "alan.watts@example.com",
-                FirstName: "Alan",
-                LastName: "Watts",
-                Metadata: &shared.ProfileMetadata{},
-                Phone: "+12125550199",
-            },
-        },
-    }, operationSecurity)
+    res, err := s.Account.CreateAccount(ctx, operations.CreateAccountRequest{}, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -483,7 +363,6 @@ import(
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"log"
 )
 
@@ -498,26 +377,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.EditAddress(ctx, operations.EditAddressRequest{
-        AddressAccount: &shared.AddressAccount{
-            Company: boltembeddedgo.String("Bolt"),
-            Country: boltembeddedgo.String("United States"),
-            CountryCode: "US",
-            DoorCode: boltembeddedgo.String("123456"),
-            Email: "alan.watts@example.com",
-            FirstName: "Alan",
-            LastName: "Watts",
-            Locality: "Brooklyn",
-            Metadata: &shared.Metadata{},
-            Name: boltembeddedgo.String("Alan Watts"),
-            Phone: boltembeddedgo.String("+12125550199"),
-            PostalCode: "10044",
-            Region: "NY",
-            RegionCode: boltembeddedgo.String("NY"),
-            StreetAddress1: "888 main street",
-            StreetAddress2: boltembeddedgo.String("apt 3021"),
-            StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
-            StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
-        },
         ID: "<ID>",
     }, operationSecurity)
     if err != nil {
@@ -614,7 +473,6 @@ import(
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"log"
 )
 
@@ -629,26 +487,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.ReplaceAddress(ctx, operations.ReplaceAddressRequest{
-        AddressAccount: &shared.AddressAccount{
-            Company: boltembeddedgo.String("Bolt"),
-            Country: boltembeddedgo.String("United States"),
-            CountryCode: "US",
-            DoorCode: boltembeddedgo.String("123456"),
-            Email: "alan.watts@example.com",
-            FirstName: "Alan",
-            LastName: "Watts",
-            Locality: "Brooklyn",
-            Metadata: &shared.Metadata{},
-            Name: boltembeddedgo.String("Alan Watts"),
-            Phone: boltembeddedgo.String("+12125550199"),
-            PostalCode: "10044",
-            Region: "NY",
-            RegionCode: boltembeddedgo.String("NY"),
-            StreetAddress1: "888 main street",
-            StreetAddress2: boltembeddedgo.String("apt 3021"),
-            StreetAddress3: boltembeddedgo.String("c/o Alicia Watts"),
-            StreetAddress4: boltembeddedgo.String("Bridge Street Apartment Building B"),
-        },
         ID: "<ID>",
     }, operationSecurity)
     if err != nil {
@@ -690,7 +528,6 @@ import(
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	"log"
 )
 
@@ -704,13 +541,7 @@ func main() {
         }
 
     ctx := context.Background()
-    res, err := s.Account.UpdateAccountProfile(ctx, operations.UpdateAccountProfileRequest{
-        RequestBody: &operations.UpdateAccountProfileRequestBody{
-            FirstName: boltembeddedgo.String("Alan"),
-            LastName: boltembeddedgo.String("Watts"),
-            Metadata: &shared.Metadata{},
-        },
-    }, operationSecurity)
+    res, err := s.Account.UpdateAccountProfile(ctx, operations.UpdateAccountProfileRequest{}, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }

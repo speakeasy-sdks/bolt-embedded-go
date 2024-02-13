@@ -40,17 +40,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.OAuth.OAuthToken(ctx, operations.OAuthTokenRequest{
-        RequestBody: operations.CreateOAuthTokenRequestBodyOAuthTokenInput(
-                shared.OAuthTokenInput{
-                    ClientID: "string",
-                    ClientSecret: "string",
-                    Code: "string",
-                    GrantType: shared.GrantTypeAuthorizationCode,
-                    Scope: shared.ScopeOpenid,
-                },
-        ),
-    })
+    res, err := s.OAuth.OAuthToken(ctx, operations.OAuthTokenRequest{})
     if err != nil {
         log.Fatal(err)
     }

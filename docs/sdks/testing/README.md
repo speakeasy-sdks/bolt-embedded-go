@@ -39,6 +39,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Testing.CreateTestingShopperAccount(ctx, operations.CreateTestingShopperAccountRequest{
         RequestBody: &operations.CreateTestingShopperAccountRequestBody{
+            DeactivateInDays: boltembeddedgo.Int64(30),
             EmailState: operations.EmailStateVerified.ToPointer(),
             PhoneState: shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailStateVerified.ToPointer(),
         },
