@@ -158,7 +158,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
-        Reference: "string",
+        Reference: "<value>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -266,7 +266,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
-        Reference: "string",
+        Reference: "<value>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

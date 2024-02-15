@@ -209,7 +209,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DeleteAddress(ctx, operations.DeleteAddressRequest{
-        ID: "<ID>",
+        ID: "<id>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -265,7 +265,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DeletePaymentMethod(ctx, operations.DeletePaymentMethodRequest{
-        PaymentMethodID: "string",
+        PaymentMethodID: "<value>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -320,7 +320,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.DetectAccount(ctx, operations.DetectAccountRequest{
-        XPublishableKey: "string",
+        XPublishableKey: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -377,7 +377,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.EditAddress(ctx, operations.EditAddressRequest{
-        ID: "<ID>",
+        ID: "<id>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -487,7 +487,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Account.ReplaceAddress(ctx, operations.ReplaceAddressRequest{
-        ID: "<ID>",
+        ID: "<id>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

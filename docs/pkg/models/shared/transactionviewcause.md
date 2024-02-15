@@ -14,4 +14,3 @@ Specifies why this particular transaction is voided.
 | `TransactionViewCauseAuthExpire`              | auth_expire                                   |
 | `TransactionViewCauseAuthVerificationExpired` | auth_verification_expired                     |
 | `TransactionViewCausePaymentMethodUpdater`    | payment_method_updater                        |
-| `TransactionViewCauseLessThanNilGreaterThan`  | <nil>                                         |

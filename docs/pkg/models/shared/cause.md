@@ -14,4 +14,3 @@ Specifies why this particular transaction is voided.
 | `CauseAuthExpire`              | auth_expire                    |
 | `CauseAuthVerificationExpired` | auth_verification_expired      |
 | `CausePaymentMethodUpdater`    | payment_method_updater         |
-| `CauseLessThanNilGreaterThan`  | <nil>                          |

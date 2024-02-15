@@ -39,7 +39,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Payments.FinalizePayment(ctx, operations.FinalizePaymentRequest{
-        ID: "<ID>",
+        ID: "<id>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -147,7 +147,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Payments.UpdatePayment(ctx, operations.UpdatePaymentRequest{
-        ID: "<ID>",
+        ID: "<id>",
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

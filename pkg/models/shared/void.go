@@ -18,7 +18,6 @@ const (
 	CauseAuthExpire              Cause = "auth_expire"
 	CauseAuthVerificationExpired Cause = "auth_verification_expired"
 	CausePaymentMethodUpdater    Cause = "payment_method_updater"
-	CauseLessThanNilGreaterThan  Cause = "<nil>"
 )
 
 func (e Cause) ToPointer() *Cause {
@@ -44,8 +43,6 @@ func (e *Cause) UnmarshalJSON(data []byte) error {
 	case "auth_verification_expired":
 		fallthrough
 	case "payment_method_updater":
-		fallthrough
-	case "<nil>":
 		*e = Cause(v)
 		return nil
 	default:

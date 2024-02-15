@@ -201,7 +201,6 @@ const (
 	TransactionViewCauseAuthExpire              TransactionViewCause = "auth_expire"
 	TransactionViewCauseAuthVerificationExpired TransactionViewCause = "auth_verification_expired"
 	TransactionViewCausePaymentMethodUpdater    TransactionViewCause = "payment_method_updater"
-	TransactionViewCauseLessThanNilGreaterThan  TransactionViewCause = "<nil>"
 )
 
 func (e TransactionViewCause) ToPointer() *TransactionViewCause {
@@ -227,8 +226,6 @@ func (e *TransactionViewCause) UnmarshalJSON(data []byte) error {
 	case "auth_verification_expired":
 		fallthrough
 	case "payment_method_updater":
-		fallthrough
-	case "<nil>":
 		*e = TransactionViewCause(v)
 		return nil
 	default:
