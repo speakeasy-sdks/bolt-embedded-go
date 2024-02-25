@@ -304,7 +304,6 @@ Check whether an account exists using one of `email`, `phone`, or `sha256_email`
 package main
 
 import(
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
 	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
@@ -312,11 +311,7 @@ import(
 )
 
 func main() {
-    s := boltembeddedgo.New(
-        boltembeddedgo.WithSecurity(shared.Security{
-            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
-        }),
-    )
+    s := boltembeddedgo.New()
 
     ctx := context.Background()
     res, err := s.Account.DetectAccount(ctx, operations.DetectAccountRequest{
