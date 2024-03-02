@@ -4,9 +4,9 @@ management:
   docChecksum: b58aa22b520fd02d35640f920003ff1d
   docVersion: 1.0.1
   speakeasyVersion: internal
-  generationVersion: 2.272.7
-  releaseVersion: 0.11.3
-  configChecksum: 191a1071c402335c4085941d37d70101
+  generationVersion: 2.277.0
+  releaseVersion: 0.11.4
+  configChecksum: c6523cc66cb5670da5616a38278359a9
   repoURL: https://github.com/speakeasy-sdks/bolt-embedded-go.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/bolt-embedded-go
@@ -17,7 +17,7 @@ features:
     globalSecurity: 2.82.8
     globalServerURLs: 2.82.1
     methodSecurity: 2.82.2
-    unions: 2.85.3
+    unions: 2.85.4
 generatedFiles:
   - account.go
   - transactions.go
