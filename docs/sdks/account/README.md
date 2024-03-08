@@ -49,7 +49,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -105,7 +104,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SavedCreditCardView != nil {
         // handle response
     }
@@ -157,7 +155,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountDetails != nil {
         // handle response
     }
@@ -195,7 +192,6 @@ import(
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -214,8 +210,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -251,7 +246,6 @@ import(
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -270,8 +264,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -320,7 +313,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.V1AccountsView != nil {
         // handle response
     }
@@ -377,7 +369,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -430,7 +421,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountDetails != nil {
         // handle response
     }
@@ -487,7 +477,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Object != nil {
         // handle response
     }
@@ -540,7 +529,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ProfileView != nil {
         // handle response
     }
