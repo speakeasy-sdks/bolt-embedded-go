@@ -227,11 +227,11 @@ func (s *Account) AddPaymentMethod(ctx context.Context, request operations.AddPa
 
 // CreateAccount - Create Bolt Account
 // Create a Bolt shopping account.
-func (s *Account) CreateAccount(ctx context.Context, request operations.CreateAccountRequest, security operations.CreateAccountSecurity) (*operations.CreateAccountResponse, error) {
+func (s *Account) CreateAccount(ctx context.Context, request operations.CreateAccountRequest) (*operations.CreateAccountResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "createAccount",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -255,7 +255,7 @@ func (s *Account) CreateAccount(ctx context.Context, request operations.CreateAc
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

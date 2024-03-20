@@ -11,25 +11,6 @@ import (
 	"net/http"
 )
 
-type InitializePaymentSecurity struct {
-	OAuth   *string `security:"scheme,type=oauth2,name=Authorization"`
-	XAPIKey *string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *InitializePaymentSecurity) GetOAuth() *string {
-	if o == nil {
-		return nil
-	}
-	return o.OAuth
-}
-
-func (o *InitializePaymentSecurity) GetXAPIKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.XAPIKey
-}
-
 // SavedPaymentInputInitializePaymentData - Initialize payment for a saved payment method
 type SavedPaymentInputInitializePaymentData struct {
 	// Payment ID of the saved Bolt Payment method.
@@ -696,25 +677,6 @@ func (o *InitializePaymentResponse) GetOneOf() *InitializePaymentResponseBody {
 		return nil
 	}
 	return o.OneOf
-}
-
-type UpdatePaymentSecurity struct {
-	OAuth   *string `security:"scheme,type=oauth2,name=Authorization"`
-	XAPIKey *string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *UpdatePaymentSecurity) GetOAuth() *string {
-	if o == nil {
-		return nil
-	}
-	return o.OAuth
-}
-
-func (o *UpdatePaymentSecurity) GetXAPIKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.XAPIKey
 }
 
 // SavedPaymentInputUpdatePaymentData - Initialize payment for a saved payment method

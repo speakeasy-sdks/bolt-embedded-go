@@ -84,22 +84,22 @@ Although the response returns the standard `transaction_view` object, only `capt
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.CaptureTransactionSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
-    res, err := s.Transactions.CaptureTransaction(ctx, operations.CaptureTransactionRequest{}, operationSecurity)
+    res, err := s.Transactions.CaptureTransaction(ctx, operations.CaptureTransactionRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -111,11 +111,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.CaptureTransactionRequest](../../pkg/models/operations/capturetransactionrequest.md)   | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `security`                                                                                         | [operations.CaptureTransactionSecurity](../../pkg/models/operations/capturetransactionsecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.CaptureTransactionRequest](../../pkg/models/operations/capturetransactionrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 
 
 ### Response
@@ -140,24 +139,24 @@ This allows you to pull the full transaction details for a given transaction.
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.GetTransactionDetailsSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Transactions.GetTransactionDetails(ctx, operations.GetTransactionDetailsRequest{
         Reference: "<value>",
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -169,11 +168,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.GetTransactionDetailsRequest](../../pkg/models/operations/gettransactiondetailsrequest.md)   | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `security`                                                                                               | [operations.GetTransactionDetailsSecurity](../../pkg/models/operations/gettransactiondetailssecurity.md) | :heavy_check_mark:                                                                                       | The security requirements to use for the request.                                                        |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetTransactionDetailsRequest](../../pkg/models/operations/gettransactiondetailsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 
 
 ### Response
@@ -194,22 +192,22 @@ This refunds a captured transaction. Refunds can be done for any partial amount 
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.RefundTransactionSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
-    res, err := s.Transactions.RefundTransaction(ctx, operations.RefundTransactionRequest{}, operationSecurity)
+    res, err := s.Transactions.RefundTransaction(ctx, operations.RefundTransactionRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -221,11 +219,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.RefundTransactionRequest](../../pkg/models/operations/refundtransactionrequest.md)   | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `security`                                                                                       | [operations.RefundTransactionSecurity](../../pkg/models/operations/refundtransactionsecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.RefundTransactionRequest](../../pkg/models/operations/refundtransactionrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
 
 ### Response
@@ -246,24 +243,24 @@ This allows you to update certain transaction properties post-authorization.
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.UpdateTransactionSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Transactions.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
         Reference: "<value>",
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -275,11 +272,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.UpdateTransactionRequest](../../pkg/models/operations/updatetransactionrequest.md)   | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `security`                                                                                       | [operations.UpdateTransactionSecurity](../../pkg/models/operations/updatetransactionsecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.UpdateTransactionRequest](../../pkg/models/operations/updatetransactionrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
 
 ### Response
@@ -303,22 +299,22 @@ Although the response returns the standard `transaction_view` object, only `stat
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.VoidTransactionSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
-    res, err := s.Transactions.VoidTransaction(ctx, operations.VoidTransactionRequest{}, operationSecurity)
+    res, err := s.Transactions.VoidTransaction(ctx, operations.VoidTransactionRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -330,11 +326,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.VoidTransactionRequest](../../pkg/models/operations/voidtransactionrequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `security`                                                                                   | [operations.VoidTransactionSecurity](../../pkg/models/operations/voidtransactionsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.VoidTransactionRequest](../../pkg/models/operations/voidtransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response

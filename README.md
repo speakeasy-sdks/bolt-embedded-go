@@ -305,13 +305,11 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Account.DetectAccount(ctx, operations.DetectAccountRequest{
-		XPublishableKey: "<value>",
-	})
+	res, err := s.Account.CreateAccount(ctx, operations.CreateAccountRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.V1AccountsView != nil {
+	if res.AccountDetails != nil {
 		// handle response
 	}
 }

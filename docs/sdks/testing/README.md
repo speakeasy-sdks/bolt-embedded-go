@@ -21,20 +21,19 @@ Create a Bolt shopper account for testing purposes. Available for sandbox use on
 package main
 
 import(
-	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
-	"context"
 	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
+	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
+	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.CreateTestingShopperAccountSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Testing.CreateTestingShopperAccount(ctx, operations.CreateTestingShopperAccountRequest{
@@ -43,7 +42,7 @@ func main() {
             EmailState: operations.EmailStateVerified.ToPointer(),
             PhoneState: shared.Onev11testing1shopper1createPostRequestBodyContentApplication1jsonSchemaPropertiesEmailStateVerified.ToPointer(),
         },
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -55,11 +54,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
-| `request`                                                                                                            | [operations.CreateTestingShopperAccountRequest](../../pkg/models/operations/createtestingshopperaccountrequest.md)   | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-| `security`                                                                                                           | [operations.CreateTestingShopperAccountSecurity](../../pkg/models/operations/createtestingshopperaccountsecurity.md) | :heavy_check_mark:                                                                                                   | The security requirements to use for the request.                                                                    |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
+| `request`                                                                                                          | [operations.CreateTestingShopperAccountRequest](../../pkg/models/operations/createtestingshopperaccountrequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
 
 
 ### Response
@@ -79,22 +77,21 @@ This endpoint fetches a new credit card token for Bolt's universal test credit c
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.GetTestCreditCardTokenSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
-    res, err := s.Testing.GetTestCreditCardToken(ctx, operationSecurity)
+    res, err := s.Testing.GetTestCreditCardToken(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -106,10 +103,9 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `security`                                                                                                 | [operations.GetTestCreditCardTokenSecurity](../../pkg/models/operations/gettestcreditcardtokensecurity.md) | :heavy_check_mark:                                                                                         | The security requirements to use for the request.                                                          |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 
 
 ### Response

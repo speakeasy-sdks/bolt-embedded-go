@@ -28,11 +28,11 @@ func newPayments(sdkConfig sdkConfiguration) *Payments {
 
 // FinalizePayment - Finalize Payment
 // Finalize a Bolt Payment. NOTE: The authorization header is NOT required for payments associated with users who do not have a Bolt account.
-func (s *Payments) FinalizePayment(ctx context.Context, request operations.FinalizePaymentRequest, security operations.FinalizePaymentSecurity) (*operations.FinalizePaymentResponse, error) {
+func (s *Payments) FinalizePayment(ctx context.Context, request operations.FinalizePaymentRequest) (*operations.FinalizePaymentResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "finalizePayment",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -56,7 +56,7 @@ func (s *Payments) FinalizePayment(ctx context.Context, request operations.Final
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -128,11 +128,11 @@ func (s *Payments) FinalizePayment(ctx context.Context, request operations.Final
 
 // InitializePayment - Initialize Payment
 // Initialize a Bolt payment token that will be used to reference this payment to Bolt when it is updated or finalized. NOTE: The authorization header is NOT required for payments associated with users who do not have a Bolt account.
-func (s *Payments) InitializePayment(ctx context.Context, request operations.InitializePaymentRequest, security operations.InitializePaymentSecurity) (*operations.InitializePaymentResponse, error) {
+func (s *Payments) InitializePayment(ctx context.Context, request operations.InitializePaymentRequest) (*operations.InitializePaymentResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "initializePayment",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -156,7 +156,7 @@ func (s *Payments) InitializePayment(ctx context.Context, request operations.Ini
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -228,11 +228,11 @@ func (s *Payments) InitializePayment(ctx context.Context, request operations.Ini
 
 // UpdatePayment - Update Payment
 // Update a Bolt payment using the token given after initializing a payment.  Updates will completely replace the original top-level resource (for example, if a cart is sent in with the request it will replace the existing cart).  Any included object should be sent as complete object. NOTE: The authorization header is NOT required for payments associated with users who do not have a Bolt account.
-func (s *Payments) UpdatePayment(ctx context.Context, request operations.UpdatePaymentRequest, security operations.UpdatePaymentSecurity) (*operations.UpdatePaymentResponse, error) {
+func (s *Payments) UpdatePayment(ctx context.Context, request operations.UpdatePaymentRequest) (*operations.UpdatePaymentResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updatePayment",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -256,7 +256,7 @@ func (s *Payments) UpdatePayment(ctx context.Context, request operations.UpdateP
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

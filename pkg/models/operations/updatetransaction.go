@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type UpdateTransactionSecurity struct {
-	XAPIKey string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *UpdateTransactionSecurity) GetXAPIKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.XAPIKey
-}
-
 // UpdateTransactionRequestBody - Update a Transaction
 type UpdateTransactionRequestBody struct {
 	// This field corresponds to the merchant's order reference associated with this Bolt transaction.

@@ -132,11 +132,11 @@ func (s *Transactions) AuthorizeTransaction(ctx context.Context, request operati
 // This captures funds for the designated transaction. A capture can be done for any partial amount or for the total authorized amount.
 //
 // Although the response returns the standard `transaction_view` object, only `captures` and either `id` or `reference` are needed.
-func (s *Transactions) CaptureTransaction(ctx context.Context, request operations.CaptureTransactionRequest, security operations.CaptureTransactionSecurity) (*operations.CaptureTransactionResponse, error) {
+func (s *Transactions) CaptureTransaction(ctx context.Context, request operations.CaptureTransactionRequest) (*operations.CaptureTransactionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "captureTransaction",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -160,7 +160,7 @@ func (s *Transactions) CaptureTransaction(ctx context.Context, request operation
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -259,11 +259,11 @@ func (s *Transactions) CaptureTransaction(ctx context.Context, request operation
 // This allows you to pull the full transaction details for a given transaction.
 //
 //	**Note**: All objects and fields marked `required` in the Transaction Details response are also **nullable**. This includes any sub-components (objects or fields) also marked `required`.
-func (s *Transactions) GetTransactionDetails(ctx context.Context, request operations.GetTransactionDetailsRequest, security operations.GetTransactionDetailsSecurity) (*operations.GetTransactionDetailsResponse, error) {
+func (s *Transactions) GetTransactionDetails(ctx context.Context, request operations.GetTransactionDetailsRequest) (*operations.GetTransactionDetailsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getTransactionDetails",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -279,7 +279,7 @@ func (s *Transactions) GetTransactionDetails(ctx context.Context, request operat
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -363,11 +363,11 @@ func (s *Transactions) GetTransactionDetails(ctx context.Context, request operat
 
 // RefundTransaction - Refund a Transaction
 // This refunds a captured transaction. Refunds can be done for any partial amount or for the total authorized amount. These refunds are processed synchronously and return information about the refunded transaction in the standard `transaction_view` object.
-func (s *Transactions) RefundTransaction(ctx context.Context, request operations.RefundTransactionRequest, security operations.RefundTransactionSecurity) (*operations.RefundTransactionResponse, error) {
+func (s *Transactions) RefundTransaction(ctx context.Context, request operations.RefundTransactionRequest) (*operations.RefundTransactionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "refundTransaction",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -391,7 +391,7 @@ func (s *Transactions) RefundTransaction(ctx context.Context, request operations
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -473,11 +473,11 @@ func (s *Transactions) RefundTransaction(ctx context.Context, request operations
 
 // UpdateTransaction - Update a Transaction
 // This allows you to update certain transaction properties post-authorization.
-func (s *Transactions) UpdateTransaction(ctx context.Context, request operations.UpdateTransactionRequest, security operations.UpdateTransactionSecurity) (*operations.UpdateTransactionResponse, error) {
+func (s *Transactions) UpdateTransaction(ctx context.Context, request operations.UpdateTransactionRequest) (*operations.UpdateTransactionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updateTransaction",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -501,7 +501,7 @@ func (s *Transactions) UpdateTransaction(ctx context.Context, request operations
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -587,11 +587,11 @@ func (s *Transactions) UpdateTransaction(ctx context.Context, request operations
 // This voids the authorization for a given transaction. Voids must be completed before the authorization is captured.
 // In the request, either `transaction_id` or `transaction_reference` is required.
 // Although the response returns the standard `transaction_view` object, only `status` and either `id` or `reference` are needed.
-func (s *Transactions) VoidTransaction(ctx context.Context, request operations.VoidTransactionRequest, security operations.VoidTransactionSecurity) (*operations.VoidTransactionResponse, error) {
+func (s *Transactions) VoidTransaction(ctx context.Context, request operations.VoidTransactionRequest) (*operations.VoidTransactionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "voidTransaction",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -615,7 +615,7 @@ func (s *Transactions) VoidTransaction(ctx context.Context, request operations.V
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

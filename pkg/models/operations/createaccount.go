@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type CreateAccountSecurity struct {
-	XAPIKey string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *CreateAccountSecurity) GetXAPIKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.XAPIKey
-}
-
 type CreateAccountRequest struct {
 	// A key created by merchants that ensures `POST` and `PATCH` requests are only performed once. [Read more about Idempotent Requests here](/developers/references/idempotency/).
 	IdempotencyKey *string `header:"style=simple,explode=false,name=Idempotency-Key"`

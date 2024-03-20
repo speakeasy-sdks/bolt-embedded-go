@@ -8,25 +8,6 @@ import (
 	"net/http"
 )
 
-type FinalizePaymentSecurity struct {
-	OAuth   *string `security:"scheme,type=oauth2,name=Authorization"`
-	XAPIKey *string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *FinalizePaymentSecurity) GetOAuth() *string {
-	if o == nil {
-		return nil
-	}
-	return o.OAuth
-}
-
-func (o *FinalizePaymentSecurity) GetXAPIKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.XAPIKey
-}
-
 // ShopperIdentity - Identification information for the Shopper
 type ShopperIdentity struct {
 	// determines whether to create a bolt account for this shopper

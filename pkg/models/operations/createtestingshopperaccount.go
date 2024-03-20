@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type CreateTestingShopperAccountSecurity struct {
-	XAPIKey string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *CreateTestingShopperAccountSecurity) GetXAPIKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.XAPIKey
-}
-
 // EmailState - The status of the shopper account identifier (email or phone). If the account does not have this identifier, the status is "missing"; If the identifier has been used to receive an OTP code, the status is "verified"; If the identifier has not been used to receive an OTP code, the status is "unverified".
 type EmailState string
 

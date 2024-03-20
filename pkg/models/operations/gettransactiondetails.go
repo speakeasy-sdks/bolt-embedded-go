@@ -9,17 +9,6 @@ import (
 	"net/http"
 )
 
-type GetTransactionDetailsSecurity struct {
-	XAPIKey string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *GetTransactionDetailsSecurity) GetXAPIKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.XAPIKey
-}
-
 type GetTransactionDetailsRequest struct {
 	// This is the Bolt transaction reference. (ex. N7Y3-NFKC-VFRF)
 	Reference string `pathParam:"style=simple,explode=false,name=REFERENCE"`

@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type RefundTransactionSecurity struct {
-	XAPIKey string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *RefundTransactionSecurity) GetXAPIKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.XAPIKey
-}
-
 // RefundTransactionRequestBody - Refund a Transaction
 type RefundTransactionRequestBody struct {
 	// The amount in cents. **Nullable** for Transactions Details.

@@ -136,22 +136,22 @@ Create a Bolt shopping account.
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.CreateAccountSecurity{
-            XAPIKey: "<YOUR_API_KEY_HERE>",
-        }
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
+            OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
+        }),
+    )
 
     ctx := context.Background()
-    res, err := s.Account.CreateAccount(ctx, operations.CreateAccountRequest{}, operationSecurity)
+    res, err := s.Account.CreateAccount(ctx, operations.CreateAccountRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -163,11 +163,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.CreateAccountRequest](../../pkg/models/operations/createaccountrequest.md)   | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `security`                                                                               | [operations.CreateAccountSecurity](../../pkg/models/operations/createaccountsecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.CreateAccountRequest](../../pkg/models/operations/createaccountrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response

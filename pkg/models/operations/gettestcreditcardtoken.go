@@ -6,17 +6,6 @@ import (
 	"net/http"
 )
 
-type GetTestCreditCardTokenSecurity struct {
-	XAPIKey string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *GetTestCreditCardTokenSecurity) GetXAPIKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.XAPIKey
-}
-
 // GetTestCreditCardTokenResponseBody - Successfully Fetched Credit Card Token
 type GetTestCreditCardTokenResponseBody struct {
 	// The credit card bin.

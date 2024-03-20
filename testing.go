@@ -28,11 +28,11 @@ func newTesting(sdkConfig sdkConfiguration) *Testing {
 
 // CreateTestingShopperAccount - Create Testing Shopper Account
 // Create a Bolt shopper account for testing purposes. Available for sandbox use only and the created  account will be recycled after a certain time.
-func (s *Testing) CreateTestingShopperAccount(ctx context.Context, request operations.CreateTestingShopperAccountRequest, security operations.CreateTestingShopperAccountSecurity) (*operations.CreateTestingShopperAccountResponse, error) {
+func (s *Testing) CreateTestingShopperAccount(ctx context.Context, request operations.CreateTestingShopperAccountRequest) (*operations.CreateTestingShopperAccountResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "createTestingShopperAccount",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -56,7 +56,7 @@ func (s *Testing) CreateTestingShopperAccount(ctx context.Context, request opera
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -126,11 +126,11 @@ func (s *Testing) CreateTestingShopperAccount(ctx context.Context, request opera
 
 // GetTestCreditCardToken - Fetch a Test Credit Card Token
 // This endpoint fetches a new credit card token for Bolt's universal test credit card number `4111 1111 1111 1004`. This is for testing and is available only in sandbox.
-func (s *Testing) GetTestCreditCardToken(ctx context.Context, security operations.GetTestCreditCardTokenSecurity) (*operations.GetTestCreditCardTokenResponse, error) {
+func (s *Testing) GetTestCreditCardToken(ctx context.Context) (*operations.GetTestCreditCardTokenResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getTestCreditCardToken",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -146,7 +146,7 @@ func (s *Testing) GetTestCreditCardToken(ctx context.Context, security operation
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

@@ -7,17 +7,6 @@ import (
 	"net/http"
 )
 
-type VoidTransactionSecurity struct {
-	XAPIKey string `security:"scheme,type=apiKey,subtype=header,name=X-API-Key"`
-}
-
-func (o *VoidTransactionSecurity) GetXAPIKey() string {
-	if o == nil {
-		return ""
-	}
-	return o.XAPIKey
-}
-
 type VoidTransactionRequest struct {
 	// A key created by merchants that ensures `POST` and `PATCH` requests are only performed once. [Read more about Idempotent Requests here](/developers/references/idempotency/).
 	IdempotencyKey *string `header:"style=simple,explode=false,name=Idempotency-Key"`

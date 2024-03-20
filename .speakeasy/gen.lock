@@ -3,10 +3,10 @@ id: 71130278-9949-4494-9710-a222f5c40474
 management:
   docChecksum: b58aa22b520fd02d35640f920003ff1d
   docVersion: 1.0.1
-  speakeasyVersion: 1.207.1
-  generationVersion: 2.280.6
-  releaseVersion: 0.12.1
-  configChecksum: cbdbb5a024f99db3ecd5da2eb140b29d
+  speakeasyVersion: 1.213.0
+  generationVersion: 2.283.1
+  releaseVersion: 0.12.2
+  configChecksum: 021b81f7d68a79a8d93a3b8889862ba0
   repoURL: https://github.com/speakeasy-sdks/bolt-embedded-go.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/bolt-embedded-go
@@ -14,7 +14,7 @@ management:
 features:
   go:
     core: 3.4.4
-    globalSecurity: 2.82.8
+    globalSecurity: 2.82.9
     globalServerURLs: 2.82.2
     methodSecurity: 2.82.2
     responseFormat: 0.1.0
@@ -212,7 +212,6 @@ generatedFiles:
   - docs/pkg/models/operations/addpaymentmethodrequestbody.md
   - docs/pkg/models/operations/addpaymentmethodrequest.md
   - docs/pkg/models/operations/addpaymentmethodresponse.md
-  - docs/pkg/models/operations/createaccountsecurity.md
   - docs/pkg/models/operations/createaccountrequest.md
   - docs/pkg/models/operations/createaccountresponse.md
   - docs/pkg/models/operations/deleteaddresssecurity.md
@@ -242,10 +241,8 @@ generatedFiles:
   - docs/pkg/models/operations/authorizetransactionrequestbody.md
   - docs/pkg/models/operations/authorizetransactionrequest.md
   - docs/pkg/models/operations/authorizetransactionresponse.md
-  - docs/pkg/models/operations/capturetransactionsecurity.md
   - docs/pkg/models/operations/capturetransactionrequest.md
   - docs/pkg/models/operations/capturetransactionresponse.md
-  - docs/pkg/models/operations/gettransactiondetailssecurity.md
   - docs/pkg/models/operations/gettransactiondetailsrequest.md
   - docs/pkg/models/operations/gettransactiondetailstype.md
   - docs/pkg/models/operations/splits.md
@@ -253,11 +250,9 @@ generatedFiles:
   - docs/pkg/models/operations/transactionrejectiondetails.md
   - docs/pkg/models/operations/gettransactiondetailsresponsebody.md
   - docs/pkg/models/operations/gettransactiondetailsresponse.md
-  - docs/pkg/models/operations/refundtransactionsecurity.md
   - docs/pkg/models/operations/refundtransactionrequestbody.md
   - docs/pkg/models/operations/refundtransactionrequest.md
   - docs/pkg/models/operations/refundtransactionresponse.md
-  - docs/pkg/models/operations/updatetransactionsecurity.md
   - docs/pkg/models/operations/updatetransactionrequestbody.md
   - docs/pkg/models/operations/updatetransactionrequest.md
   - docs/pkg/models/operations/updatetransactiontype.md
@@ -266,13 +261,11 @@ generatedFiles:
   - docs/pkg/models/operations/updatetransactiontransactionrejectiondetails.md
   - docs/pkg/models/operations/updatetransactionresponsebody.md
   - docs/pkg/models/operations/updatetransactionresponse.md
-  - docs/pkg/models/operations/voidtransactionsecurity.md
   - docs/pkg/models/operations/voidtransactionrequest.md
   - docs/pkg/models/operations/voidtransactionresponse.md
   - docs/pkg/models/operations/oauthtokenrequestbody.md
   - docs/pkg/models/operations/oauthtokenrequest.md
   - docs/pkg/models/operations/oauthtokenresponse.md
-  - docs/pkg/models/operations/finalizepaymentsecurity.md
   - docs/pkg/models/operations/shopperidentity.md
   - docs/pkg/models/operations/finalizepaymentrequestbody.md
   - docs/pkg/models/operations/finalizepaymentrequest.md
@@ -281,7 +274,6 @@ generatedFiles:
   - docs/pkg/models/operations/transaction.md
   - docs/pkg/models/operations/finalizepaymentresponsebody.md
   - docs/pkg/models/operations/finalizepaymentresponse.md
-  - docs/pkg/models/operations/initializepaymentsecurity.md
   - docs/pkg/models/operations/savedpaymentinputinitializepaymentdata.md
   - docs/pkg/models/operations/savedpaymentinputinitializetype.md
   - docs/pkg/models/operations/savedpaymentinputinitializepaymentmethod.md
@@ -302,7 +294,6 @@ generatedFiles:
   - docs/pkg/models/operations/paypalpaymentviewschemas.md
   - docs/pkg/models/operations/initializepaymentresponsebody.md
   - docs/pkg/models/operations/initializepaymentresponse.md
-  - docs/pkg/models/operations/updatepaymentsecurity.md
   - docs/pkg/models/operations/savedpaymentinputupdatepaymentdata.md
   - docs/pkg/models/operations/savedpaymentinputupdatetype.md
   - docs/pkg/models/operations/savedpaymentinputupdatepaymentmethod.md
@@ -317,13 +308,11 @@ generatedFiles:
   - docs/pkg/models/operations/updatepaymentrequest.md
   - docs/pkg/models/operations/updatepaymentresponsebody.md
   - docs/pkg/models/operations/updatepaymentresponse.md
-  - docs/pkg/models/operations/createtestingshopperaccountsecurity.md
   - docs/pkg/models/operations/emailstate.md
   - docs/pkg/models/operations/createtestingshopperaccountrequestbody.md
   - docs/pkg/models/operations/createtestingshopperaccountrequest.md
   - docs/pkg/models/operations/createtestingshopperaccountresponsebody.md
   - docs/pkg/models/operations/createtestingshopperaccountresponse.md
-  - docs/pkg/models/operations/gettestcreditcardtokensecurity.md
   - docs/pkg/models/operations/gettestcreditcardtokenresponsebody.md
   - docs/pkg/models/operations/gettestcreditcardtokenresponse.md
   - docs/pkg/models/shared/metadata.md

@@ -23,24 +23,24 @@ Finalize a Bolt Payment. NOTE: The authorization header is NOT required for paym
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.FinalizePaymentSecurity{
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
             OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Payments.FinalizePayment(ctx, operations.FinalizePaymentRequest{
         ID: "<id>",
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -52,11 +52,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.FinalizePaymentRequest](../../pkg/models/operations/finalizepaymentrequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `security`                                                                                   | [operations.FinalizePaymentSecurity](../../pkg/models/operations/finalizepaymentsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.FinalizePaymentRequest](../../pkg/models/operations/finalizepaymentrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response
@@ -77,22 +76,22 @@ Initialize a Bolt payment token that will be used to reference this payment to B
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.InitializePaymentSecurity{
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
             OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
-        }
+        }),
+    )
 
     ctx := context.Background()
-    res, err := s.Payments.InitializePayment(ctx, operations.InitializePaymentRequest{}, operationSecurity)
+    res, err := s.Payments.InitializePayment(ctx, operations.InitializePaymentRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -104,11 +103,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.InitializePaymentRequest](../../pkg/models/operations/initializepaymentrequest.md)   | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `security`                                                                                       | [operations.InitializePaymentSecurity](../../pkg/models/operations/initializepaymentsecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.InitializePaymentRequest](../../pkg/models/operations/initializepaymentrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
 
 ### Response
@@ -129,24 +127,24 @@ Update a Bolt payment using the token given after initializing a payment.  Updat
 package main
 
 import(
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/shared"
 	boltembeddedgo "github.com/speakeasy-sdks/bolt-embedded-go"
-	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"context"
+	"github.com/speakeasy-sdks/bolt-embedded-go/pkg/models/operations"
 	"log"
 )
 
 func main() {
-    s := boltembeddedgo.New()
-
-
-    operationSecurity := operations.UpdatePaymentSecurity{
+    s := boltembeddedgo.New(
+        boltembeddedgo.WithSecurity(shared.Security{
             OAuth: boltembeddedgo.String("Bearer <YOUR_ACCESS_TOKEN_HERE>"),
-        }
+        }),
+    )
 
     ctx := context.Background()
     res, err := s.Payments.UpdatePayment(ctx, operations.UpdatePaymentRequest{
         ID: "<id>",
-    }, operationSecurity)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -158,11 +156,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.UpdatePaymentRequest](../../pkg/models/operations/updatepaymentrequest.md)   | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `security`                                                                               | [operations.UpdatePaymentSecurity](../../pkg/models/operations/updatepaymentsecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.UpdatePaymentRequest](../../pkg/models/operations/updatepaymentrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
