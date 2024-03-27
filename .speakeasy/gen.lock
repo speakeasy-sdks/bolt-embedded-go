@@ -3,17 +3,17 @@ id: 71130278-9949-4494-9710-a222f5c40474
 management:
   docChecksum: b58aa22b520fd02d35640f920003ff1d
   docVersion: 1.0.1
-  speakeasyVersion: 1.213.0
-  generationVersion: 2.283.1
-  releaseVersion: 0.12.2
-  configChecksum: 021b81f7d68a79a8d93a3b8889862ba0
+  speakeasyVersion: 1.227.0
+  generationVersion: 2.291.0
+  releaseVersion: 0.12.3
+  configChecksum: 5089cbcb7da9f0e20508f07a491711fc
   repoURL: https://github.com/speakeasy-sdks/bolt-embedded-go.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/bolt-embedded-go
   published: true
 features:
   go:
-    core: 3.4.4
+    core: 3.4.5
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.2
     methodSecurity: 2.82.2
